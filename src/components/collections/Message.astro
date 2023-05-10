@@ -1,0 +1,12 @@
+---
+import { getCollection, getEntryBySlug } from 'astro:content';
+import assert from 'node:assert/strict';
+
+const { slug } = Astro.props;
+
+const message = await getEntryBySlug('messages', slug);
+assert(message, `Slug not found: ${slug}`);
+
+const [ title, description, series ] = message.data.description.split('\\n');
+---
+<li>{title} &middot; {description} &middot; {series}</li>
