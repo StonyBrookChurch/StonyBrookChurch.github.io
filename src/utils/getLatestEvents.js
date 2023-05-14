@@ -14,16 +14,16 @@ export default async function getLatestEvents(days, tag) {
 }
 
 async function fetchEvents(apiKey, start, end, tag) {
-  let data = await fetchPage(apiKey, start, end, null);
-  console.log(`events: found ${data.meta.total_count} total results`);
-  let eventInstances = new EventInstances(data);
-  const items = eventInstances.findAllByTag(tag);
-  while (data.meta.next !== undefined) {
-    data = await fetchPage(apiKey, start, end, data.meta.next.offset);
-    eventInstances = new EventInstances(data);
+  const items = [];
+
+  let next = null;
+  do {
+    const data = await fetchPage(apiKey, start, end, next ? next.offset : null);
+    const eventInstances = new EventInstances(data);
     eventInstances.findAllByTag(tag)
       .forEach((item) => items.push(item));
-  }
+    next = data.meta.next;
+  } while (next !== undefined);
 
   return items.map((item) => formatEvent(item));
 }
@@ -46,7 +46,7 @@ async function fetchPage(apiKey, start, end, offset) {
 }
 
 function formatEvent(event) {
-  //console.log(JSON.stringify(event));
+  // console.log(JSON.stringify(event, null, 2));
   return {
     name: clean(event.name),
     description: clean(event.description),
