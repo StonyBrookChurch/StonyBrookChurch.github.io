@@ -1,0 +1,22 @@
+---
+import getLatestMessages from '../../utils/getLatestMessages';
+import parseDate from '../../utils/parseDate';
+
+const latestMessages = await getLatestMessages();
+const messages = latestMessages.map((message) => {
+  const [ title, description, series ] = message.description.split('\n');
+  const date = parseDate(message.name);
+  return {
+    ...message,
+    title,
+    description,
+    series,
+    date
+  }
+});
+---
+<ul>
+  {messages.map((message) =>
+    <li>{message.title} &middot; {message.description} &middot; {message.series} &middot; {message.date}</li>
+  )}
+</ul>

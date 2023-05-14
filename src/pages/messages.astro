@@ -1,26 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
-import LatestMessage from '../components/collections/LatestMessage.astro';
-import Message from '../components/collections/Message.astro';
 import Page from '../layouts/Page.astro';
+import LatestMessage from '../components/collections/LatestMessage.astro';
+import LatestMessages from '../components/collections/LatestMessages.astro';
 import LatestService from '../components/collections/LatestService.astro';
 
-const messages = await getCollection('messages');
+// const messages = await getLatestMessages();
 ---
 
 <Page title="Messages" description="">
     <h2>Latest Message</h2>
-    <ul>
-        <LatestMessage />
-    </ul>
+    <LatestMessage />
     <h2>Latest Service</h2>
-    <ul>
-        <LatestService />
-    </ul>
+    <LatestService />
     <h2>Messages</h2>
-    <ul>
-        {messages.map((message) => (
-            <Message slug={message.slug} />
-        ))}
-    </ul>
+    <LatestMessages />
 </Page>
