@@ -1,5 +1,6 @@
 ---
-import { getCollection, getEntryBySlug } from 'astro:content';
+import { getCollection } from 'astro:content';
+import LatestMessage from '../components/collections/LatestMessage.astro';
 import Message from '../components/collections/Message.astro';
 import Page from '../layouts/Page.astro';
 
@@ -8,8 +9,9 @@ const messages = await getCollection('messages');
 
 <Page title="Messages" description="">
     <ul>
-        {messages.map((message) => (
+        <!-- {messages.map((message) => (
             <Message slug={message.slug} />
-        ))}
+        ))} -->
+        <LatestMessage />
     </ul>
 </Page>

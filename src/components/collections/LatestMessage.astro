@@ -1,0 +1,9 @@
+---
+import getLatestMessage from '../../utils/getLatestMessage';
+import parseDate from '../../utils/parseDate';
+
+const message = await getLatestMessage();
+const [ title, description, series ] = message.description.split('\\n');
+const date = parseDate(message.title);
+---
+<li>{title} &middot; {description} &middot; {series} &middot; {date}</li>
