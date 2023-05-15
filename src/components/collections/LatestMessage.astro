@@ -1,11 +1,8 @@
 ---
 import getLatestMessage from '../../utils/getLatestMessage';
-import parseDate from '../../utils/parseDate';
 
 const message = await getLatestMessage();
-const [ title, description, series ] = message.description.split('\n');
-const date = parseDate(message.name);
 ---
 <ul>
-  <li>{title} &middot; {description} &middot; {series} &middot; {date}</li>
+  <li>{message.title} &middot; {message.description} &middot; {message.series} &middot; {message.date}</li>
 </ul>

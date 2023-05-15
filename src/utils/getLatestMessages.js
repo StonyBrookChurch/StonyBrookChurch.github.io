@@ -10,7 +10,18 @@ const THUMBNAIL_SIZE_WIDTHS = {
 };
 
 export default async function getLatestMessages() {
-  return await fetchVideos(VIMEO_ACCESS_TOKEN, '10085736', 'manual', 'desc');
+  const messages = await fetchVideos(VIMEO_ACCESS_TOKEN, '10085736', 'manual', 'desc');
+  return messages.map((message) => {
+    const [ title, description, series ] = message.description.split('\n');
+    const date = parseDate(message.name);
+    return {
+      ...message,
+      title,
+      description,
+      series,
+      date
+    };
+  });
 }
 
 async function fetchVideos(accessToken, showcaseId, sort, order) {
@@ -52,44 +63,28 @@ async function fetchPage(accessToken, showcaseId, sort, order, page) {
   return fetch(url, options).then((response) => response.json());
 }
 
-function template(str, item, index, thumbnailSize) {
-  const thumbnail = findThumbnail(item.pictures.sizes, thumbnailSize) || items.pictures.base_link;
-  return str
-    .replaceAll('${uri}', item.uri)
-    .replaceAll('${name}', clean(item.name))
-    .replaceAll('${description}', clean(item.description))
-    .replaceAll('${thumbnailLink}', thumbnail.link)
-    .replaceAll('${link}', item.link)
-    .replaceAll('${playerEmbedUrl}', item.player_embed_url)
-    .replaceAll('${duration}', item.duration)
-    .replaceAll('${width}', item.width)
-    .replaceAll('${height}', item.height)
-    .replaceAll('${userName}', clean(item.user.name))
-    .replaceAll('${userUri}', item.user.uri)
-    .replaceAll('${userLink}', item.user.link)
-    .replaceAll('${userBio}', clean(item.user.bio))
-    .replaceAll('${userShortBio}', clean(item.user.short_bio))
-    .replaceAll('${position}', Number.parseInt(index) + 1)
-    .replaceAll('${videoId}', item.uri.replace(/\/videos\//, ''))
-    .replaceAll('${createdTime}', item.created_time)
-    .replaceAll('${modifiedTime}', item.modified_time)
-    .replaceAll('${releaseTime}', item.release_time);
-}
-
-function clean(str) {
-  return str == null ? null : str
-    .replaceAll('\n', '\\n')
-    .replaceAll('\'', '\'\'')
-    .replaceAll('"', '\\"');
-}
-
-function findThumbnail(sizes, thumbnailSize) {
-  const width = THUMBNAIL_SIZE_WIDTHS[thumbnailSize];
-  return sizes.find((item) => item.width === width);
-}
-
 function mapThumbnails(sizes) {
   const thumbnails = {};
   sizes.forEach((item) => THUMBNAIL_SIZE_WIDTHS[item.width] = item.link);
   return thumbnails;
+}
+
+function parseDate(title) {
+  const words = title.split(' ');
+  if (words.length > 0) {
+    const parts = words[0].split(/[.\-]/);
+    if (parts.length === 3) {
+      let year = parts[2];
+      let month = parts[0];
+      if (month.length < 2) {
+        month = `0${month}`;
+      }
+      let day = parts[1];
+      if (day.length < 2) {
+        day = `0${day}`;
+      }
+      return `${year}-${month}-${day}`;
+    }
+  }
+  return null;
 }
