@@ -46,7 +46,7 @@ body{
 }
 
 .datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker tfoot tr th:hover{
-  background-color: var(--color-secondar-hover);
+  background-color: var(--color-secondary-hover);
 }
 
 .datepicker table tr td span.active, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active:hover,
