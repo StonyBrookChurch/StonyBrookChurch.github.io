@@ -1088,6 +1088,10 @@ textarea::placeholder {
   background-color: var(--color-bg-light) !important;
 }
 
+.vimeo, .vimeo:hover, .vimeo:focus {
+  background-color: rgb(38, 185, 241) !important;
+  color: #fff;
+}
 .twitter, .twitter:hover, .twitter:focus {
   background-color: rgb(44, 170, 225) !important;
   color: #fff;
@@ -1133,13 +1137,19 @@ textarea::placeholder {
   color: rgb(59, 87, 157) !important;
 }
 .color-instagram-hover:hover{
-  color: #8134af !important;
+  color: #fa7e1e !important;
 }
 .color-twitter-hover:hover{
   color: rgb(44, 170, 225) !important;
 }
 .color-soundcloud-hover:hover{
   color: #ff7f34 !important;
+}
+.color-vimeo-hover:hover{
+  color: rgb(38, 185, 241) !important;
+}
+.color-youtube-hover:hover{
+  color: rgb(229, 45, 39) !important;
 }
 .color-soundcloud{
   color: #ff7f34 !important;
@@ -1491,32 +1501,28 @@ table .form-control:focus{
     cursor: pointer;
     transition: .3s;
     display: none;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 4px;
 }
 
 .andro_header-controls > a.andro_burger-icon span{
-  width: 3px;
-  height: 3px;
+  width: 24px;
+  height: 2px;
   margin: 0;
   background-color: #fff;
 }
-.andro_header-controls > a.andro_burger-icon span:nth-child(2){
+.andro_header-controls > a.andro_burger-icon span:nth-child(1){
   grid-row: 1;
-  grid-column: 3;
-}
-.andro_header-controls > a.andro_burger-icon span:nth-child(3){
-  grid-row: 2;
-  grid-column: 2;
-}
-.andro_header-controls > a.andro_burger-icon span:nth-child(4){
-  grid-row: 3;
   grid-column: 1;
 }
-.andro_header-controls > a.andro_burger-icon span:nth-child(5){
+.andro_header-controls > a.andro_burger-icon span:nth-child(2){
+  grid-row: 2;
+  grid-column: 1;
+}
+.andro_header-controls > a.andro_burger-icon span:nth-child(3){
   grid-row: 3;
-  grid-column: 3;
+  grid-column: 1;
 }
 
 .andro_header-navigation > ul{
@@ -6364,10 +6370,6 @@ Responsive
   .andro_header-navigation > ul li a{
     padding: 20px 15px;
   }
-  .andro_header.style-3 .andro_header-navigation,
-  .andro_header.style-3 .andro_header-contacts > a{
-    display: none;
-  }
   .andro_header.style-3 .andro_header-wrap{
     max-width: 960px;
   }
@@ -6543,6 +6545,10 @@ Responsive
   }
   .andro_header.style-3 .andro_header-wrap{
     max-width: 720px;
+  }
+  .andro_header.style-3 .andro_header-navigation,
+  .andro_header.style-3 .andro_header-contacts > a{
+    display: none;
   }
   .andro_header.style-4 .andro_header-navigation > ul{
     display: flex;

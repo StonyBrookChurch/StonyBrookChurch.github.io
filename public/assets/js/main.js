@@ -47,7 +47,30 @@
   /*-------------------------------------------------------------------------------
   Magnific Popup
   -------------------------------------------------------------------------------*/
-  $('.andro_video-popup').magnificPopup({type: 'iframe'});
+  console.log(window.location);
+  $('.andro_video-popup').magnificPopup({
+    type: 'iframe',
+    // Custom options provided to customize origin query param for YouTube
+    iframe: {
+      markup: '<div class="mfp-iframe-scaler">'+
+        '<div class="mfp-close"></div>'+
+        '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+        '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+      patterns: {
+        youtube: {
+          index: 'youtube.com/',
+          id: 'v=',
+          src: 'https://www.youtube.com/embed/%id%?autoplay=1&origin=' + window.location.origin // URL that will be set as a source for iframe.
+        },
+        vimeo: {
+          index: 'vimeo.com/',
+          id: '/',
+          src: 'https://player.vimeo.com/video/%id%?autoplay=1'
+        }
+      },
+      srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
+    }
+  });
   $('.andro_img-popup').magnificPopup({
     type: 'image',
     gallery: {
@@ -105,64 +128,69 @@
   let particlesData = {
     "particles": {
       "number": {
-        "value": 100,
+        "value": 20,
         "density": {
           "enable": true,
           "value_area": 800
         }
       },
       "color": {
-        "value": "#882FBD"
+        "value": "#ffffff"
       },
       "shape": {
         "type": "circle",
         "stroke": {
           "width": 0,
-          "color": "#882FBD"
+          "color": "#000000"
         },
         "polygon": {
           "nb_sides": 5
+        },
+        "image": {
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
         }
       },
       "opacity": {
         "value": 1,
-        "random": false,
+        "random": true,
         "anim": {
-          "enable": false,
+          "enable": true,
           "speed": 1,
-          "opacity_min": 0.1,
+          "opacity_min": 0,
           "sync": false
         }
       },
       "size": {
-        "value": 2,
+        "value": 3,
         "random": true,
         "anim": {
           "enable": false,
-          "speed": 80,
-          "size_min": 0.1,
+          "speed": 4,
+          "size_min": 0.3,
           "sync": false
         }
       },
       "line_linked": {
-        "enable": true,
-        "distance": 200,
-        "color": "#882FBD",
+        "enable": false,
+        "distance": 150,
+        "color": "#ffffff",
         "opacity": 0.4,
-        "width": 2
+        "width": 1
       },
       "move": {
         "enable": true,
-        "speed": 2,
+        "speed": 0.7,
         "direction": "none",
-        "random": false,
+        "random": true,
         "straight": false,
         "out_mode": "out",
         "bounce": false,
         "attract": {
           "enable": false,
           "rotateX": 600,
-          "rotateY": 1200
+          "rotateY": 600
         }
       }
     },
@@ -170,27 +198,27 @@
       "detect_on": "canvas",
       "events": {
         "onhover": {
-          "enable": false,
-          "mode": "repulse"
+          "enable": true,
+          "mode": "bubble"
         },
         "onclick": {
           "enable": true,
-          "mode": "push"
+          "mode": "repulse"
         },
         "resize": true
       },
       "modes": {
         "grab": {
-          "distance": 800,
+          "distance": 400,
           "line_linked": {
             "opacity": 1
           }
         },
         "bubble": {
-          "distance": 800,
-          "size": 80,
+          "distance": 250,
+          "size": 0,
           "duration": 2,
-          "opacity": 0.8,
+          "opacity": 0,
           "speed": 3
         },
         "repulse": {

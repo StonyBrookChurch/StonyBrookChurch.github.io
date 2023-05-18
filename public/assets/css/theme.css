@@ -1,0 +1,352 @@
+/*==================================
+This stylesheet is based on demo 8
+=================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --family-display: 'Architects Daughter', cursive;
+  --family-body: "Rubik", sans-serif;
+  --family-headings: "Rubik", sans-serif;
+  --color-primary: #298b9e;
+  --color-primary-hover: #1e6776;
+  --color-primary-hue: #34afc6;
+  --color-primary-rgb: 41, 139, 158;
+
+  --color-secondary: #2b2929;
+  --color-secondary-hover: #111010;
+  --color-secondary-hue: #454242;
+  --color-secondary-rgb: 43, 41, 41;
+
+  --color-1: #fac93b;
+  --color-1-rgb: 250, 201, 59;
+  --color-2: #3d877d;
+  --color-2-rgb: 61, 135, 125;
+  --color-3: #bdbdc2;
+  --color-3-rgb: 189, 189, 194;
+  --color-4: #294259;
+  --color-4-rgb: 41, 66, 89;
+  --color-5: #3d123d;
+  --color-5-rgb: 61, 18, 61;
+
+  --color-body: #fff;
+  --color-border: rgba(255,255,255,.1);
+  --color-headings: #fff;
+
+  --color-bg-dark: #0b0b0e;
+  --color-bg-light: rgba(255,255,255,.05);
+  --color-bg-light-alpha: rgba(69, 66, 66, 0.5);
+  --color-body-light-2: #BBBBBB;
+
+  --logo-size-lg: 160px;
+  --logo-size-md: 120px;
+  --logo-size-sm: 100px;
+}
+
+/* Custom style overrides */
+
+.color-1 {
+  color: var(--color-1);
+}
+
+.color-2{
+  color: var(--color-2);
+}
+
+.color-3 {
+  color: var(--color-3);
+}
+
+.color-4 {
+  color: var(--color-4);
+}
+
+.color-5 {
+  color: var(--color-5);
+}
+
+.andro_album.style-2.color-1 .andro_album-content {
+  background-color: rgba(var(--color-1-rgb), .8);
+}
+
+.andro_album.style-2.color-2 .andro_album-content {
+  background-color: rgba(var(--color-2-rgb), .8);
+}
+
+.andro_album.style-2.color-3 .andro_album-content {
+  background-color: rgba(var(--color-3-rgb), .8);
+}
+
+.andro_album.style-2.color-4 .andro_album-content {
+  background-color: rgba(var(--color-4-rgb), .8);
+}
+
+.andro_album.style-2.color-5 .andro_album-content {
+  background-color: rgba(var(--color-5-rgb), .8);
+}
+
+.andro_testimonial-title {
+  font-size: 32px;
+}
+
+.andro_testimonial-body.style-2::before {
+  content: '';
+  /*font-size: 48px;*/
+  /*color: #fff;*/
+  /*left: 10px;*/
+  /*top: 36px;*/
+  /*opacity: 0.02;*/
+}
+
+h1, .h1 {
+  font-weight: 700;
+  /*text-transform: uppercase;*/
+}
+
+.section-title h3, h2, .h2 {
+  font-weight: 700;
+  /*text-transform: uppercase;*/
+}
+
+h3, .h3 {
+  font-weight: 700;
+  /*text-transform: uppercase;*/
+}
+
+h4, .h4 {
+  font-weight: 600;
+  /*text-transform: uppercase;*/
+}
+
+h5, .h5 {
+  font-weight: 600;
+}
+
+h6, .h6 {
+  font-weight: 500;
+}
+
+/* Theme specific CSS */
+
+.bg-color-1 {
+  background-color: var(--color-1);
+}
+
+.bg-color-2 {
+  background-color: var(--color-2);
+}
+
+.bg-color-3 {
+  background-color: var(--color-3);
+}
+
+.bg-color-4 {
+  background-color: var(--color-4);
+}
+
+.bg-color-5 {
+  background-color: var(--color-5);
+}
+
+.andro_hero.style-3 .andro_hero-item {
+  padding: 380px 0 100px;
+}
+
+.andro_hero-item {
+  background-image: url(../../assets/uploads/band-1.jpg);
+  background-position-x: right;
+}
+
+.andro_footer {
+  background-image: url(../../assets/uploads/unsplash-header-1-1920x460.jpg);
+}
+
+.dark-overlay::before {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dark-overlay.dark-overlay-3::before{
+  background-color: rgba(0, 0, 0, .9);
+}
+
+.andro_video.style-2 h5 {
+  font-size: 28px;
+}
+
+.andro_post.style-3.ministry {
+  box-shadow: none;
+}
+
+.andro_post.style-3.ministry .andro_post-body {
+  padding: 40px 60px 40px 60px;
+}
+
+@media(min-width: 1200px) {
+  .andro_post.style-3.ministry .andro_post-thumb {
+    padding: 0 0 0 100px;
+  }
+
+  .andro_post.style-3.ministry.reverse .andro_post-thumb {
+    padding: 0 100px 0 0;
+  }
+}
+
+@media(max-width: 991px) {
+  .andro_post.style-3 .row .andro_post-thumb {
+    width: 350px;
+  }
+
+  .andro_post.style-3.ministry .andro_post-thumb {
+    margin-bottom: -50px;
+  }
+
+  .andro_post.style-3.ministry .andro_post-body {
+    margin-top: 25px;
+  }
+}
+
+@media(max-width: 420px) {
+  .andro_post.style-3 .row .andro_post-thumb {
+    width: inherit;
+  }
+}
+
+body{
+  background-color: var(--color-bg-dark);
+}
+.button.primary{
+  box-shadow: 0 3px 24px rgba(var(--color-primary-rgb), .5);
+}
+.button.secondary{
+  box-shadow: 0 3px 24px rgba(var(--color-secondary-rgb), .5);
+}
+
+button.outline.primary,
+input[type=reset].outline.primary,
+input[type="button"].outline.primary,
+input[type="submit"].outline.primary,
+.button.outline.primary {
+  border: 2px solid var(--color-primary);
+}
+
+.btn-link{
+  color: var(--color-headings);
+  text-decoration: underline;
+}
+.btn-link:hover{
+  color: var(--color-headings);
+  text-decoration: underline;
+}
+.dropdown-menu{
+  background-color: #08001E;
+  color: #fff;
+}
+.datepicker td, .datepicker th{
+  color: #fff;
+}
+
+.datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker tfoot tr th:hover{
+  background-color: var(--color-secondary-hover);
+}
+
+.datepicker table tr td span.active, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active:hover,
+.datepicker table tr td.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active:hover,
+.datepicker table tr td.day.focused, .datepicker table tr td.day:hover,
+.datepicker table tr td span.active.active, .datepicker table tr td span.active.disabled, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled.disabled,
+.datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:hover.active, .datepicker table tr td span.active.disabled:hover.disabled,
+.datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active.disabled:hover[disabled],
+.datepicker table tr td span.active.disabled[disabled], .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover, .datepicker table tr td span.active:hover.active,
+.datepicker table tr td span.active:hover.disabled, .datepicker table tr td span.active:hover:active, .datepicker table tr td span.active:hover:hover, .datepicker table tr td span.active:hover[disabled],
+.datepicker table tr td span.active[disabled],
+.datepicker table tr td.active.active, .datepicker table tr td.active.disabled, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled.disabled,
+.datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled:hover.disabled,
+.datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active.disabled:hover:hover, .datepicker table tr td.active.disabled:hover[disabled], .datepicker table tr td.active.disabled[disabled],
+.datepicker table tr td.active:active, .datepicker table tr td.active:hover, .datepicker table tr td.active:hover.active, .datepicker table tr td.active:hover.disabled, .datepicker table tr td.active:hover:active,
+.datepicker table tr td.active:hover:hover, .datepicker table tr td.active:hover[disabled], .datepicker table tr td.active[disabled]{
+  background-color: rgba(255,255,255,.1);
+}
+.andro_cart-summary,
+.andro_cart-wrap{
+  background-color: #0D021C;
+}
+table{
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+table td{
+  background-color: var(--color-bg-light-alpha);
+  border: none;
+  font-weight: 400;
+}
+table th{
+  background-color: var(--color-primary);
+  text-transform: none;
+}
+
+.andro_cart-wrap .form-control,
+table .form-control,
+table .form-control:focus{
+  background-color: var(--color-bg-light);
+}
+.andro_table-responsive tr{
+  border-bottom-color: rgba(255,255,255,.05);
+}
+
+.section-title span.family-display{
+  font-size: 40px;
+  /*text-transform: uppercase;*/
+}
+.section-title h3.family-display{
+  font-weight: 400;
+  font-size: 60px;
+  /*text-transform: uppercase;*/
+}
+
+.form-control:focus,
+.form-control{
+  color: #fff;
+}
+
+.andro_aside,
+.andro_header-navigation ul ul{
+  background-color: var(--color-bg-dark);
+}
+.andro_header-navigation > ul li a:hover{
+  color: var(--color-primary);
+}
+.andro_header.style-6 .andro_header-navigation-left > li:first-child a{
+  padding-left: 20px;
+}
+.andro_aside .andro_socials li a{
+  background-color: rgba(255,255,255,.1);
+  color: #fff;
+}
+
+.andro_track.style-2 .andro_track-footer .andro_track-controls a.play:hover,
+.andro_header-search .close_btn, .andro_aside .close_btn{
+  background-color: rgba(255,255,255,.1);
+}
+.andro_header-search .close_btn .line,
+.andro_aside .close_btn .line{
+  stroke: #fff;
+}
+
+.andro_gallery-content{
+  background-color: rgba(var(--color-secondary-rgb), .8);
+}
+
+.andro_post-d-footer .andro_socials li a:hover,
+.andro_post-d-img span{
+  background-color: var(--color-secondary);
+}
+.andro_post-d-footer .andro_socials li a{
+  background-color: rgba(255,255,255,.1);
+}
+
+@media(max-width: 768px){
+
+  .section-title h3.family-display{
+    font-size: 48px;
+  }
+
+}
