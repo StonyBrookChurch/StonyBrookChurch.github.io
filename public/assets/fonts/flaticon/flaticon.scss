@@ -1,0 +1,109 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?a81769d372fb6c79883374ad42169fa1") format("truetype"),
+url("./flaticon.woff?a81769d372fb6c79883374ad42169fa1") format("woff"),
+url("./flaticon.woff2?a81769d372fb6c79883374ad42169fa1") format("woff2"),
+url("./flaticon.eot?a81769d372fb6c79883374ad42169fa1#iefix") format("embedded-opentype"),
+url("./flaticon.svg?a81769d372fb6c79883374ad42169fa1#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "pin": "\f101",
+    "mail": "\f102",
+    "call": "\f103",
+    "calendar": "\f104",
+    "professional-condenser-microphone-outline": "\f105",
+    "karaoke": "\f106",
+    "karaoke-1": "\f107",
+    "mike": "\f108",
+    "microphone": "\f109",
+    "microphone-1": "\f10a",
+    "music": "\f10b",
+    "music-1": "\f10c",
+    "music-2": "\f10d",
+    "guitar": "\f10e",
+    "music-3": "\f10f",
+    "quaver": "\f110",
+    "stave": "\f111",
+    "music-notes": "\f112",
+    "clef": "\f113",
+    "music-notes-1": "\f114",
+    "musical-note": "\f115",
+);
+
+.flaticon-pin:before {
+    content: map-get($flaticon-map, "pin");
+}
+.flaticon-mail:before {
+    content: map-get($flaticon-map, "mail");
+}
+.flaticon-call:before {
+    content: map-get($flaticon-map, "call");
+}
+.flaticon-calendar:before {
+    content: map-get($flaticon-map, "calendar");
+}
+.flaticon-professional-condenser-microphone-outline:before {
+    content: map-get($flaticon-map, "professional-condenser-microphone-outline");
+}
+.flaticon-karaoke:before {
+    content: map-get($flaticon-map, "karaoke");
+}
+.flaticon-karaoke-1:before {
+    content: map-get($flaticon-map, "karaoke-1");
+}
+.flaticon-mike:before {
+    content: map-get($flaticon-map, "mike");
+}
+.flaticon-microphone:before {
+    content: map-get($flaticon-map, "microphone");
+}
+.flaticon-microphone-1:before {
+    content: map-get($flaticon-map, "microphone-1");
+}
+.flaticon-music:before {
+    content: map-get($flaticon-map, "music");
+}
+.flaticon-music-1:before {
+    content: map-get($flaticon-map, "music-1");
+}
+.flaticon-music-2:before {
+    content: map-get($flaticon-map, "music-2");
+}
+.flaticon-guitar:before {
+    content: map-get($flaticon-map, "guitar");
+}
+.flaticon-music-3:before {
+    content: map-get($flaticon-map, "music-3");
+}
+.flaticon-quaver:before {
+    content: map-get($flaticon-map, "quaver");
+}
+.flaticon-stave:before {
+    content: map-get($flaticon-map, "stave");
+}
+.flaticon-music-notes:before {
+    content: map-get($flaticon-map, "music-notes");
+}
+.flaticon-clef:before {
+    content: map-get($flaticon-map, "clef");
+}
+.flaticon-music-notes-1:before {
+    content: map-get($flaticon-map, "music-notes-1");
+}
+.flaticon-musical-note:before {
+    content: map-get($flaticon-map, "musical-note");
+}

@@ -1,0 +1,20 @@
+/*==================================
+This stylesheet is used for demo 2
+=================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+:root{
+  --family-display: 'Just Another Hand', cursive;
+
+  --color-primary: #00D665;
+  --color-primary-hover: #00AE52;
+  --color-primary-hue: #ffebef;
+  --color-primary-rgb: 0, 214, 101;
+
+  --color-bg-light: #F6F4ED;
+
+  --logo-size-lg: 140px;
+  --logo-size-md: 120px;
+  --logo-size-sm: 120px;
+}
