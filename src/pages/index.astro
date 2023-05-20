@@ -1,15 +1,223 @@
 ---
-import Page from '../layouts/Page.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE } from '../consts';
+import Home from '../layouts/Home.astro';
+import getLatestEvents from '../utils/getLatestEvents';
+import getLatestMessage from '../utils/getLatestMessage';
+
+const latestMessage = await getLatestMessage();
+const publicEvents = await getLatestEvents(7, 'Public');
+console.log(JSON.stringify(publicEvents, null, 2));
 ---
 
-<Page title="Home" description="Lorem ipsum dolor sit amet">
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
-</Page>
+<Home title="Home" description="Lorem ipsum dolor sit amet">
+	<div class="section md andro_particles-wrap">
+		<div id="__andro_particles__" class="andro_particles"></div>
+		<div class="container">
+			<div class="section-title text-center mb-0 mt-5">
+				<span class="text-white family-display">Be the <i class="color-primary">Church</i></span>
+				<p>At {SITE_TITLE}, we believe lorem ipsum dolor sit amet concateur non tropp sit namo, allegro
+					sustenuto al prada bravo pensare, chicco milo naturoel spresso co
+					el spresso concateur non value maro noro strata. </p>
+	     <!-- <img src="/assets/img/sig.png" alt="signature" class="hidden"> -->
+			</div>
+			<div class="section pb-0">
+				<div class="row">
+					<div class="col-lg-4 col-md-6">
+						<div class="andro_video style-2">
+							<div class="andro_video-img">
+								<img class="andro_img-cover" src="/assets/uploads/belong-3.jpg" alt="video">
+								<a href="https://www.youtube.com/watch?v=TKnufs85hXk" class="andro_video-popup andro_video-icon bg-primary"> <i class="fas fa-play"></i> </a>
+							</div>
+							<div class="andro_video-body">
+								<h5>Belong</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="andro_video style-2">
+							<div class="andro_video-img">
+								<img class="andro_img-cover" src="/assets/uploads/believe-3.jpg" alt="video">
+								<a href="https://www.youtube.com/watch?v=TKnufs85hXk" class="andro_video-popup andro_video-icon bg-primary"> <i class="fas fa-play"></i> </a>
+							</div>
+							<div class="andro_video-body">
+								<h5>Believe</h5>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="andro_video style-2">
+							<div class="andro_video-img">
+								<img class="andro_img-cover" src="/assets/uploads/become-1.jpg" alt="video">
+								<a href="https://www.youtube.com/watch?v=TKnufs85hXk" class="andro_video-popup andro_video-icon bg-primary"> <i class="fas fa-play"></i> </a>
+							</div>
+							<div class="andro_video-body">
+								<h5>Become</h5>
+							</div>
+						</div>
+					</div>
+					<div class="mt-4 text-center">
+						<a href="/about#our-story" class="button primary">Read Our Story</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section md bg-white">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3 class="family-display fw-400 text-dark">Ministries</h3>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="andro_album style-2 color-1">
+						<div class="andro_album-img">
+							<img class="andro_img-cover" src="/assets/uploads/kids-1b.jpg" alt="Kids">
+						</div>
+						<div class="andro_album-content">
+							<a href="/ministries#kids">
+								<span class="andro_album-artist">Stony Brook</span>
+								<h5 class="andro_album-name"><span class="text-uppercase">Kids</span></h5>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="andro_album style-2 color-3 sm">
+						<div class="andro_album-img">
+							<img class="andro_img-cover" src="/assets/uploads/youth-3.jpg" alt="Youth">
+						</div>
+						<div class="andro_album-content">
+							<a href="/ministries#youth">
+								<span class="andro_album-artist">Stony Brook</span>
+								<h5 class="andro_album-name"><span class="text-uppercase">Youth</span></h5>
+							</a>
+						</div>
+					</div>
+					<div class="andro_album style-2 color-5 sm">
+						<div class="andro_album-img">
+							<img class="andro_img-cover" src="/assets/uploads/women-2.jpg" alt="Women">
+						</div>
+						<div class="andro_album-content">
+							<a href="/ministries#women">
+								<span class="andro_album-artist">Stony Brook</span>
+								<h5 class="andro_album-name"><span class="text-uppercase">Women</span></h5>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="andro_album style-2 color-4 sm">
+						<div class="andro_album-img">
+							<img class="andro_img-cover" src="/assets/uploads/men-1.jpg" alt="Men">
+						</div>
+						<div class="andro_album-content">
+							<a href="/ministries#men">
+								<span class="andro_album-artist">Stony Brook</span>
+								<h5 class="andro_album-name"><span class="text-uppercase">Men</span></h5>
+							</a>
+						</div>
+					</div>
+					<div class="andro_album style-2 color-2 sm">
+						<div class="andro_album-img">
+							<img class="andro_img-cover" src="/assets/uploads/life-1.jpg" alt="Life">
+						</div>
+						<div class="andro_album-content">
+							<a href="/ministries#life">
+								<span class="andro_album-artist">Stony Brook</span>
+								<h5 class="andro_album-name"><span class="text-uppercase">Life</span></h5>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mt-4 text-center">
+				<a href="/ministries" class="button secondary">View All Ministries</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6">
+					<div class="andro_video style-2">
+						<div class="andro_video-img">
+							<img class="andro_img-cover" src={latestMessage.thumbnails.lg} alt="video">
+							<a href={latestMessage.player_embed_url} class="andro_video-popup andro_video-icon"> <i class="fas fa-play"></i> </a>
+						</div>
+						<div class="andro_video-body hide">
+							<h5>{latestMessage.title}</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="ms-0 mb-5 ms-lg-5 mb-lg-0">
+						<h3 class="h2">Latest <span class="fw-400 color-primary">{latestMessage.series}</span> Message</h3>
+						<p><FormattedDate date={latestMessage.date} /></p>
+						<br>
+						<a href="/messages/recent#recent-messages" class="button primary">View Recent Messages</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section bg-cover" style="background-image: url(/assets/uploads/connect-1.jpg)">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3 class="text-white family-display fw-400">Connect With Us</h3>
+				<p class="text-white">Download the <a href="https://www.planningcenter.com/church-center" target="_blank" class="d-none d-md-inline">Church Center</a>
+					 app to connect with groups, send prayer requests, register for events and much more.</p>
+			</div>
+			<div class="d-block d-sm-flex justify-content-center align-items-center">
+				<a href="https://apps.apple.com/us/app/church-center-app/id1357742931" class="button andro_button-flex secondary">
+					<i class="fab fa-apple"></i>
+					<div class="andro_button-flex-content">
+						<span>Available on</span>
+						<b>Apple Store</b>
+					</div>
+				</a>
+				<a href="https://play.google.com/store/apps/details?id=com.ministrycentered.churchcenter&hl=en_US" class="ms-0 ms-sm-2 mt-2 button andro_button-flex primary">
+					<i class="fab fa-google-play"></i>
+					<div class="andro_button-flex-content">
+						<span>Available on</span>
+						<b>Play Store</b>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="section bg-cover dark-overlay dark-overlay dark-overlay-3" style="background-image: url(/assets/uploads/give-more.jpg); background-position: bottom right;">
+		<div class="container">
+			<div class="section-title text-center">
+				<h3 class="family-display">Upcoming Events</h3>
+			</div>
+			<table class="mb-0 andro_table-responsive">
+				<thead>
+					<tr>
+						<th>Day</th>
+						<th>Time</th>
+						<th>Event</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{publicEvents.map((event) => (
+						<tr>
+							<td data-title="Day" class="fw-600 color-primary"><FormattedDate date={event.start || ''} format="cccc" /></td>
+							<td data-title="Time"><FormattedDate date={event.start || ''} format="t" /></td>
+							<td data-title="Event">{event.name}</td>
+							<td class="no-title"><a class="button light sm icon-after" href={event.url} target="_blank">Learn More <i class="far fa-chevron-right"></i> </a></td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+			<div class="mt-4 text-center">
+				<a href="/calendar#church-calendar" class="button primary">View All Events</a>
+			</div>
+		</div>
+	</div>
+</Home>

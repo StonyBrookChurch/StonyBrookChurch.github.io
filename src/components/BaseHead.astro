@@ -1,7 +1,5 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
+import { SITE_TITLE, BASE_URL } from '../consts';
 
 export interface Props {
 	title: string;
@@ -14,16 +12,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
 ---
 
-<!-- Global Metadata -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content={Astro.generator} />
-
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
@@ -41,3 +35,14 @@ const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<link rel="stylesheet" href="/assets/css/plugins/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/bootstrap-datepicker.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/animate.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css">
+<link rel="stylesheet" href="/assets/css/plugins/swiper-bundle.min.css">
+<link rel="stylesheet" href="/assets/fonts/flaticon/flaticon.css">
+<link rel="stylesheet" href="/assets/css/plugins/font-awesome.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -65,7 +65,7 @@ async function fetchPage(accessToken, showcaseId, sort, order, page) {
 
 function mapThumbnails(sizes) {
   const thumbnails = {};
-  sizes.forEach((item) => THUMBNAIL_SIZE_WIDTHS[item.width] = item.link);
+  sizes.forEach((item) => thumbnails[THUMBNAIL_SIZE_WIDTHS[item.width]] = item.link);
   return thumbnails;
 }
 

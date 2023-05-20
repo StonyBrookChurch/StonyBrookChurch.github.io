@@ -1,14 +1,56 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SOCIALS } from '../consts';
+import Nav from './Nav.astro';
 ---
 
-<header>
-	<h1>
-		{SITE_TITLE}
-	</h1>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-	</nav>
+<header class="andro_header style-6">
+  <div class="container andro_header-wrap">
+    <div class="andro_header-logo">
+      <h1 class="sr-only">{SITE_TITLE}</h1>
+      <a href="/"><img src="/assets/uploads/sbc-logo-horizontal.svg" alt="logo"></a>
+    </div>
+    <div class="andro_header-navigation">
+      <Nav />
+    </div>
+    <div class="andro_header-navigation">
+      <div class="andro_header-controls">
+        <a onclick="return false"></a>
+        {SOCIALS.map((social) => (
+          <a href={social.url} title={social.title}><i class={`fab ${social.icon}`}></i></a>
+        ))}
+        <a href="#" class="andro_burger-icon mobile-trigger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </div>
 </header>
+
+<aside class="andro_aside">
+  <div class="close_btn mobile-trigger">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <path class="line line1"
+        d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058">
+      </path>
+      <path class="line line2" d="M 20,50 H 80"></path>
+      <path class="line line3"
+        d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942">
+      </path>
+    </svg>
+  </div>
+  <nav>
+    <Nav />
+  </nav>
+  <div class="andro_aside-notice">
+    <h6>Follow Us</h6>
+    <p>Follow us on social media and stay up to date with the latest news and information.</p>
+    <ul class="andro_socials">
+      {SOCIALS.map((social) => (
+        <li><a href={social.url} title={social.title}><i class={`fab ${social.icon}`}></i></a></li>
+      ))}
+    </ul>
+  </div>
+</aside>
+<div class="andro_aside-overlay mobile-trigger"></div>

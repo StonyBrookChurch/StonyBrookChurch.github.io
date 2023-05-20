@@ -1,13 +1,37 @@
 ---
+import { SITE_TITLE, SOCIALS } from '../consts';
+
 const today = new Date();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+<footer class="andro_footer style-3 light text-center">
+  <div class="container">
+    <ul class="andro_footer-socials">
+      {SOCIALS.map((social) => (
+        <li><a href={social.url} class={`color-${social.class}-hover`}><i class={`fab ${social.icon}`}></i> {social.title}</a></li>
+      ))}
+    </ul>
+
+    <p class="m-0">{SITE_TITLE} &copy; {today.getFullYear()}</p>
+    <p><a href="https://insource.io">Made with Love</a></p>
+  </div>
 </footer>
-<style>
-	footer {
-		padding: 25px;
-		text-align: center;
-	}
-</style>
+
+<script type="text/javascript" src="/assets/js/plugins/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/popper.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/imagesloaded.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.waypoints.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.counterup.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.inview.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.event.move.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/wow.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="/assets/js/plugins/particles.min.js"></script>
+<script type="text/javascript" src="/assets/js/andro-audioplayer.js"></script>
+<script type="text/javascript" src="/assets/js/main.js"></script>

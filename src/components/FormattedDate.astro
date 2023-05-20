@@ -1,17 +1,17 @@
 ---
+import { DateTime } from 'luxon';
+
 export interface Props {
-	date: Date;
+	date: string;
+	format: string;
 }
 
-const { date } = Astro.props;
+const { date, format = 'LLLL d, yyyy' } = Astro.props;
+const dt = DateTime.fromISO(date);
 ---
 
-<time datetime={date.toISOString()}>
+<time datetime={dt.toISO()}>
 	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
+		dt.toFormat(format)
 	}
 </time>

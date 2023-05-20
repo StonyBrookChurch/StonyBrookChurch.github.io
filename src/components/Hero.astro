@@ -1,0 +1,49 @@
+---
+import { ADDRESS, SITE_TITLE } from "../consts";
+
+function getNextSunday() {
+  let now = new Date();
+  let date = new Date();
+  date.setDate(now.getDate() - now.getDay() + 7);
+  return date;
+}
+
+const nextSunday = getNextSunday();
+const day = nextSunday.toLocaleDateString('en-us', { day: 'numeric' });
+const month = nextSunday.toLocaleDateString('en-us', { month: 'short' });
+const year = nextSunday.toLocaleDateString('en-us', { year: 'numeric' });
+---
+
+<div class="andro_hero style-3">
+  <div class="andro_hero-item dark-overlay bg-cover">
+    <div class="container">
+      <div class="andro_hero-item-inner">
+        <h1 style="color: transparent;">{SITE_TITLE}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section p-0 zindex-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="andro_event-countdown mt-negative bg-secondary">
+          <div class="andro_event-countdown-date">
+            <span>{day}</span>
+            <div>
+              <span>{month} {year}</span>
+              <span>9:00AM, 10:30AM</span>
+            </div>
+          </div>
+          <div class="andro_event-countdown-name pb-lg-0 pb-3">
+            <h5>Sunday Service</h5>
+            <span>{ADDRESS}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>
