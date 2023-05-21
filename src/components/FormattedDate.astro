@@ -1,12 +1,14 @@
 ---
+import assert from 'node:assert/strict';
 import { DateTime } from 'luxon';
 
 export interface Props {
-	date: string;
-	format: string;
+	date: string | null;
+	format?: string;
 }
 
 const { date, format = 'LLLL d, yyyy' } = Astro.props;
+assert(date, 'date is required');
 const dt = DateTime.fromISO(date);
 ---
 

@@ -1,15 +1,5 @@
 ---
-import Page from '../layouts/Page.astro';
-import LatestMessage from '../components/collections/LatestMessage.astro';
-import LatestMessages from '../components/collections/LatestMessages.astro';
-import LatestService from '../components/collections/LatestService.astro';
+import Redirect from "../layouts/Redirect.astro";
 ---
 
-<Page title="Messages" description="Latest messages." image="assets/uploads/sermon-3.jpg">
-    <h2>Latest Message</h2>
-    <LatestMessage />
-    <h2>Latest Service</h2>
-    <LatestService />
-    <h2>Messages</h2>
-    <LatestMessages />
-</Page>
+<Redirect to="/messages/recent" />

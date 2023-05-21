@@ -7,7 +7,6 @@ import getLatestMessage from '../utils/getLatestMessage';
 
 const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');
-console.log(JSON.stringify(publicEvents, null, 2));
 ---
 
 <Home title="Home" description="Lorem ipsum dolor sit amet">
@@ -207,8 +206,8 @@ console.log(JSON.stringify(publicEvents, null, 2));
 				<tbody>
 					{publicEvents.map((event) => (
 						<tr>
-							<td data-title="Day" class="fw-600 color-primary"><FormattedDate date={event.start || ''} format="cccc" /></td>
-							<td data-title="Time"><FormattedDate date={event.start || ''} format="t" /></td>
+							<td data-title="Day" class="fw-600 color-primary"><FormattedDate date={event.start} format="cccc" /></td>
+							<td data-title="Time"><FormattedDate date={event.start} format="t" /></td>
 							<td data-title="Event">{event.name}</td>
 							<td class="no-title"><a class="button light sm icon-after" href={event.url} target="_blank">Learn More <i class="far fa-chevron-right"></i> </a></td>
 						</tr>
