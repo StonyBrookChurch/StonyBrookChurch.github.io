@@ -37,4 +37,11 @@ const ministries = defineCollection({
   })
 });
 
-export const collections = { blog, ministries };
+const about = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string()
+  })
+})
+
+export const collections = { blog, ministries, about };

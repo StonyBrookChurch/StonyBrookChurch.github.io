@@ -1,0 +1,21 @@
+---
+const { staff } = Astro.props;
+---
+
+<div class="row">
+  {staff.map((member) => 
+    <div class="col-lg-3 col-md-6">
+      <div class="andro_artist style-6">
+        <div class="andro_artist-img">
+          <img src={member.image} alt="Staff Member Image" />
+        </div>
+        <div class="andro_artist-body">
+          <span class="andro_artist-designation">{member.description}</span>
+          <h5 class="andro_artist-name">
+            <a href={member.url}>{member.name}</a>
+          </h5>
+        </div>
+      </div>
+    </div>
+  )}
+</div>
