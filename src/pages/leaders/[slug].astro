@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import Page from "../../layouts/Page.astro";
+
+export async function getStaticPaths() {
+  const leader = await getCollection('leaders');
+  return leader.map((person) => ({
+    params: {
+      slug: person.slug
+    },
+    props: { person }
+  }))
+}
+
+const { person } = Astro.props;
+const parents = [
+  {
+    title: 'About',
+    url: '/about'
+  }
+];
+const { Content } = await person.render();
+---
+
+<Page title={person.data.name} description={person.data.description} image={person.data.image} parents={parents}>
+  <div class="section">
+    <div class="container">
+      <div class="andro_show-d-content-wrap">
+        <div class="andro_show-d-section">
+          <h4 id={person.slug}>About</h4>
+          <h5>{person.data.name}, <span class="fw-400 color-primary">{person.data.description}</span></h5>
+          <Content />
+        </div>
+      </div>
+    </div>
+  </div>
+</Page>

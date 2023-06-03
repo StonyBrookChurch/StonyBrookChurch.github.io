@@ -42,6 +42,24 @@ const about = defineCollection({
   schema: z.object({
     title: z.string()
   })
-})
+});
 
-export const collections = { blog, ministries, about };
+const staff = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    image: z.string()
+  })
+});
+
+const leaders = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    image: z.string()
+  })
+});
+
+export const collections = { blog, ministries, about, staff, leaders };

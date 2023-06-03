@@ -1,5 +1,6 @@
 ---
 title: Our story
+slug: our-story
 ---
 Ac felis donec et odio pellentesque diam volutpat commodo.
 Nulla malesuada pellentesque elit eget gravida cum sociis natoque.

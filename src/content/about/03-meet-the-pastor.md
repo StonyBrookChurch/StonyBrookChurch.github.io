@@ -1,5 +1,6 @@
 ---
 title: Meet the pastor
+slug: meet-the-pastor
 ---
 
 Libero nunc consequat interdum varius sit amet.
