@@ -1,7 +1,9 @@
+import { YOUTUBE_CHANNEL_ID } from '../consts';
+
 const { YOUTUBE_URL, YOUTUBE_API_KEY } = process.env;
 
-export default async function getLatestStream(channelId) {
-  const videos = await fetchVideos(YOUTUBE_API_KEY, channelId, 10);
+export default async function getLatestStream() {
+  const videos = await fetchVideos(YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID, 10);
   const [ latestVideo ] = videos
     .filter((video) => {
       const start = Date.parse(video.actualStartTime);

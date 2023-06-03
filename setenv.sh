@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+echo ""
+echo "#######################################################"
+echo "#### Ensure this file is run with source setenv.sh ####"
+echo "#######################################################"
+echo ""
+
 # From https://zwbetz.com/set-environment-variables-in-your-bash-shell-from-a-env-file-version-2/
 # See also https://stackoverflow.com/a/25507283 for launchctl setenv
 

@@ -1,9 +1,48 @@
 ---
+import { VIMEO_SHOWCASE_ID, VIMEO_SHOWCASE_NAME } from '../../consts';
 import Page from '../../layouts/Page.astro';
-import LatestMessages from '../../components/collections/LatestMessages.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import getLatestMessages from '../../utils/getLatestMessages';
+
+let messages = await getLatestMessages();
+let parents = [
+  {
+    title: 'Messages',
+    url: '/messages/recent'
+  }
+];
 ---
 
-<Page title="All Messages" description="Latest messages." image="assets/uploads/sermon-3.jpg">
-    <h2>Messages</h2>
-    <LatestMessages />
+<Page title="All Messages" description="Latest messages." image="assets/uploads/sermon-3.jpg" parents={parents}>
+  <div class="section">
+    <div class="container">
+      {messages.map((message) =>
+        <div class="row mt-5">
+          <div class="col-lg-5">
+            <div class="position-relative h-100">
+              <img class="andro_img-cover" src={message.thumbnails.lg} alt="Video" />
+              <a href={message.player_embed_url} class="center-absolute andro_video-icon pulse andro_video-popup">
+                <i class="fas fa-play"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="andro_testimonial-body style-2 h-100">
+              <h3 class="andro_testimonial-title family-display fw-400">
+                <span>{message.title}</span>
+              </h3>
+              <p>{message.description}</p>
+              <p>{message.series}</p>
+              <h6 class="andro_testimonial-author">
+                <span><FormattedDate date={message.date} /></span>
+              </h6>
+              <p class="andro_testimonial-designation">
+                <a href={message.user.uri} target="_blank">{message.user.name}</a> &middot; <a href={`https://vimeo.com/showcase/${VIMEO_SHOWCASE_ID}`} target="_blank">{VIMEO_SHOWCASE_NAME}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
 </Page>

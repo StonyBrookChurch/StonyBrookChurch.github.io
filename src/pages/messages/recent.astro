@@ -1,15 +1,81 @@
 ---
 import Page from '../../layouts/Page.astro';
-import LatestMessage from '../../components/collections/LatestMessage.astro';
-import LatestMessages from '../../components/collections/LatestMessages.astro';
-import LatestService from '../../components/collections/LatestService.astro';
+import getLatestMessage from '../../utils/getLatestMessage';
+import FormattedDate from '../../components/FormattedDate.astro';
+import getLatestStream from '../../utils/getLatestStream';
+import getLatestMessages from '../../utils/getLatestMessages';
+
+const latestMessage = await getLatestMessage();
+const latestService = await getLatestStream ();
+const latestMessages = await getLatestMessages();
 ---
 
-<Page title="Recent Messages" description="Recent messages." image="assets/uploads/sermon-3.jpg">
-    <h2>Latest Message</h2>
-    <LatestMessage />
-    <h2>Latest Service</h2>
-    <LatestService />
-    <h2>Messages</h2>
-    <LatestMessages />
+<Page title="Recent Messages" description="Recent messages" image="assets/uploads/sermon-3.jpg">
+  <div class="section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="andro_video style-2">
+            <div class="andro_video-img">
+            <img class="andro_img-cover" src={latestMessage.thumbnails.lg} alt="video" />
+            <a href={latestMessage.player_embed_url} class="andro_video-popup andro_video-icon"> <i class="fas fa-play"></i> </a>
+            </div>
+            <div class="andro_video-body hide">
+              <h5>{latestMessage.title}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="ms-0 mb-5 ms-lg-5 mb-lg-0">
+            <h3 class="h2">Latest <span class="fw-400 color-primary">{latestMessage.series}</span> Message</h3>
+            <p><FormattedDate date={latestMessage.date} /></p>
+            <br>
+            <a href="/messages/all" class="button primary">View All Messages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section height-lg dark-overlay dark-overlay-2 bg-cover bg-center d-flex align-items-center justify-content-center flex-column" style="background-image: url(/assets/uploads/band-4.jpg)">
+    <div class="container">
+      <div class="text-center mx-auto mb-4">
+        <a href={`https://www.youtube.com/watch?v=${latestService.videoId}`} class="andro_video-icon pulse andro_video-popup"> <i class="fas fa-play"></i> </a>
+      </div>
+      <div class="section-title lg text-center mb-0">
+        <h3 class="fw-400 mb-0 text-white family-display">Watch this week's service <span class="fw-400 color-primary">on replay</span></h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="section pt-5" id="recent-messages">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3 class="text-uppercase">Latest Messages</h3>
+        <p>Browse the latest Sunday morning messages.</p>
+        <div class="section-title-icon icon-music">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="row">
+        {latestMessages.slice(0, 6).map((message) => 
+          <div class="col-lg-4 col-md-6">
+            <div class="andro_video style-2">
+              <div class="andro_video-img">
+                <img class="andro_img-cover" src={message.thumbnails.lg} alt="video" />
+                <a href={message.player_embed_url} class="andro_video-popup andro_video-icon"><i class="fas fa-play"></i></a>
+              </div>
+              <div class="andro_video-body">
+                <h5>{message.title}</h5>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div class="mt-4 text-center">
+        <a href="/messages/all" class="button primary">View All Messages</a>
+      </div>
+    </div>
+  </div>
 </Page>

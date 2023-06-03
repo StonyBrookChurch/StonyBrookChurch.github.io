@@ -1,3 +1,5 @@
+import { VIMEO_SHOWCASE_ID } from '../consts';
+
 const { VIMEO_URL, VIMEO_ACCESS_TOKEN } = process.env;
 const THUMBNAIL_SIZE_WIDTHS = {
   100: 'xs',
@@ -10,7 +12,7 @@ const THUMBNAIL_SIZE_WIDTHS = {
 };
 
 export default async function getLatestMessages() {
-  const messages = await fetchVideos(VIMEO_ACCESS_TOKEN, '10085736', 'manual', 'desc');
+  const messages = await fetchVideos(VIMEO_ACCESS_TOKEN, VIMEO_SHOWCASE_ID, 'manual', 'desc');
   return messages.map((message) => {
     const [ title, description, series ] = message.description.split('\n');
     const date = parseDate(message.name);

@@ -119,26 +119,6 @@ export const SOCIALS = [
         url: 'https://www.youtube.com'
     }
 ];
-
-/*
-- title: Facebook
-  icon: fa-facebook-f
-  class: facebook
-  url: https://www.facebook.com
-- title: Twitter
-  icon: fa-twitter
-  class: twitter
-  url: https://twitter.com
-- title: Instagram
-  icon: fa-instagram
-  class: instagram
-  url: https://www.instagram.com
-- title: Vimeo
-  icon: fa-vimeo-v
-  class: vimeo
-  url: https://vimeo.com
-- title: YouTube
-  icon: fa-youtube
-  class: youtube
-  url: https://www.youtube.com
- */
+export const VIMEO_SHOWCASE_ID = '10085736';
+export const VIMEO_SHOWCASE_NAME = 'Messages 2023';
+export const YOUTUBE_CHANNEL_ID = 'UC7toQ0WRsc4n220h0QYeRHw';
