@@ -154,13 +154,13 @@ h6, .h6 {
 }
 
 .andro_hero-item {
-  background-image: url(../../assets/uploads/band-1.jpg);
   background-position-x: right;
 }
 
+/*
 .andro_footer {
-  background-image: url(../../assets/uploads/unsplash-header-1-1920x460.jpg);
 }
+*/
 
 .dark-overlay::before {
   background-color: rgba(0, 0, 0, 0.5);

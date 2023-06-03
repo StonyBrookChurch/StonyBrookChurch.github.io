@@ -45,12 +45,20 @@ export const NAVIGATION = [
                 url: '/ministries#kids'
             },
             {
-                title: 'Youth',
-                url: '/ministries#youth'
+                title: 'Worship',
+                url: '/ministries#worship'
+            },
+            {
+                title: 'Preaching',
+                url: '/ministries#preaching'
             },
             {
                 title: 'Special Needs',
                 url: '/ministries#special-needs'
+            },
+            {
+                title: 'Youth',
+                url: '/ministries#youth'
             },
             {
                 title: 'Women',
@@ -63,10 +71,6 @@ export const NAVIGATION = [
             {
                 title: 'Life',
                 url: '/ministries#life'
-            },
-            {
-                title: 'Worship',
-                url: '/ministries#worship'
             },
             {
                 title: 'Local Missions',

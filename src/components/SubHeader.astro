@@ -2,7 +2,7 @@
 const { title, image, parents = [] } = Astro.props;
 ---
 
-<div class="andro_subheader style-4 bg-cover bg-center bg-norepeat dark-overlay dark-overlay-2" style={`background-image: url(/${image || 'assets/img/subheader-7.jpg'})`}>
+<div class="andro_subheader style-4 bg-cover bg-center bg-norepeat dark-overlay dark-overlay-2" style={`background-image: url(${image || '/assets/img/subheader-7.jpg'})`}>
   <div class="container">
     <h1>{title}</h1>
     <nav aria-label="breadcrumb">

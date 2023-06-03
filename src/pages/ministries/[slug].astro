@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import Page from "../../layouts/Page.astro";
+import Ministry from "../../layouts/Ministry.astro";
+
+export async function getStaticPaths() {
+  const ministries = await getCollection('ministries');
+  return ministries.map((ministry) => ({
+    params: {
+      slug: ministry.slug
+    },
+    props: { ministry }
+  }))
+}
+
+const { ministry } = Astro.props;
+const { Content } = await ministry.render();
+const parents = [
+  {
+    title: 'Ministries',
+    url: '/ministries'
+  }
+];
+---
+
+<Ministry title={ministry.data.title} description={ministry.data.description} image={ministry.data.hero} parents={parents}>
+  <Content />
+</Ministry>
