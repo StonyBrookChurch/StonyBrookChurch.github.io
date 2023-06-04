@@ -8,9 +8,9 @@ const { title, image, parents = [] } = Astro.props;
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        {parents.map((parent) => (
+        {parents.map((parent) =>
           <li class="breadcrumb-item" aria-current="page"><a href={parent.url}>{parent.title}</a></li>
-        ))}
+        )}
         <li class="breadcrumb-item active" aria-current="page">{title}</li>
       </ol>
     </nav>

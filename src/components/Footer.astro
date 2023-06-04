@@ -7,9 +7,9 @@ const today = new Date();
 <footer class="andro_footer style-3 light text-center" style="background-image: url(/assets/uploads/unsplash-header-1-1920x460.jpg)">
   <div class="container">
     <ul class="andro_footer-socials">
-      {SOCIALS.map((social) => (
+      {SOCIALS.map((social) =>
         <li><a href={social.url} class={`color-${social.class}-hover`}><i class={`fab ${social.icon}`}></i> {social.title}</a></li>
-      ))}
+      )}
     </ul>
 
     <p class="m-0">{SITE_TITLE} &copy; {today.getFullYear()}</p>

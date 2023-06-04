@@ -15,9 +15,9 @@ import Nav from '@components/Nav.astro';
     <div class="andro_header-navigation">
       <div class="andro_header-controls">
         <a onclick="return false"></a>
-        {SOCIALS.map((social) => (
+        {SOCIALS.map((social) =>
           <a href={social.url} title={social.title}><i class={`fab ${social.icon}`}></i></a>
-        ))}
+        )}
         <a href="#" class="andro_burger-icon mobile-trigger">
           <span></span>
           <span></span>
@@ -47,9 +47,9 @@ import Nav from '@components/Nav.astro';
     <h6>Follow Us</h6>
     <p>Follow us on social media and stay up to date with the latest news and information.</p>
     <ul class="andro_socials">
-      {SOCIALS.map((social) => (
+      {SOCIALS.map((social) =>
         <li><a href={social.url} title={social.title}><i class={`fab ${social.icon}`}></i></a></li>
-      ))}
+      )}
     </ul>
   </div>
 </aside>

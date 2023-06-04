@@ -27,7 +27,7 @@ const latestMessages = await getLatestMessages();
         </div>
         <div class="col-lg-6">
           <div class="ms-0 mb-5 ms-lg-5 mb-lg-0">
-            <h3 class="h2">Latest <span class="fw-400 color-primary">{latestMessage.series}</span> Message</h3>
+            <h3 class="h2">Latest <span class="fw-400 color-primary">{latestMessage.series || 'Stony Brook'}</span> Message</h3>
             <p><FormattedDate date={latestMessage.date} /></p>
             <br>
             <a href="/messages/all" class="button primary">View All Messages</a>
@@ -59,7 +59,7 @@ const latestMessages = await getLatestMessages();
         </div>
       </div>
       <div class="row">
-        {latestMessages.slice(0, 6).map((message) => 
+        {latestMessages.slice(0, 6).map((message) =>
           <div class="col-lg-4 col-md-6">
             <div class="andro_video style-2">
               <div class="andro_video-img">
