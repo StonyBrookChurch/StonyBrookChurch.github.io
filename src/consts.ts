@@ -28,7 +28,7 @@ export const NAVIGATION = [
             },
             {
                 title: 'Leadership',
-                url: '/about/#leadership'
+                url: '/about/#leaders'
             },
             {
                 title: 'USMB',
