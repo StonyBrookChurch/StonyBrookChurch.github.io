@@ -1,4 +1,4 @@
-import { YOUTUBE_CHANNEL_ID } from '../consts';
+import { YOUTUBE_CHANNEL_ID } from '@consts';
 
 const { YOUTUBE_URL, YOUTUBE_API_KEY } = process.env;
 

@@ -1,9 +1,9 @@
 ---
-import Page from '../../layouts/Page.astro';
-import getLatestMessage from '../../utils/getLatestMessage';
-import FormattedDate from '../../components/FormattedDate.astro';
-import getLatestStream from '../../utils/getLatestStream';
-import getLatestMessages from '../../utils/getLatestMessages';
+import Page from '@layouts/Page.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+import getLatestMessage from '@utils/getLatestMessage';
+import getLatestMessages from '@utils/getLatestMessages';
+import getLatestStream from '@utils/getLatestStream';
 
 const latestMessage = await getLatestMessage();
 const latestService = await getLatestStream ();

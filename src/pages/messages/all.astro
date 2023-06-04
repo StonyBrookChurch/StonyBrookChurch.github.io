@@ -1,8 +1,9 @@
 ---
-import { VIMEO_SHOWCASE_ID, VIMEO_SHOWCASE_NAME } from '../../consts';
-import Page from '../../layouts/Page.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import getLatestMessages from '../../utils/getLatestMessages';
+import { VIMEO_SHOWCASE_ID, VIMEO_SHOWCASE_NAME } from '@consts';
+
+import FormattedDate from '@components/FormattedDate.astro';
+import Page from '@layouts/Page.astro';
+import getLatestMessages from '@utils/getLatestMessages';
 
 let messages = await getLatestMessages();
 let parents = [

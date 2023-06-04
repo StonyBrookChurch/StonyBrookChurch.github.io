@@ -1,9 +1,9 @@
 ---
-import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_TITLE } from '../consts';
-import Home from '../layouts/Home.astro';
-import getLatestEvents from '../utils/getLatestEvents';
-import getLatestMessage from '../utils/getLatestMessage';
+import { SITE_TITLE } from '@consts';
+import FormattedDate from '@components/FormattedDate.astro';
+import getLatestEvents from '@utils/getLatestEvents';
+import getLatestMessage from '@utils/getLatestMessage';
+import Home from '@layouts/Home.astro';
 
 const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');

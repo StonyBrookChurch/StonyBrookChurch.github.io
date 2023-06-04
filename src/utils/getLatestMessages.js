@@ -1,4 +1,4 @@
-import { VIMEO_SHOWCASE_ID } from '../consts';
+import { VIMEO_SHOWCASE_ID } from '@consts';
 
 const { VIMEO_URL, VIMEO_ACCESS_TOKEN } = process.env;
 const THUMBNAIL_SIZE_WIDTHS = {
