@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://astro-playground.insource.io',
+	site: 'https://stonybrookchurch.insource.io',
 	integrations: [mdx(), sitemap()],
 });
