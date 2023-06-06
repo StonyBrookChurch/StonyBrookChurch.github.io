@@ -1,8 +1,7 @@
 ---
-import Page from "../layouts/Page.astro";
-import CalendarEvents from "../components/collections/CalendarEvents.astro";
-import getLatestEvents from "../utils/getLatestEvents";
-import FormattedDate from "../components/FormattedDate.astro";
+import Page from '@layouts/Page.astro';
+import getLatestEvents from '@utils/getLatestEvents';
+import FormattedDate from '@components/FormattedDate.astro';
 
 const publicEvents = await getLatestEvents(7, 'Public');
 const specialEvents = await getLatestEvents(30, 'Special Event');

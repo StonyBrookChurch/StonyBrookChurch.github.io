@@ -1,7 +1,6 @@
 ---
-import { getCollection } from "astro:content";
-import Page from "../../layouts/Page.astro";
-import Ministry from "../../layouts/Ministry.astro";
+import { getCollection } from 'astro:content';
+import Ministry from '@layouts/Ministry.astro';
 
 export async function getStaticPaths() {
   const ministries = await getCollection('ministries');
