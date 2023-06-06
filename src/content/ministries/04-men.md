@@ -1,11 +1,11 @@
 ---
-title: Special Needs
-heading: Special <span class="fw-600 color-primary family-display">Needs</span>
+title: Stony Brook Men
+heading: Stony Brook <span class="fw-600 color-primary family-display">Men</span>
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-image: /assets/img/about-1.png
-hero: /assets/img/banner-3.jpg
-# url: /ministries/special-needs
-slug: special-needs
+image: /assets/uploads/slides/men.png
+hero: /assets/uploads/men-header-1.jpg
+url: /ministries/men
+slug: men
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

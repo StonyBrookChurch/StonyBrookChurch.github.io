@@ -1,11 +1,11 @@
 ---
-title: Stony Brook Worship
-heading: Stony Brook <span class="fw-600 color-primary family-display">Worship</span>
+title: Stony Brook Preaching
+heading: Stony Brook <span class="fw-600 color-primary family-display">Preaching</span>
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-image: /assets/img/about-1.png
-hero: /assets/uploads/worship-header-1.jpg
-url: /ministries/worship
-slug: worship
+image: /assets/uploads/slides/preaching.png
+hero: /assets/uploads/sermon-3.jpg
+url: /ministries/preaching
+slug: preaching
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
