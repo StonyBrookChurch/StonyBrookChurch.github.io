@@ -204,7 +204,7 @@ const publicEvents = await getLatestEvents(7, 'Public');
 					</tr>
 				</thead>
 				<tbody>
-					{publicEvents.map((event) =>
+					{publicEvents.slice(0, 5).map((event) =>
 						<tr>
 							<td data-title="Day" class="fw-600 color-primary"><FormattedDate date={event.start} format="cccc" /></td>
 							<td data-title="Time"><FormattedDate date={event.start} format="t" /></td>
