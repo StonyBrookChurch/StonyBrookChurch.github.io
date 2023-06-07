@@ -2,7 +2,7 @@
 title: Global & Local Missions
 heading: Global &amp; Local <span class="fw-600 color-primary family-display">Missions</span>
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-image: /assets/uploads/slides/missions.png
+image: /assets/uploads/slides/missions.jpg
 hero: /assets/img/banner-3.jpg
 # url: /ministries/missions
 # banner:

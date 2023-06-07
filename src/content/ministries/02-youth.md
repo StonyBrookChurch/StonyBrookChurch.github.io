@@ -2,7 +2,7 @@
 title: Stony Brook Youth
 heading: Stony Brook <span class="fw-600 color-primary family-display">Youth</span>
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-image: /assets/uploads/slides/youth.png
+image: /assets/uploads/slides/youth.jpg
 hero: /assets/uploads/youth-header-1.jpg
 url: /ministries/youth
 # banner:
