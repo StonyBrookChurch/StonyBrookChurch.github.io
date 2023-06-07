@@ -1,6 +1,8 @@
 ---
 import { ADDRESS, SITE_TITLE } from '@consts';
 
+const { image } = Astro.props;
+
 function getNextSunday() {
   let now = new Date();
   let date = new Date();
@@ -15,7 +17,7 @@ const year = nextSunday.toLocaleDateString('en-us', { year: 'numeric' });
 ---
 
 <div class="andro_hero style-3">
-  <div class="andro_hero-item dark-overlay bg-cover" style="background-image: url(/assets/uploads/band-1.jpg)">
+  <div class="andro_hero-item dark-overlay bg-cover" style={`background-image: url(${image})`}>
     <div class="container">
       <div class="andro_hero-item-inner">
         <h1 style="color: transparent;">{SITE_TITLE}</h1>

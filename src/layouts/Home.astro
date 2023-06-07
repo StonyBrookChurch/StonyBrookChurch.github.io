@@ -4,7 +4,7 @@ import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
 import Hero from '@components/Hero.astro';
 
-const { title, description } = Astro.props;
+const { title, description, image = '' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ const { title, description } = Astro.props;
 
 	<body>
 		<Header />
-		<Hero />
+		<Hero image={image} />
 		<main>
 			<slot />
 		</main>
