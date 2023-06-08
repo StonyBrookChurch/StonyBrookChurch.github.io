@@ -165,6 +165,9 @@ h6, .h6 {
 .dark-overlay::before {
   background-color: rgba(0, 0, 0, 0.5);
 }
+.dark-overlay.dark-overlay-2::before{
+  background-color: rgba(0, 0, 0, .67);
+}
 .dark-overlay.dark-overlay-3::before{
   background-color: rgba(0, 0, 0, .9);
 }
