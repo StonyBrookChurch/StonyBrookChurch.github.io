@@ -1,4 +1,15 @@
 ---
+export interface Props {
+  leaders: Leader[]
+}
+
+interface Leader {
+  name: string,
+  description: string,
+  image: string,
+  url: string
+}
+
 const { leaders } = Astro.props;
 ---
 

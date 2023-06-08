@@ -1,6 +1,10 @@
 ---
 import { ADDRESS, SITE_TITLE } from '@consts';
 
+export interface Props {
+  image: string
+}
+
 const { image } = Astro.props;
 
 function getNextSunday() {

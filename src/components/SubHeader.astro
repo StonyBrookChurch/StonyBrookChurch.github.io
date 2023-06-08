@@ -1,4 +1,15 @@
 ---
+export interface Props {
+  title: string,
+  image: string,
+  parents?: Parent[]
+}
+
+interface Parent {
+  title: string,
+  url: string
+}
+
 const { title, image, parents = [] } = Astro.props;
 ---
 

@@ -1,4 +1,15 @@
 ---
+export interface Props {
+  staff: Staff[]
+}
+
+interface Staff {
+  name: string,
+  description: string,
+  image: string,
+  url: string
+}
+
 const { staff } = Astro.props;
 ---
 

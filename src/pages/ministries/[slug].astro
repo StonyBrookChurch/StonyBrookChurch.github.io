@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { CollectionEntry, getCollection } from 'astro:content';
 import Ministry from '@layouts/Ministry.astro';
 
 export async function getStaticPaths() {
@@ -10,6 +10,10 @@ export async function getStaticPaths() {
     },
     props: { ministry }
   }))
+}
+
+export interface Props {
+  ministry: CollectionEntry<'ministries'>
 }
 
 const { ministry } = Astro.props;

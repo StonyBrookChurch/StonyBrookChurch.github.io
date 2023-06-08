@@ -1,4 +1,10 @@
 ---
+import { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<any>
+}
+
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
