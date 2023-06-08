@@ -1,5 +1,7 @@
 ---
 import { ADDRESS, SITE_TITLE } from '@consts';
+import getNextSunday from '@utils/getNextSunday';
+import FormattedDate from '@components/FormattedDate.astro';
 
 export interface Props {
   image: string
@@ -7,17 +9,7 @@ export interface Props {
 
 const { image } = Astro.props;
 
-function getNextSunday() {
-  let now = new Date();
-  let date = new Date();
-  date.setDate(now.getDate() - now.getDay() + 7);
-  return date;
-}
-
 const nextSunday = getNextSunday();
-const day = nextSunday.toLocaleDateString('en-us', { day: 'numeric' });
-const month = nextSunday.toLocaleDateString('en-us', { month: 'short' });
-const year = nextSunday.toLocaleDateString('en-us', { year: 'numeric' });
 ---
 
 <div class="andro_hero style-3">
@@ -37,9 +29,9 @@ const year = nextSunday.toLocaleDateString('en-us', { year: 'numeric' });
       <div class="col-md-8">
         <div class="andro_event-countdown mt-negative bg-secondary">
           <div class="andro_event-countdown-date">
-            <span>{day}</span>
+            <span><FormattedDate date={nextSunday} format="d" /></span>
             <div>
-              <span>{month} {year}</span>
+              <span><FormattedDate date={nextSunday} format="LLLL yyyy" /></span>
               <span>9:00AM, 10:30AM</span>
             </div>
           </div>
