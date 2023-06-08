@@ -8,79 +8,79 @@ export const ADDRESS = '14345 Y St, Omaha, NE 68137';
 export const NAVIGATION = [
     {
         title: 'About Us',
-        url: '/about/',
+        url: '/about',
         dropdown: [
             {
                 title: 'What we believe',
-                url: '/about/#what-we-believe'
+                url: '/about#what-we-believe'
             },
             {
                 title: 'Our story',
-                url: '/about/#our-story'
+                url: '/about#our-story'
             },
             {
                 title: 'Meet the pastor',
-                url: '/about/#meet-the-pastor'
+                url: '/about#meet-the-pastor'
             },
             {
                 title: 'Staff',
-                url: '/about/#staff'
+                url: '/about#staff'
             },
             {
                 title: 'Leadership',
-                url: '/about/#leaders'
+                url: '/about#leaders'
             },
             {
                 title: 'USMB',
-                url: '/about/#usmb'
+                url: '/about#usmb'
             }
         ]
     },
     {
         title: 'Ministries',
-        url: '/ministries/',
+        url: '/ministries',
         dropdown: [
             {
                 title: 'Kid Life',
-                url: '/ministries/#kids'
+                url: '/ministries#kids'
             },
             {
                 title: 'Youth',
-                url: '/ministries/#youth'
+                url: '/ministries#youth'
             },
             {
                 title: 'Women',
-                url: '/ministries/#women'
+                url: '/ministries#women'
             },
             {
                 title: 'Men',
-                url: '/ministries/#men'
+                url: '/ministries#men'
             },
             {
                 title: 'Life',
-                url: '/ministries/#life'
+                url: '/ministries#life'
             },
             {
                 title: 'Worship',
-                url: '/ministries/#worship'
+                url: '/ministries#worship'
             },
             {
                 title: 'Preaching',
-                url: '/ministries/#preaching'
+                url: '/ministries#preaching'
             },
             {
                 title: 'Global & Local Missions',
-                url: '/ministries/#missions'
+                url: '/ministries#missions'
             }
         ]
     },
     {
         title: 'Messages',
-        url: '/messages/recent/'
+        url: '/messages/recent'
     },
     {
         title: 'Calendar',
-        url: '/calendar/'
+        url: '/calendar'
     }
 ];
 export const SOCIALS = [
