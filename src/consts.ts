@@ -118,3 +118,5 @@ export const SOCIALS = [
 export const VIMEO_SHOWCASE_ID = '10085736';
 export const VIMEO_SHOWCASE_NAME = 'Messages 2023';
 export const YOUTUBE_CHANNEL_ID = 'UC7toQ0WRsc4n220h0QYeRHw';
+export const APP_STORE_URL = 'https://apps.apple.com/us/app/church-center-app/id1357742931';
+export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ministrycentered.churchcenter&hl=en_US';

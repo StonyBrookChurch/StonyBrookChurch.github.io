@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE } from '@consts';
+import { SITE_TITLE, APP_STORE_URL, PLAY_STORE_URL } from '@consts';
 import FormattedDate from '@components/FormattedDate.astro';
 import getLatestEvents from '@utils/getLatestEvents';
 import getLatestMessage from '@utils/getLatestMessage';
@@ -171,14 +171,14 @@ const publicEvents = await getLatestEvents(7, 'Public');
 					 app to connect with groups, send prayer requests, register for events and much more.</p>
 			</div>
 			<div class="d-block d-sm-flex justify-content-center align-items-center">
-				<a href="https://apps.apple.com/us/app/church-center-app/id1357742931" class="button andro_button-flex secondary">
+				<a href={APP_STORE_URL} class="button andro_button-flex secondary">
 					<i class="fab fa-apple"></i>
 					<div class="andro_button-flex-content">
 						<span>Available on</span>
 						<b>Apple Store</b>
 					</div>
 				</a>
-				<a href="https://play.google.com/store/apps/details?id=com.ministrycentered.churchcenter&hl=en_US" class="ms-0 ms-sm-2 mt-2 button andro_button-flex primary">
+				<a href={PLAY_STORE_URL} class="ms-0 ms-sm-2 mt-2 button andro_button-flex primary">
 					<i class="fab fa-google-play"></i>
 					<div class="andro_button-flex-content">
 						<span>Available on</span>
