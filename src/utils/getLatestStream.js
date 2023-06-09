@@ -1,6 +1,6 @@
 import { YOUTUBE_CHANNEL_ID } from '@consts';
 
-const { YOUTUBE_URL, YOUTUBE_API_KEY } = process.env;
+const { YOUTUBE_URL, YOUTUBE_API_KEY } = import.meta.env;
 
 export default async function getLatestStream() {
   const videos = await fetchVideos(YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID, 10);

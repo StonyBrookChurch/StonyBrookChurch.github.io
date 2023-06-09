@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-const { PLANNING_CENTER_URL, CHURCH_CENTER_USERNAME, CHURCH_CENTER_PASSWORD } = process.env;
+const { PLANNING_CENTER_URL, CHURCH_CENTER_USERNAME, CHURCH_CENTER_PASSWORD } = import.meta.env;
 
 export default async function getLatestEvents(days, tag) {
   const apiKey = Buffer.from(`${CHURCH_CENTER_USERNAME}:${CHURCH_CENTER_PASSWORD}`).toString('base64');
