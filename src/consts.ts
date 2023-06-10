@@ -61,12 +61,12 @@ export const NAVIGATION = [
                 url: '/ministries#life'
             },
             {
-                title: 'Worship',
-                url: '/ministries#worship'
-            },
-            {
                 title: 'Preaching',
                 url: '/ministries#preaching'
+            },
+            {
+                title: 'Worship',
+                url: '/ministries#worship'
             },
             {
                 title: 'Global & Local Missions',
