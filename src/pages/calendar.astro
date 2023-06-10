@@ -88,9 +88,9 @@ const specialEvents = await getLatestEvents(30, 'Special Event');
                   </div>
                   <div class="andro_event-controls">
                     {event.registration_url && (
-                      <a href={event.registration_url} target="_blank" class="button primary sm">Register</a>
+                      <a href={event.registration_url} class="button primary sm" target="_blank">Register</a>
                     )}
-                    <a href={event.url} target="_blank" class="button outline sm">Details</a>
+                    <a href={event.url} title={event.name} class="button outline sm" target="_blank">Details</a>
                   </div>
                 </div>
               </div>

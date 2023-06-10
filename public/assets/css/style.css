@@ -1466,11 +1466,16 @@ table .form-control:focus{
   color: #fff;
   font-size: 18px;
 }
-.andro_header-controls > a + a{
+.andro_header-controls > a{
   margin-left: 20px;
-  padding: 30px 0 30px 20px;
+  padding: 30px 15px 30px 15px;
 }
-.andro_header-controls > a + a::before{
+.andro_header-controls > a > i.fab {
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+}
+.andro_header-controls > a::before{
   content: '';
   width: 1px;
   height: 15px;

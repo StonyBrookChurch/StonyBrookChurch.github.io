@@ -14,7 +14,6 @@ import Nav from '@components/Nav.astro';
     </div>
     <div class="andro_header-navigation">
       <div class="andro_header-controls">
-        <a onclick="return false"></a>
         {SOCIALS.map((social) =>
           <a href={social.url} title={social.title}><i class={`fab ${social.icon}`}></i></a>
         )}
