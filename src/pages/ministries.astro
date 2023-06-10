@@ -3,12 +3,27 @@ import { getCollection } from 'astro:content';
 import Page from '@layouts/Page.astro';
 
 const ministries = await getCollection('ministries');
+const bannerIndex = 5;
 ---
 
 <Page title="Ministries" description="Lorem ipsum dolor sit amet." image="/assets/uploads/church-header-1.jpg">
   {ministries.map((ministry, index) =>
     <div>
-      {ministry.data.banner && 
+      {index == bannerIndex &&
+        <div class="section dark-overlay dark-overlay-2 bg-cover bg-center" style="background-image: url(/assets/uploads/beach-1.jpg)">
+          <div class="container text-center">
+            <div class="section-title text-center">
+              <h3 class="text-white fw-400 family-display">Connect With Us</h3>
+              <p class="color-body-light-2">
+                Lorem ipsum dolor sit amet concateur non tropp sit namo, allegro sustenuto
+                spresso coel spresso concateur non value maro noro strata.
+              </p>
+            </div>
+            <a href="/connect" class="button primary icon-after">Connect <i class="fal fa-arrow-right"></i> </a>
+          </div>
+        </div>
+      }
+      {ministry.data.banner &&
         <div class="d-none d-lg-block">
           <div class="section bg-cover" style={`background-image: url(${ministry.data.banner.image})`}>
             <div class="container">
