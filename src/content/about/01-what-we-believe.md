@@ -8,6 +8,8 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+![Kelly and Betty](/assets/uploads/kelly-betty-1.jpg)
+
 Ac felis donec et odio pellentesque diam volutpat commodo.
 Nulla malesuada pellentesque elit eget gravida cum sociis natoque.
 Amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien.
