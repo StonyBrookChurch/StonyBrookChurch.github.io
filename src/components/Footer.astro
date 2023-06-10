@@ -2,7 +2,7 @@
 import { SITE_TITLE, SOCIALS } from '@consts';
 
 const today = new Date();
-const hide = true;
+const hide = false;
 ---
 
 <footer class="andro_footer style-3 light text-center" style="background-image: url(/assets/uploads/unsplash-header-1-1920x460.jpg)">
@@ -20,26 +20,24 @@ const hide = true;
 
 <script type="text/javascript" src="/assets/js/plugins/jquery-3.5.1.min.js"></script>
 {!hide && (
-  <script type="text/javascript" src="/assets/js/plugins/popper.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/bootstrap.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/bootstrap-datepicker.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/imagesloaded.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.countdown.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.waypoints.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.counterup.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.inview.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.event.move.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/jquery.nicescroll.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/wow.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/isotope.pkgd.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/swiper-bundle.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/plugins/particles.min.js" async></script>
-  <script type="text/javascript" src="/assets/js/andro-audioplayer.js" async></script>
+  <script type="text/javascript" src="/assets/js/plugins/popper.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/imagesloaded.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/jquery.countdown.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/jquery.waypoints.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/jquery.counterup.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/jquery.inview.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/wow.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/particles.min.js"></script>
+  <script type="text/javascript" src="/assets/js/andro-audioplayer.js"></script>
 )}
 
 <script type="text/javascript">
-  window.addEventListener('load', async () => {
+  window.addEventListener('load', () => {
     import('/assets/js/main.js');
   });
 </script>
