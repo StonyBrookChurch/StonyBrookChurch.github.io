@@ -58,7 +58,6 @@
   /*-------------------------------------------------------------------------------
   Magnific Popup
   -------------------------------------------------------------------------------*/
-  console.log(window.location);
   const $androVideoPopup = $('.andro_video-popup');
   if ($androVideoPopup.length) {
     // *************************************************************
@@ -112,6 +111,7 @@
   if ($androMasonry.length) {
     // *************************************************************
     await import('/assets/js/plugins/imagesloaded.min.js');
+    await import('/assets/js/plugins/jquery.magnific-popup.min.js');
     await import('/assets/js/plugins/isotope.pkgd.min.js');
     // *************************************************************
 
