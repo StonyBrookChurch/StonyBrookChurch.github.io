@@ -1,11 +1,15 @@
-(function($) {
+(async function($) {
   'use strict';
 
   /*-------------------------------------------------------------------------------
   Parallax effect on scroll
   -------------------------------------------------------------------------------*/
-  function doParallaxScrollEffect() {
-    var $parallaxElement = $(".andro_parallax-scroll");
+  async function doParallaxScrollEffect() {
+    const $parallaxElement = $(".andro_parallax-scroll");
+    // *************************************************************
+    await import('/assets/js/plugins/jquery.nicescroll.min.js');
+    // *************************************************************
+
 
     window.requestAnimationFrame(function() {
       for (var i = 0; i < $parallaxElement.length; i++) {
@@ -34,7 +38,14 @@
   /*-------------------------------------------------------------------------------
   Nice Scroll
 	-------------------------------------------------------------------------------*/
-  $(".nice-scroll").niceScroll({autohidemode: true, cursorcolor: '#efefef'});
+  const $niceScroll = $(".nice-scroll");
+  if ($niceScroll.length) {
+    // *************************************************************
+    await import('/assets/js/plugins/jquery.nicescroll.min.js');
+    // *************************************************************
+
+    $niceScroll.niceScroll({autohidemode: true, cursorcolor: '#efefef'});
+  }
 
   /*-------------------------------------------------------------------------------
   Init Tooltips (Bootstrap 5)
@@ -48,79 +59,98 @@
   Magnific Popup
   -------------------------------------------------------------------------------*/
   console.log(window.location);
-  $('.andro_video-popup').magnificPopup({
-    type: 'iframe',
-    // Custom options provided to customize origin query param for YouTube
-    iframe: {
-      markup: '<div class="mfp-iframe-scaler">'+
-        '<div class="mfp-close"></div>'+
-        '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-        '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
-      patterns: {
-        youtube: {
-          index: 'youtube.com/',
-          id: 'v=',
-          src: 'https://www.youtube.com/embed/%id%?autoplay=1&origin=' + window.location.origin // URL that will be set as a source for iframe.
+  const $androVideoPopup = $('.andro_video-popup');
+  if ($androVideoPopup.length) {
+    // *************************************************************
+    await import('/assets/js/plugins/jquery.magnific-popup.min.js');
+    // *************************************************************
+
+    $('.andro_video-popup').magnificPopup({
+      type: 'iframe',
+      // Custom options provided to customize origin query param for YouTube
+      iframe: {
+        markup: '<div class="mfp-iframe-scaler">'+
+          '<div class="mfp-close"></div>'+
+          '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+          '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+        patterns: {
+          youtube: {
+            index: 'youtube.com/',
+            id: 'v=',
+            src: 'https://www.youtube.com/embed/%id%?autoplay=1&origin=' + window.location.origin // URL that will be set as a source for iframe.
+          },
+          vimeo: {
+            index: 'vimeo.com/',
+            id: '/',
+            src: 'https://player.vimeo.com/video/%id%?autoplay=1'
+          }
         },
-        vimeo: {
-          index: 'vimeo.com/',
-          id: '/',
-          src: 'https://player.vimeo.com/video/%id%?autoplay=1'
-        }
-      },
-      srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
-    }
-  });
-  $('.andro_img-popup').magnificPopup({
-    type: 'image',
-    gallery: {
-      enabled: true
-    }
-  });
-  $('.andro_img-gallery').each(function() {
-    $(this).magnificPopup({
-      delegate: 'a',
+        srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
+      }
+    });
+    $('.andro_img-popup').magnificPopup({
       type: 'image',
       gallery: {
         enabled: true
       }
     });
-  });
+    $('.andro_img-gallery').each(function() {
+      $(this).magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: {
+          enabled: true
+        }
+      });
+    });
+  }
 
   /*-------------------------------------------------------------------------------
   Masonry
   -------------------------------------------------------------------------------*/
-  $('.andro_masonry').imagesLoaded(function() {
-    var isotopeContainer = $('.andro_masonry');
-    isotopeContainer.isotope({itemSelector: '.andro_masonry-item'});
-  });
+  const $androMasonry = $('.andro_masonry');
+  if ($androMasonry.length) {
+    // *************************************************************
+    await import('/assets/js/plugins/imagesloaded.min.js');
+    await import('/assets/js/plugins/isotope.pkgd.min.js');
+    // *************************************************************
+
+    $androMasonry.imagesLoaded(function() {
+      var isotopeContainer = $('.andro_masonry');
+      isotopeContainer.isotope({itemSelector: '.andro_masonry-item'});
+    });
+  }
 
   /*------------------------------------------------------------------------------
   Isotope
   ------------------------------------------------------------------------------*/
-  function doIsotope(){
+  async function doIsotope(){
     var $isotopeGrid = $(".andro_isotope-filter");
+    // *************************************************************
+    await import('/assets/js/plugins/isotope.pkgd.min.js');
+    // *************************************************************
 
-    $isotopeGrid.isotope({
-      itemSelector: '.andro_isotope-item',
-      layoutMode: 'fitRows',
-    });
-
-    $('.andro_isotope-filter-nav').on('click', '.andro_isotope-trigger', function() {
-      var filterValue = $(this).attr('data-filter');
+    if ($isotopeGrid.isotope) {
       $isotopeGrid.isotope({
-        filter: filterValue
+        itemSelector: '.andro_isotope-item',
+        layoutMode: 'fitRows',
       });
-    });
-
-    $('.andro_isotope-trigger').on('click', function(e) {
-        $(this).closest('.andro_isotope-filter-nav').find('.active').removeClass('active');
-        $(this).addClass('active');
-        event.preventDefault();
-    });
-
+  
+      $('.andro_isotope-filter-nav').on('click', '.andro_isotope-trigger', function() {
+        var filterValue = $(this).attr('data-filter');
+        $isotopeGrid.isotope({
+          filter: filterValue
+        });
+      });
+  
+      $('.andro_isotope-trigger').on('click', function(e) {
+          $(this).closest('.andro_isotope-filter-nav').find('.active').removeClass('active');
+          $(this).addClass('active');
+          event.preventDefault();
+      });
+    }
   }
-  doIsotope();
+  await doIsotope();
 
   /*-------------------------------------------------------------------------------
   Particles
@@ -235,36 +265,62 @@
     },
     "retina_detect": true
   };
-  if($("#andro_particles").length){
+  const $androParticles = $("#andro_particles");
+  if ($androParticles.length){
+    // *************************************************************
+    await import('/assets/js/plugins/particles.min.js');
+    // *************************************************************
+
     particlesJS('andro_particles', particlesData);
   }
 
   /*-------------------------------------------------------------------------------
   Date Picker
   -------------------------------------------------------------------------------*/
-  $('.andro_datepicker').datepicker();
+  const $androDatepicker = $('.andro_datepicker');
+  if ($androDatepicker.length) {
+    // *************************************************************
+    await import('/assets/js/plugins/bootstrap-datepicker.min.js');
+    // *************************************************************
+
+    $androDatepicker.datepicker();
+  }
 
   /*-------------------------------------------------------------------------------
   Countdown
   -------------------------------------------------------------------------------*/
-  $(".andro_countdown-timer").each(function() {
-    var $this = $(this);
-    $this.countdown($this.data('countdown'), function(event) {
-      $(this).html(event.strftime('<span>%D <i>days</i></span> <span>%H <i>hrs</i></span> <span>%M <i>mins</i></span> <span>%S <i>sec</i></span>'));
+  const $androCountdownTimer = $(".andro_countdown-timer");
+  if ($androCountdownTimer.length) {
+    // *************************************************************
+    await import('/assets/js/plugins/jquery.countdown.min.js');
+    // *************************************************************
+
+    $androCountdownTimer.each(function() {
+      var $this = $(this);
+      $this.countdown($this.data('countdown'), function(event) {
+        $(this).html(event.strftime('<span>%D <i>days</i></span> <span>%H <i>hrs</i></span> <span>%M <i>mins</i></span> <span>%S <i>sec</i></span>'));
+      });
     });
-  });
+  }
 
   /*-------------------------------------------------------------------------------
   Countup
   -------------------------------------------------------------------------------*/
-  $(".andro_counter").each(function() {
-    var $this = $(this);
-    $this.one('inview', function(event, isInView) {
-      if (isInView) {
-        $this.countTo({speed: 2000});
-      }
+  const $androCounter = $(".andro_counter");
+  if ($androCounter.length) {
+    // *************************************************************
+    await import('/assets/js/plugins/jquery.counterup.min.js');
+    // *************************************************************
+
+    $androCounter.each(function() {
+      var $this = $(this);
+      $this.one('inview', function(event, isInView) {
+        if (isInView) {
+          $this.countTo({speed: 2000});
+        }
+      });
     });
-  });
+  }
 
 
   /*-------------------------------------------------------------------------------
@@ -298,130 +354,132 @@
     $(".andro_header-search").toggleClass('open');
   });
 
-  /*-------------------------------------------------------------------------------
-  Coverflow Slider (Playlist home 1)
-  -------------------------------------------------------------------------------*/
-  const coverflowSlider = new Swiper('.coverflow-slider', {
-    effect: 'coverflow',
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 1,
-    loop: false,
-    initialSlide: 1,
-    spaceBetween: 0,
-    coverflowEffect: {
-      rotate: 20,
-      stretch: 0,
-      depth: 200,
-      modifier: 1,
-      slideShadows: true
-    },
-    breakpoints: {
-      991: {
-        slidesPerView: 'auto'
+  if (window.Swiper) {
+    /*-------------------------------------------------------------------------------
+    Coverflow Slider (Playlist home 1)
+    -------------------------------------------------------------------------------*/
+    const coverflowSlider = new Swiper('.coverflow-slider', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 1,
+      loop: false,
+      initialSlide: 1,
+      spaceBetween: 0,
+      coverflowEffect: {
+        rotate: 20,
+        stretch: 0,
+        depth: 200,
+        modifier: 1,
+        slideShadows: true
       },
-      575: {
-        slidesPerView: 2
+      breakpoints: {
+        991: {
+          slidesPerView: 'auto'
+        },
+        575: {
+          slidesPerView: 2
+        }
       }
-    }
-  });
-  $(".andro_music-player-backward").on('click', function(e) {
-    e.preventDefault();
-    coverflowSlider.slidePrev();
-  });
-  $(".andro_music-player-forward").on('click', function(e) {
-    e.preventDefault();
-    coverflowSlider.slideNext();
-  });
+    });
+    $(".andro_music-player-backward").on('click', function(e) {
+      e.preventDefault();
+      coverflowSlider.slidePrev();
+    });
+    $(".andro_music-player-forward").on('click', function(e) {
+      e.preventDefault();
+      coverflowSlider.slideNext();
+    });
 
-  /*-------------------------------------------------------------------------------
-  Centered Slider (Blog home 3)
-  -------------------------------------------------------------------------------*/
-  const centeredSlider = new Swiper('.centered-slider', {
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 1,
-    loop: false,
-    initialSlide: 1,
-    spaceBetween: 0,
-    breakpoints: {
-      575: {
-        spaceBetween: 30,
-        slidesPerView: 2,
-      },
-      1199: {
-        spaceBetween: 120,
-        slidesPerView: 1.8,
-      },
-    }
-  });
-
-  /*-------------------------------------------------------------------------------
-  Full Width Slider (Arists home 2)
-  -------------------------------------------------------------------------------*/
-  const fullWidthSlider = new Swiper('.fw-slider', {
-    grabCursor: true,
-    spaceBetween: 15,
-    slidesPerView: 1,
-    loop: true,
-    autoplay: true,
-    breakpoints: {
-      600: {
-        slidesPerView: 2
-      },
-      991: {
-        slidesPerView: 3
-      },
-      1400: {
-        spaceBetween: 30,
-        slidesPerView: 4
+    /*-------------------------------------------------------------------------------
+    Centered Slider (Blog home 3)
+    -------------------------------------------------------------------------------*/
+    const centeredSlider = new Swiper('.centered-slider', {
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 1,
+      loop: false,
+      initialSlide: 1,
+      spaceBetween: 0,
+      breakpoints: {
+        575: {
+          spaceBetween: 30,
+          slidesPerView: 2,
+        },
+        1199: {
+          spaceBetween: 120,
+          slidesPerView: 1.8,
+        },
       }
-    }
-  });
-
-  /*-------------------------------------------------------------------------------
-  Single Slider (Blog details sidebar)
-  -------------------------------------------------------------------------------*/
-  const singleSlider = new Swiper('.single-slider', {
-    grabCursor: true,
-    spaceBetween: 0,
-    slidesPerView: 1,
-    loop: false,
-    autoplay: true,
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets'
-    }
-  });
-
-  /*-------------------------------------------------------------------------------
-  Vertical Slider (Artists home 1)
-  -------------------------------------------------------------------------------*/
-  const verticalSlider = new Swiper('.vertical-slider .swiper-container', {
-    slidesPerView: 1,
-    loop: false,
-    speed: 500,
-    spaceBetween: 0,
-    touchEventsTarget: 'wrapper',
-    navigation: {
-      nextEl: '.vertical-slider .swiper-button-next',
-      prevEl: '.vertical-slider .swiper-button-prev'
-    },
-    on: {
-      init: function(sw) {
-        $('.vertical-slider-count').html(sw.slides.length);
-      },
-      slideChange: function(sw) {
-        $('.vertical-slider-current').html(sw.activeIndex + 1);
+    });
+  
+    /*-------------------------------------------------------------------------------
+    Full Width Slider (Arists home 2)
+    -------------------------------------------------------------------------------*/
+    const fullWidthSlider = new Swiper('.fw-slider', {
+      grabCursor: true,
+      spaceBetween: 15,
+      slidesPerView: 1,
+      loop: true,
+      autoplay: true,
+      breakpoints: {
+        600: {
+          slidesPerView: 2
+        },
+        991: {
+          slidesPerView: 3
+        },
+        1400: {
+          spaceBetween: 30,
+          slidesPerView: 4
+        }
       }
-    }
-  });
+    });
+  
+    /*-------------------------------------------------------------------------------
+    Single Slider (Blog details sidebar)
+    -------------------------------------------------------------------------------*/
+    const singleSlider = new Swiper('.single-slider', {
+      grabCursor: true,
+      spaceBetween: 0,
+      slidesPerView: 1,
+      loop: false,
+      autoplay: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets'
+      }
+    });
+  
+    /*-------------------------------------------------------------------------------
+    Vertical Slider (Artists home 1)
+    -------------------------------------------------------------------------------*/
+    const verticalSlider = new Swiper('.vertical-slider .swiper-container', {
+      slidesPerView: 1,
+      loop: false,
+      speed: 500,
+      spaceBetween: 0,
+      touchEventsTarget: 'wrapper',
+      navigation: {
+        nextEl: '.vertical-slider .swiper-button-next',
+        prevEl: '.vertical-slider .swiper-button-prev'
+      },
+      on: {
+        init: function(sw) {
+          $('.vertical-slider-count').html(sw.slides.length);
+        },
+        slideChange: function(sw) {
+          $('.vertical-slider-current').html(sw.activeIndex + 1);
+        }
+      }
+    });
+  }
 
   /*-------------------------------------------------------------------------------
   Window Events
   -------------------------------------------------------------------------------*/
-  $(window).on("scroll", function() {
-    doParallaxScrollEffect();
+  $(window).on("scroll", async function() {
+    await doParallaxScrollEffect();
   });
 
 })(jQuery);
