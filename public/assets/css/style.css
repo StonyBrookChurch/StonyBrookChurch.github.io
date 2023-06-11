@@ -1466,16 +1466,11 @@ table .form-control:focus{
   color: #fff;
   font-size: 18px;
 }
-.andro_header-controls > a{
+.andro_header-controls > a + a{
   margin-left: 20px;
-  padding: 30px 15px 30px 15px;
+  padding: 30px 0 30px 20px;
 }
-.andro_header-controls > a > i.fab {
-  display: inline-block;
-  width: 18px;
-  text-align: center;
-}
-.andro_header-controls > a::before{
+.andro_header-controls > a + a::before{
   content: '';
   width: 1px;
   height: 15px;
@@ -6542,9 +6537,9 @@ Responsive
   .andro_header-logo a{
     width: var(--logo-size-md);
   }
-  /* .andro_header-controls > a + a{
+  .andro_header-controls > a + a{
     padding: 20px 0 20px 20px;
-  } */
+  }
   .andro_header-cart-count{
     top: 15px;
   }

@@ -184,36 +184,6 @@ h6, .h6 {
   padding: 40px 60px 40px 60px;
 }
 
-@media(min-width: 1200px) {
-  .andro_post.style-3.ministry .andro_post-thumb {
-    padding: 0 0 0 100px;
-  }
-
-  .andro_post.style-3.ministry.reverse .andro_post-thumb {
-    padding: 0 100px 0 0;
-  }
-}
-
-@media(max-width: 991px) {
-  .andro_post.style-3 .row .andro_post-thumb {
-    width: 350px;
-  }
-
-  .andro_post.style-3.ministry .andro_post-thumb {
-    margin-bottom: -50px;
-  }
-
-  .andro_post.style-3.ministry .andro_post-body {
-    margin-top: 25px;
-  }
-}
-
-@media(max-width: 420px) {
-  .andro_post.style-3 .row .andro_post-thumb {
-    width: inherit;
-  }
-}
-
 body{
   background-color: var(--color-bg-dark);
 }
@@ -310,6 +280,15 @@ table .form-control:focus{
   color: #fff;
 }
 
+.andro_header.style-6 .andro_header-controls > a {
+  padding: 30px 15px;
+}
+.andro_header.style-6 .andro_header-controls > a > i.fab {
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+}
+
 .andro_aside,
 .andro_header-navigation ul ul{
   background-color: var(--color-bg-dark);
@@ -346,10 +325,44 @@ table .form-control:focus{
   background-color: rgba(255,255,255,.1);
 }
 
+@media(min-width: 1200px) {
+  .andro_post.style-3.ministry .andro_post-thumb {
+    padding: 0 0 0 100px;
+  }
+
+  .andro_post.style-3.ministry.reverse .andro_post-thumb {
+    padding: 0 100px 0 0;
+  }
+}
+
+@media(max-width: 991px) {
+  .andro_post.style-3 .row .andro_post-thumb {
+    width: 350px;
+  }
+
+  .andro_post.style-3.ministry .andro_post-thumb {
+    margin-bottom: -50px;
+  }
+
+  .andro_post.style-3.ministry .andro_post-body {
+    margin-top: 25px;
+  }
+
+  .andro_header.style-6 .andro_header-controls > a {
+    padding: 20px 10px;
+  }
+}
+
 @media(max-width: 768px){
 
   .section-title h3.family-display{
     font-size: 48px;
   }
 
+}
+
+@media(max-width: 420px) {
+  .andro_post.style-3 .row .andro_post-thumb {
+    width: inherit;
+  }
 }
