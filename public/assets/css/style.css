@@ -6542,9 +6542,9 @@ Responsive
   .andro_header-logo a{
     width: var(--logo-size-md);
   }
-  .andro_header-controls > a + a{
+  /* .andro_header-controls > a + a{
     padding: 20px 0 20px 20px;
-  }
+  } */
   .andro_header-cart-count{
     top: 15px;
   }
