@@ -9,6 +9,6 @@ export default defineConfig({
 	integrations: [mdx(), sitemap()],
   build: {
     format: 'file',
-    inlineStylesheets: 'auto'
+    inlineStylesheets: 'always'
   }
 });
