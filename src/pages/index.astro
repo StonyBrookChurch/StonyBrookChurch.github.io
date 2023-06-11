@@ -209,7 +209,7 @@ const publicEvents = await getLatestEvents(7, 'Public');
 							<td data-title="Day" class="fw-600 color-primary"><FormattedDate date={event.start} format="cccc" /></td>
 							<td data-title="Time"><FormattedDate date={event.start} format="t" /></td>
 							<td data-title="Event">{event.name}</td>
-							<td class="no-title"><a href={event.url} title={event.name} class="button light sm icon-after" target="_blank">Learn More <i class="far fa-chevron-right"></i> </a></td>
+							<td class="no-title"><a href={event.url} title={event.name} class="button light sm icon-after" target="_blank">Details <i class="far fa-chevron-right"></i> </a></td>
 						</tr>
 					)}
 				</tbody>
