@@ -8,6 +8,7 @@ export default defineConfig({
 	site: 'https://stonybrookchurch.insource.io',
 	integrations: [mdx(), sitemap()],
   build: {
-    format: 'file'
+    format: 'file',
+    inlineStylesheets: 'auto'
   }
 });
