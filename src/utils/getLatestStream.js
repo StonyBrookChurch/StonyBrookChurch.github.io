@@ -2,15 +2,15 @@ import { YOUTUBE_CHANNEL_ID } from '@consts';
 
 const { YOUTUBE_URL, YOUTUBE_API_KEY } = import.meta.env;
 
-export default async function getLatestStream() {
-  const videos = await fetchVideos(YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID, 10);
+export default async function getLatestStream(eventType = 'completed') {
+  const videos = await fetchVideos(YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID, eventType, 1);
   const [ latestVideo ] = videos
-    .filter((video) => {
-      const start = Date.parse(video.actualStartTime);
-      const end = Date.parse(video.actualEndTime);
-      // get rid of videos 5-minutes and under
-      return ((end - start) / 1000) > 300;
-    })
+    // .filter((video) => {
+    //   const start = Date.parse(video.actualStartTime);
+    //   const end = Date.parse(video.actualEndTime);
+    //   // get rid of videos 5-minutes and under
+    //   return ((end - start) / 1000) > 300;
+    // })
     .sort((a, b) => {
       const delta = Date.parse(a.publishedAt) - Date.parse(b.publishedAt);
       return delta < 0 ? -1 : delta > 0 ? 1 : 0;
@@ -21,12 +21,12 @@ export default async function getLatestStream() {
     return latestVideo;
 }
 
-async function fetchVideos(apiKey, channelId, maxResults) {
+async function fetchVideos(apiKey, channelId, eventType, maxResults) {
   const items = [];
 
   let nextPageToken = null;
   do {
-    const data = await fetchPage(apiKey, channelId, maxResults, nextPageToken);
+    const data = await fetchPage(apiKey, channelId, eventType, maxResults, nextPageToken);
     console.log(`found ${data.pageInfo.totalResults} total results`);
     // console.log(JSON.stringify(data, null, 2));
     const videoIds = data.items.map(item => item.id.videoId);
@@ -56,8 +56,8 @@ async function fetchVideos(apiKey, channelId, maxResults) {
   return items.map((item) => normalizeVideo(item));
 }
 
-async function fetchPage(apiKey, channelId, maxResults, pageToken) {
-  let url = `${YOUTUBE_URL}/youtube/v3/search?key=${apiKey}&channelId=${channelId}&maxResults=${maxResults}&part=snippet&type=video&eventType=completed&order=date`;
+async function fetchPage(apiKey, channelId, eventType, maxResults, pageToken) {
+  let url = `${YOUTUBE_URL}/youtube/v3/search?key=${apiKey}&channelId=${channelId}&maxResults=${maxResults}&part=snippet&type=video&eventType=${eventType}&order=date`;
   if (pageToken !== null) {
     url = `${url}&pageToken=${pageToken}`;
     console.log(`streams: fetching page ${pageToken} of ${channelId}`);
@@ -94,8 +94,8 @@ function normalizeVideo(item) {
     'publishedAt': item.snippet.publishedAt,
     'publishTime': item.snippet.publishTime,
     //'duration': item.contentDetails.duration,
-    'actualStartTime': item.liveStreamingDetails.actualStartTime,
-    'actualEndTime': item.liveStreamingDetails.actualEndTime
+    'actualStartTime': item.liveStreamingDetails?.actualStartTime,
+    'actualEndTime': item.liveStreamingDetails?.actualEndTime
   };
 }
 
