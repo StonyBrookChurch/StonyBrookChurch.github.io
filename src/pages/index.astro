@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, APP_STORE_URL, PLAY_STORE_URL } from '@consts';
+import { SITE_TITLE, APP_STORE_URL, PLAY_STORE_URL, CHURCH_CENTER_URL } from '@consts';
 import FormattedDate from '@components/FormattedDate.astro';
 import getLatestEvents from '@utils/getLatestEvents';
 import getLatestMessage from '@utils/getLatestMessage';
@@ -189,7 +189,7 @@ let liveNowButton: any | null = liveStream ? {
 		<div class="container">
 			<div class="section-title text-center">
 				<h3 class="text-white family-display fw-400">Connect With Us</h3>
-				<p class="text-white">Download the <a href="https://stonybrookchurch.churchcenter.com" target="_blank">Church Center</a>
+				<p class="text-white">Download the <a href={CHURCH_CENTER_URL} target="_blank">Church Center</a>
 					 app to connect with groups, send prayer requests, register for events and much more.</p>
 			</div>
 			<div class="d-block d-sm-flex justify-content-center align-items-center">
