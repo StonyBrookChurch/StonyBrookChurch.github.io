@@ -79,8 +79,8 @@ export const NAVIGATION = [
         url: '/messages/recent'
     },
     {
-        title: 'Calendar',
-        url: '/calendar'
+        title: 'Events',
+        url: '/events'
     }
 ];
 export const SOCIALS = [
