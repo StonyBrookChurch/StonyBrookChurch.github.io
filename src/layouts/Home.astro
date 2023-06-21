@@ -24,6 +24,7 @@ const { title, description, image, action } = Astro.props;
 <html lang="en" dir="ltr">
 	<head>
 		<BaseHead title={title} description={description} />
+    <slot name="after-head" />
 	</head>
 
 	<body>
@@ -34,11 +35,11 @@ const { title, description, image, action } = Astro.props;
           {action.icon &&<i class={`fal fa-${action.icon}`}></i>}
         </a>
       }
-      
     </Hero>
 		<main>
 			<slot />
 		</main>
 		<Footer />
+    <slot name="after-footer" />
 	</body>
 </html>

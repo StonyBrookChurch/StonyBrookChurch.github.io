@@ -99,17 +99,9 @@ const parents = [
       </div>
     </div>
   </div>
-  <script type="text/javascript">
-    window.addEventListener('load', async () => {
-      await import('/assets/js/plugins/jquery.magnific-popup.min.js');
-      import('/assets/js/magnific.js');
-    });
-  </script>
-  <script type="text/javascript">
-    window.addEventListener('load', async () => {
-      await import('/assets/js/plugins/imagesloaded.min.js');
-      await import('/assets/js/plugins/isotope.pkgd.min.js');
-      import('/assets/js/masonry.js');
-    });
-  </script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/magnific.js" async></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/imagesloaded.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/masonry.js" async></script>
 </Page>

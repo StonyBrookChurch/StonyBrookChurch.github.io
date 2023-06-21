@@ -23,6 +23,7 @@ const { title, description, image, parents = [] } = Astro.props;
 <html lang="en" dir="ltr">
 	<head>
 		<BaseHead title={title} description={description} />
+    <slot name="after-head" />
 	</head>
 
 	<body>
@@ -32,5 +33,6 @@ const { title, description, image, parents = [] } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+    <slot name="after-footer" />
 	</body>
 </html>
