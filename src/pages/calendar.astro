@@ -38,27 +38,6 @@ const specialEvents = await getLatestEvents(30, 'Special Event');
               </div>
             </div>
           </div>
-
-          <div class="andro_artist-d-section visually-hidden">
-            <h4>Upcoming Events</h4>
-            <div class="andro_artist-d-section-content">
-              <div class="row">
-                {specialEvents.map((event) =>
-                  <div class="col-lg-4">
-                  <div class="andro_artist style-4">
-                    <div class="andro_artist-img">
-                      <img class="andro_img-cover" src={event.image} alt="event" />
-                    </div>
-                    <div class="justify-content-end andro_artist-content">
-                      <h5 class="andro_artist-name family-display"><a href={event.url} target="_blank">{event.name}</a></h5>
-                      <p class="m-0"></p>
-                    </div>
-                  </div>
-                </div>
-                )}
-              </div>
-            </div>
-          </div>
         )}
   
         <div class="andro_artist-d-section" id="church-calendar">
