@@ -11,11 +11,9 @@ const hide = false;
       {SOCIALS.map((social) =>
         <li><a href={social.url} class={`color-${social.class}-hover`}><i class={`fab ${social.icon}`}></i> {social.title}</a></li>
       )}
-      <!-- <li><a href={CHURCH_CENTER_URL} style="white-space: nowrap;"><img alt="Church Center" src="/assets/uploads/third-party/app-icon-church-center-400.png" height="32" /> Church Center</a></li> -->
-      <li><a href={CHURCH_CENTER_URL} style="white-space: nowrap;"><i class="fas fa-church"></i> Church Center</a></li>
+      <li><a href={CHURCH_CENTER_URL} class="color-churchcenter-hover" style="white-space: nowrap;"><i class="fas fa-church"></i> Church Center</a></li>
     </ul>
 
-    <!-- <p><a href={CHURCH_CENTER_URL} class="text-white"><img alt="Church Center" src="/assets/uploads/third-party/app-icon-church-center-400.png" height="32" /> Church Center</a></p> -->
     <p class="m-0">{SITE_TITLE} &copy; {today.getFullYear()}</p>
     <p><a href="https://insource.io">Made with Love</a></p>
   </div>

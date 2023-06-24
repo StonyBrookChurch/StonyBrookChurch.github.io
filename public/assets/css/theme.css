@@ -66,6 +66,10 @@ This stylesheet is based on demo 8
   color: var(--color-5);
 }
 
+.color-churchcenter-hover:hover {
+  color: #3fa1cf !important;
+}
+
 .andro_album.style-2.color-1 .andro_album-content {
   background-color: rgba(var(--color-1-rgb), .8);
 }
