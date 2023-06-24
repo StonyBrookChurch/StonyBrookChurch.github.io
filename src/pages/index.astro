@@ -9,31 +9,14 @@ import Home from '@layouts/Home.astro';
 const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
-
-// Define props for Watch Live button if stream is live on YouTube
-const liveNowButton = {
-  url: '#live-now',
-  label: 'Watch Live!',
-  icon: 'arrow-down'
-};
-
-const connectButton = {
-  url: '/connect',
-  label: 'Connect',
-  icon: 'arrow-right'
-};
 ---
 
-<Home title="Home" description="Lorem ipsum dolor sit amet" image="/assets/uploads/band-1.webp">
+<Home title="Home" description="Welcome Home" image="/assets/uploads/band-1.webp">
   <div slot="actions" class="d-block d-sm-flex justify-content-center align-items-center">
     {liveStream &&
-      <a href={liveNowButton.url} class="ms-0 ms-sm-2 mt-2 button primary">{liveNowButton.label}
-        <i class={`fal fa-${liveNowButton.icon}`}></i>
-      </a>
+      <a href="#live-now" class="ms-0 ms-sm-2 mt-2 button primary">Watch Live! <i class="fal fa-arrow-down"></i></a>
     }
-    <a href={connectButton.url} target="_blank" class="ms-0 ms-sm-2 mt-2 button primary">{connectButton.label}
-      <i class={`fal fa-${connectButton.icon}`}></i>
-    </a>
+    <a href="/connect" class="ms-0 ms-sm-2 mt-2 button primary">Connect <i class="fal fa-arrow-right"></i></a>
   </div>
 	<div class="section md andro_particles-wrap">
 		<div id="__andro_particles__" class="andro_particles"></div>
