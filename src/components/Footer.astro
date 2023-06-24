@@ -1,18 +1,21 @@
 ---
-import { SITE_TITLE, SOCIALS } from '@consts';
+import { CHURCH_CENTER_URL, SITE_TITLE, SOCIALS } from '@consts';
 
 const today = new Date();
 const hide = false;
 ---
 
-<footer class="andro_footer style-3 light text-center" style="background-image: url(/assets/uploads/unsplash-header-1-1920x460.webp)">
-  <div class="container">
+<footer class="andro_footer style-3 light text-center dark-overlay dark-overlay-2" style="background-image: url(/assets/uploads/footer-1.webp)">
+  <div class="container-fluid">
     <ul class="andro_footer-socials">
       {SOCIALS.map((social) =>
         <li><a href={social.url} class={`color-${social.class}-hover`}><i class={`fab ${social.icon}`}></i> {social.title}</a></li>
       )}
+      <!-- <li><a href={CHURCH_CENTER_URL} style="white-space: nowrap;"><img alt="Church Center" src="/assets/uploads/third-party/app-icon-church-center-400.png" height="32" /> Church Center</a></li> -->
+      <li><a href={CHURCH_CENTER_URL} style="white-space: nowrap;"><i class="fas fa-church"></i> Church Center</a></li>
     </ul>
 
+    <!-- <p><a href={CHURCH_CENTER_URL} class="text-white"><img alt="Church Center" src="/assets/uploads/third-party/app-icon-church-center-400.png" height="32" /> Church Center</a></p> -->
     <p class="m-0">{SITE_TITLE} &copy; {today.getFullYear()}</p>
     <p><a href="https://insource.io">Made with Love</a></p>
   </div>

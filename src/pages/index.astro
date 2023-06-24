@@ -11,14 +11,30 @@ const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
 
 // Define props for Watch Live button if stream is live on YouTube
-let liveNowButton: any | null = liveStream ? {
+const liveNowButton = {
   url: '#live-now',
   label: 'Watch Live!',
   icon: 'arrow-down'
-} : null;
+};
+
+const connectButton = {
+  url: '/connect',
+  label: 'Connect',
+  icon: 'arrow-right'
+};
 ---
 
-<Home title="Home" description="Lorem ipsum dolor sit amet" image="/assets/uploads/band-1.webp" action={liveNowButton}>
+<Home title="Home" description="Lorem ipsum dolor sit amet" image="/assets/uploads/band-1.webp">
+  <div slot="actions" class="d-block d-sm-flex justify-content-center align-items-center">
+    {liveStream &&
+      <a href={liveNowButton.url} class="ms-0 ms-sm-2 mt-2 button primary">{liveNowButton.label}
+        <i class={`fal fa-${liveNowButton.icon}`}></i>
+      </a>
+    }
+    <a href={connectButton.url} target="_blank" class="ms-0 ms-sm-2 mt-2 button primary">{connectButton.label}
+      <i class={`fal fa-${connectButton.icon}`}></i>
+    </a>
+  </div>
 	<div class="section md andro_particles-wrap">
 		<div id="__andro_particles__" class="andro_particles"></div>
 		<div class="container">
@@ -211,7 +227,7 @@ let liveNowButton: any | null = liveStream ? {
 		</div>
 	</div>
 
-	<div class="section bg-cover dark-overlay dark-overlay dark-overlay-3" style="background-image: url(/assets/uploads/give-more.webp); background-position: bottom right;">
+  <div class="section bg-cover dark-overlay dark-overlay dark-overlay-3" style="background-image: url(/assets/uploads/give-more.webp); background-position: bottom right;">
 		<div class="container">
 			<div class="section-title text-center">
 				<h3 class="family-display">Upcoming Events</h3>
