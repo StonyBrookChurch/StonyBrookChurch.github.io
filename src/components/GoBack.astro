@@ -1,0 +1,16 @@
+---
+export interface Props {
+  after: number
+}
+
+const { after } = Astro.props;
+---
+
+<span id="after" data-after={after}></span>
+<script slot="after-footer" type="text/javascript">
+  window.addEventListener('load', function() {
+    window.setTimeout(() => {
+      window.history.back();
+    }, document.getElementById('after').dataset.after);
+  });
+</script>

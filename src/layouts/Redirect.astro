@@ -30,12 +30,13 @@ const { to } = Astro.props;
 </noscript>
 
 <script type="text/javascript">
-  window.addEventListener('load', function() {
+  window.addEventListener('load', () => {
     window.setTimeout(function() {
       document.getElementById('redirect').style = 'display: block';
     }, 1500);
   });
 </script>
+<slot name="after-footer" />
 
 </body>
 </html>
