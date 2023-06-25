@@ -165,11 +165,6 @@ h6, .h6 {
   background-position-x: right;
 }
 
-/*
-.andro_footer {
-}
-*/
-
 .dark-overlay::before {
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -358,6 +353,11 @@ table .form-control:focus{
 
   .andro_header.style-6 .andro_header-controls > a {
     padding: 20px 10px;
+  }
+
+  .andro_footer.style-3 .andro_footer-socials li a,
+  .andro_footer.style-4 .andro_footer-socials li a {
+    font-size: 18px;
   }
 }
 
