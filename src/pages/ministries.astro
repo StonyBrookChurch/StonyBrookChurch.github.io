@@ -6,11 +6,11 @@ const ministries = await getCollection('ministries');
 const bannerIndex = 5;
 ---
 
-<Page title="Ministries" description="Lorem ipsum dolor sit amet." image="/assets/uploads/church-header-1.jpg">
+<Page title="Ministries" description="Lorem ipsum dolor sit amet." image="/assets/uploads/hero/church-1.jpg">
   {ministries.map((ministry, index) =>
     <div>
       {index == bannerIndex &&
-        <div class="section dark-overlay dark-overlay-2 bg-cover bg-center" style="background-image: url(/assets/uploads/beach-1.jpg)">
+        <div class="section dark-overlay dark-overlay-2 bg-cover bg-center" style="background-image: url(/assets/uploads/banner/beach-1.jpg)">
           <div class="container text-center">
             <div class="section-title text-center">
               <h3 class="text-white fw-400 family-display">Connect With Us</h3>

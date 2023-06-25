@@ -11,7 +11,7 @@ const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
 ---
 
-<Home title="Home" description="Welcome Home" image="/assets/uploads/band-1.webp">
+<Home title="Home" description="Welcome Home" image="/assets/uploads/hero/band-1.webp">
   <div slot="actions" class="d-block d-sm-flex justify-content-center align-items-center">
     {liveStream &&
       <a href="#live-now" class="ms-0 ms-sm-2 mt-2 button primary">Watch Live! <i class="fal fa-arrow-down"></i></a>
@@ -146,7 +146,7 @@ const liveStream = await getLatestStream('live');
 	</div>
 
   {liveStream &&
-    <div id="live-now" class="section height-lg dark-overlay dark-overlay-2 bg-cover bg-center d-flex align-items-center justify-content-center flex-column" style="background-image: url(/assets/uploads/band-11.webp)">
+    <div id="live-now" class="section height-lg dark-overlay dark-overlay-2 bg-cover bg-center d-flex align-items-center justify-content-center flex-column" style="background-image: url(/assets/uploads/banner/band-11.webp)">
       <div class="container">
         <div class="text-center mx-auto mb-4">
           <a href={`https://www.youtube.com/watch?v=${liveStream.videoId}`} class="andro_video-icon pulse andro_video-popup"> <i class="fas fa-play"></i> </a>
@@ -184,7 +184,7 @@ const liveStream = await getLatestStream('live');
 		</div>
 	</div>
 
-	<div class="section bg-cover" style="background-image: url(/assets/uploads/connect-1.webp)">
+	<div class="section bg-cover" style="background-image: url(/assets/uploads/banner/connect-1.webp)">
 		<div class="container">
 			<div class="section-title text-center">
 				<h3 class="text-white family-display fw-400">Connect With Us</h3>
@@ -210,7 +210,7 @@ const liveStream = await getLatestStream('live');
 		</div>
 	</div>
 
-  <div class="section bg-cover dark-overlay dark-overlay dark-overlay-3" style="background-image: url(/assets/uploads/give-more.webp); background-position: bottom right;">
+  <div class="section bg-cover dark-overlay dark-overlay dark-overlay-3" style="background-image: url(/assets/uploads/banner/give-more.webp); background-position: bottom right;">
 		<div class="container">
 			<div class="section-title text-center">
 				<h3 class="family-display">Upcoming Events</h3>
