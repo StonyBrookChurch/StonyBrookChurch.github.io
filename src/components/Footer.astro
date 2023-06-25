@@ -9,9 +9,9 @@ const hide = false;
   <div class="container-fluid">
     <ul class="andro_footer-socials">
       {SOCIALS.map((social) =>
-        <li><a href={social.url} class={`color-${social.class}-hover`}><i class={`fab ${social.icon}`}></i> {social.title}</a></li>
+        <li><a href={social.url} class={`color-${social.class}-hover`}><i class={`fab ${social.icon}`}></i> <span class="label">{social.title}</span></a></li>
       )}
-      <li><a href={CHURCH_CENTER_URL} class="color-churchcenter-hover" style="white-space: nowrap;"><i class="fas fa-church"></i> Church Center</a></li>
+      <li><a href={CHURCH_CENTER_URL} class="color-churchcenter-hover"><i class="fas fa-church"></i> <span class="label">Church Center</span></a></li>
     </ul>
 
     <p class="m-0">{SITE_TITLE} &copy; {today.getFullYear()}</p>
@@ -19,5 +19,10 @@ const hide = false;
   </div>
 </footer>
 
+<style>
+  .label {
+    white-space: nowrap;
+  }
+</style>
 <script type="text/javascript" src="/assets/js/plugins/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/aside.js" async></script>
