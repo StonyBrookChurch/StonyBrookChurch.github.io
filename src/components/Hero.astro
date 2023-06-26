@@ -4,10 +4,11 @@ import getNextSunday from '@utils/getNextSunday';
 import FormattedDate from '@components/FormattedDate.astro';
 
 export interface Props {
-  image: string
+  image: string,
+  description?: string | null
 }
 
-const { image } = Astro.props;
+const { image, description = null } = Astro.props;
 
 const nextSunday = getNextSunday();
 ---
@@ -16,7 +17,7 @@ const nextSunday = getNextSunday();
   <div class="andro_hero-item dark-overlay bg-cover" style={`background-image: url(${image})`}>
     <div class="container">
       <div class="andro_hero-item-inner">
-        <h1 style="">&nbsp;<span class="sr-only">{SITE_TITLE}</span>&nbsp;</h1>
+        <h1>{description || SITE_TITLE}</h1>
         <slot />
       </div>
     </div>

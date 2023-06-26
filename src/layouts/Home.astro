@@ -22,7 +22,7 @@ const { title, description, image } = Astro.props;
 
 	<body>
 		<Header />
-		<Hero image={image}>
+		<Hero image={image} description={description}>
       <slot name="actions" />
     </Hero>
 		<main>
