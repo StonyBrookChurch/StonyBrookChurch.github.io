@@ -15,14 +15,14 @@ const { staff } = Astro.props;
 
 <div class="row">
   {staff.map((member) =>
-    <div class="col-lg-3 col-md-6">
-      <div class="andro_artist style-6">
-        <div class="andro_artist-img">
-          <img src={member.image} alt="Staff Member Image" />
+    <div class="col-lg-3 col-6">
+      <div class="andro_album style-2 sm">
+        <div class="andro_album-img">
+          <img class="andro_img-cover" src={member.image} alt="Leader Image" />
         </div>
-        <div class="andro_artist-body">
-          <span class="andro_artist-designation">{member.description}</span>
-          <h5 class="andro_artist-name">
+        <div class="andro_album-content">
+          <span class="andro_album-artist">{member.description}</span>
+          <h5 class="andro_album-name">
             <a href={member.url}>{member.name}</a>
           </h5>
         </div>
