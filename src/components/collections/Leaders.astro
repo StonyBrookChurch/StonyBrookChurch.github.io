@@ -21,10 +21,10 @@ const { leaders } = Astro.props;
           <img class="andro_img-cover" src={leader.image} alt="Leader Image" />
         </div>
         <div class="andro_album-content">
-          <span class="andro_album-artist">{leader.description}</span>
           <h5 class="andro_album-name">
             <a href={leader.url}>{leader.name}</a>
           </h5>
+          <span class="andro_album-artist">{leader.description}</span>
         </div>
       </div>
     </div>
