@@ -3,13 +3,14 @@ import { getCollection } from 'astro:content';
 import Page from '@layouts/Page.astro';
 
 const ministries = await getCollection('ministries');
-const bannerIndex = 5;
+const connectIndex = 5;
+const giveIndex = 7;
 ---
 
 <Page title="Ministries" description="Lorem ipsum dolor sit amet." image="/assets/uploads/hero/church-1.jpg">
   {ministries.map((ministry, index) =>
     <div>
-      {index == bannerIndex &&
+      {index == connectIndex &&
         <div class="section dark-overlay dark-overlay-2 bg-cover bg-center" style="background-image: url(/assets/uploads/banner/beach-1.jpg)">
           <div class="container text-center">
             <div class="section-title text-center">
@@ -19,7 +20,21 @@ const bannerIndex = 5;
                 spresso coel spresso concateur non value maro noro strata.
               </p>
             </div>
-            <a href="/connect" class="button primary icon-after">Connect <i class="fal fa-arrow-right"></i> </a>
+            <a href="/connect" class="button primary icon-after">Connect <i class="fal fa-arrow-right"></i></a>
+          </div>
+        </div>
+      }
+      {index == giveIndex &&
+        <div class="section dark-overlay dark-overlay-2 bg-cover bg-center" style="background-image: url(/assets/uploads/banner/give.jpg)">
+          <div class="container text-center">
+            <div class="section-title text-center">
+              <h3 class="text-white fw-400 family-display">Give Online</h3>
+              <p class="color-body-light-2">
+                Lorem ipsum dolor sit amet concateur non tropp sit namo, allegro sustenuto
+                spresso coel spresso concateur non value maro noro strata.
+              </p>
+            </div>
+            <a href="/give" class="button primary icon-after">Give <i class="fal fa-arrow-right"></i></a>
           </div>
         </div>
       }
