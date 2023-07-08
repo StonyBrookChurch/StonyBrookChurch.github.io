@@ -5,10 +5,12 @@ description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu
 image: /assets/uploads/slides/missions.webp
 hero: /assets/img/banner-3.jpg
 url: /ministries/missions
-# banner:
-#   title: Local &amp; Global <span class="fw-600 color-primary family-display">Missions</span>
-#   image: /assets/img/banner-7.jpg
-  # logo: /assets/img/logo-3-lg.png
+banner:
+  title: Give Online
+  description: Lorem ipsum dolor sit amet concateur non tropp sit namo, allegro sustenuto spresso coel spresso concateur non value maro noro strata.
+  action: Connect
+  url: /connect
+  style: style-2
 slug: missions
 ---
 
