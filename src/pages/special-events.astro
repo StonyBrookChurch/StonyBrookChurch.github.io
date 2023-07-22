@@ -1,0 +1,30 @@
+---
+import Page from '@layouts/Page.astro';
+import getLatestEvents from '@utils/getLatestEvents';
+import FormattedDate from '@components/FormattedDate.astro';
+import MinimalPage from '@layouts/MinimalPage.astro';
+
+const specialEvents = await getLatestEvents(90, 'Special Event');
+---
+
+<MinimalPage title="Special Events" description="Upcoming special events." image="/assets/uploads/hero/events-1.jpg">
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        {specialEvents.map((event, index) =>
+          <div class:list={[{ 'col-lg-12': index % 3 == 0, 'col-lg-6': index % 3 != 0 }, 'col-md-6 col-sm-6']}>
+            <div class="andro_img-gallery">
+              <a href={event.url} class="andro_gallery style-2" target="_blank">
+                <div class="andro_gallery-count">
+                  <b><FormattedDate date={event.start} format="d" /></b>
+                  <span><FormattedDate date={event.start} format="LLL" /></span>
+                </div>
+                <img class="andro_img-cover" src={event.image || '/assets/img/gallery/lg/2.jpg'} alt="event" />
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</MinimalPage>

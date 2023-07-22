@@ -1,9 +1,15 @@
 ---
 import { SITE_TITLE, SOCIALS } from '@consts';
 import Nav from '@components/Nav.astro';
+
+export interface Props {
+  style?: string
+}
+
+const { style = '' } = Astro.props;
 ---
 
-<header class="andro_header style-6">
+<header class:list={[ 'andro_header', style, 'style-6' ]}>
   <div class="container andro_header-wrap">
     <div class="andro_header-logo">
       <h1 class="sr-only">{SITE_TITLE}</h1>

@@ -29,7 +29,7 @@ const specialEvents = await getLatestEvents(30, 'Special Event');
                   <div class="col-lg-4">
                     <div class="andro_artist style-3">
                       <div class="andro_artist-img">
-                        <a href={event.url}><img class="andro_img-cover" src={event.image} alt="event" /></a>
+                        <a href={event.url} target="_blank"><img class="andro_img-cover" src={event.image} alt="event" /></a>
                       </div>
                       <h5 class="andro_artist-name text-center"><a href={event.url} target="_blank">{event.name}</a></h5>
                     </div>
@@ -53,11 +53,11 @@ const specialEvents = await getLatestEvents(30, 'Special Event');
                   <div class="andro_event-body">
                     <h5>{event.name}</h5>
                     <div class="andro_event-data">
-                      {event.start.substring(0, 10) !== event.end.substring(0, 10) && (
+                      {event?.start?.substring(0, 10) !== event?.end?.substring(0, 10) && (
                         <span><strong>Start:</strong> <FormattedDate date={event.start} format="DDD - t" /></span>
                         <span><strong>End:</strong> <FormattedDate date={event.end} format="DDD - t" /></span>
                       )}
-                      {event.start.substring(0, 10) === event.end.substring(0, 10) && (
+                      {event?.start?.substring(0, 10) === event?.end?.substring(0, 10) && (
                         <span><FormattedDate date={event.start} format="cccc" /> &ndash; <FormattedDate date={event.start} format="t" /> - <FormattedDate date={event.end} format="t" /></span>
                       )}
                       {event.location && (
