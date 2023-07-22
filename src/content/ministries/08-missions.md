@@ -8,8 +8,8 @@ url: /ministries/missions
 banner:
   title: Give Online
   description: Lorem ipsum dolor sit amet concateur non tropp sit namo, allegro sustenuto spresso coel spresso concateur non value maro noro strata.
-  action: Connect
-  url: /connect
+  action: Give
+  url: /give
   style: style-2
 slug: missions
 ---
