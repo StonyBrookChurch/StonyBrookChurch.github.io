@@ -13,9 +13,7 @@ const ministries = await getCollection('ministries');
           <div class="container text-center">
             <div class="section-title text-center">
               <h3 class="text-white fw-400 family-display">{ministry.data.banner.title}</h3>
-              <p class="color-body-light-2">
-                {ministry.data.banner.description}
-              </p>
+              <p class="color-body-light-2" set:html={ministry.data.banner.description}></p>
             </div>
             <a href={ministry.data.banner.url} class="button primary icon-after">{ministry.data.banner.action} <i class="fal fa-arrow-right"></i></a>
           </div>
@@ -26,9 +24,7 @@ const ministries = await getCollection('ministries');
           <div class="container text-center">
             <div class="section-title text-center">
               <h3 class="text-white fw-400 family-display">{ministry.data.banner.title}</h3>
-              <p class="color-body-light-2">
-                {ministry.data.banner.description}
-              </p>
+              <p class="color-body-light-2" set:html={ministry.data.banner.description}></p>
             </div>
             <a href={ministry.data.banner.url} class="button primary icon-after">{ministry.data.banner.action} <i class="fal fa-arrow-right"></i></a>
           </div>
@@ -43,7 +39,7 @@ const ministries = await getCollection('ministries');
             <div class="col-lg-6">
               <div class="ms-0 mt-5 ms-lg-5 mt-lg-0">
                 <h3 class="h2" set:html={ministry.data.heading}></h3>
-                <p>{ministry.data.description}</p>
+                <p set:html={ministry.data.description}></p>
                 {ministry.data.url &&
                   <a href={ministry.data.url} class="button primary">More Information</a>
                 }
