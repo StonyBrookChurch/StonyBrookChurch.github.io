@@ -1,104 +1,61 @@
 ---
 import Page from '@layouts/Page.astro';
 
-const { title, description, image = '' } = Astro.props;
-const parents = [
-  {
-    title: 'Ministries',
-    url: '/ministries'
-  }
-];
+export interface Props {
+  title: string,
+  description: string,
+  image?: string,
+  gallery?: Image[],
+  parents?: Parent[]
+}
+
+interface Parent {
+  title: string,
+  url: string
+}
+
+interface Image {
+  image: string,
+  title?: string,
+  caption: string
+}
+
+const { title, description, image = '', gallery = [], parents = [] } = Astro.props;
 ---
 
 <Page title={title} description={description} image={image} parents={parents}>
   <div class="section">
     <div class="container">
-      <div class="section-title text-center mb-0">
-        <span class="badge bg-primary">18 Photos</span>
-        <h3>All About This Ministry</h3>
-        <slot />
+      <div class="section-title text-center">
+        {gallery.length > 0 &&
+          <a href="#photos"><span class="badge bg-primary">{gallery.length} Photos</span></a>
+        }
+        <h3>About {title}</h3>
       </div>
+      <slot />
     </div>
   </div>
-  
-  <div class="section bg-cover bg-center bg-fixed height-lg" style={`background-image: url(/assets/img/banner-3.jpg)`}></div>
-  
-  <div class="section md entry-content">
-    <div class="container">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat semper viverra nam libero justo laoreet sit amet cursus. Et netus et malesuada fames ac turpis egestas. Amet risus nullam eget felis eget nunc lobortis mattis. Ultricies mi eget mauris pharetra. Cursus vitae congue mauris rhoncus aenean vel. Diam maecenas sed enim ut. Leo integer malesuada nunc vel risus commodo viverra. Aliquam id diam maecenas ultricies mi eget mauris. Ultrices neque ornare aenean euismod elementum.
-      </p>
-      <p>
-        Diam quam nulla porttitor massa id neque. Facilisis sed odio morbi quis commodo odio aenean sed adipiscing. Netus et malesuada fames ac. Massa massa ultricies mi quis hendrerit dolor magna eget est. Posuere ac ut consequat semper viverra nam. Consequat mauris nunc congue nisi vitae. Lacus laoreet non curabitur gravida arcu ac tortor dignissim. Lobortis scelerisque fermentum dui faucibus in.
-      </p>
-    </div>
-  </div>
-  
-  <div class="section pt-0">
-    <div class="container">
-      <div class="row andro_masonry gx-1">
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/1.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/1.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/2.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/2.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-6 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/5.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/5.jpg" alt="gallery">
-            <div class="d-none d-lg-flex andro_gallery-content">
-              <h6 class="h4">By The Fire</h6>
+
+  {gallery.length > 0 &&
+    <div class="section pt-0" id="photos">
+      <div class="container">
+        <div class="row andro_masonry gx-1">
+          {gallery.map((image) =>
+            <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
+              <a href={image.image} class="andro_img-popup andro_gallery style-2">
+                <img class="andro_img-cover" src={image.image} alt={image.caption} />
+                {image.title &&
+                  <div class="d-none d-lg-flex andro_gallery-content">
+                    <h6 class="h4">{image.title}</h6>
+                  </div>
+                }
+              </a>
             </div>
-          </a>
+          )}
         </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/4.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/4.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/3.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/3.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-6 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/6.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/6.jpg" alt="gallery">
-            <div class="d-none d-lg-flex andro_gallery-content">
-              <h6 class="h4">Serving in Community</h6>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/7.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/7.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/8.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/8.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/10.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/10.jpg" alt="gallery">
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
-          <a href="/assets/img/gallery/grid/10.jpg" class="andro_img-popup andro_gallery style-2">
-            <img class="andro_img-cover" src="/assets/img/gallery/grid/10.jpg" alt="gallery">
-          </a>
-        </div>
-      </div>
-      <div class="andro_loading">
-        <div class="andro_loading-spinner"></div>
       </div>
     </div>
-  </div>
+  }
   <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
   <script slot="after-footer" type="text/javascript" src="/assets/js/magnific.js" async></script>
   <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/imagesloaded.min.js"></script>

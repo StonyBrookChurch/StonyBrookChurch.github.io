@@ -6,6 +6,11 @@ description:
   Every Kid Life volunteer has had a background check and is committed to making the ministry a safe, Biblically relevant, and fun environment for your kids.
 image: /assets/uploads/slides/kids.webp
 hero: /assets/uploads/hero/kids-1.jpg
+gallery:
+  - image: /assets/uploads/kids-1.jpg
+    caption: Kids 1
+  - image: /assets/uploads/kids-2.jpg
+    caption: Kids 2
 url: /ministries/kids
 # banner:
 #   title: Sunday <span class="fw-600 color-primary family-display">Mornings</span>
@@ -14,4 +19,8 @@ url: /ministries/kids
 slug: kids
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+During Kid Life on Sunday mornings, kids will be engaged, instructed, and loved as they travel their own precious spiritual journeys!
+Every Kid Life volunteer has had a background check and is committed to making the ministry a safe, Biblically relevant, and fun environment for your kids.
+
+This page is <span class="fw-400 color-primary">under construction</span>.
+Check back soon for more updates.

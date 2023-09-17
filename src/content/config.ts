@@ -8,6 +8,11 @@ const ministries = defineCollection({
     description: z.string(),
     image: z.string(),
     hero: z.string().optional(),
+    gallery: z.array(z.object({
+      image: z.string(),
+      title: z.string().optional(),
+      caption: z.string()
+    })).optional(),
     banner: z.object({
       title: z.string(),
       image: z.string().optional(),
