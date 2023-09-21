@@ -1,6 +1,6 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
-import Ministry from '@layouts/Ministry.astro';
+import Page from '@layouts/Page.astro';
 
 export async function getStaticPaths() {
   const ministries = await getCollection('ministries');
@@ -24,8 +24,49 @@ const parents = [
     url: '/ministries'
   }
 ];
+
+const title = ministry.data.title;
+const description = ministry.data.description;
+const image = ministry.data.hero;
+const gallery = ministry.data.gallery || [];
 ---
 
-<Ministry title={ministry.data.title} description={ministry.data.description} image={ministry.data.hero} gallery={ministry.data.gallery} parents={parents}>
-  <Content />
-</Ministry>
+<Page title={title} description={description} image={image} parents={parents}>
+  <div class="section">
+    <div class="container">
+      <div class="section-title text-center">
+        {gallery.length > 0 &&
+          <a href="#photos"><span class="badge bg-primary">{gallery.length} Photos</span></a>
+        }
+        <h3>About {title}</h3>
+      </div>
+      <Content />
+    </div>
+  </div>
+
+  {gallery.length > 0 &&
+    <div class="section pt-0" id="photos">
+      <div class="container">
+        <div class="row andro_masonry gx-1">
+          {gallery.map((image) =>
+            <div class="col-lg-3 col-md-3 col-6 andro_masonry-item">
+              <a href={image.image} class="andro_img-popup andro_gallery style-2">
+                <img class="andro_img-cover" src={image.image} alt={image.caption} />
+                {image.title &&
+                  <div class="d-none d-lg-flex andro_gallery-content">
+                    <h6 class="h4">{image.title}</h6>
+                  </div>
+                }
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  }
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/magnific.js" async></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/imagesloaded.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/masonry.js" async></script>
+</Page>
