@@ -19,7 +19,7 @@ let parents = [
     <div class="container">
       {messages.map((message) =>
         <div class="row mt-5">
-          <div class="col-lg-5">
+          <div class="col-lg-7">
             <div class="position-relative h-100">
               <img class="andro_img-cover" src={message.thumbnails.lg} alt="Video" />
               <a href={message.player_embed_url} class="center-absolute andro_video-icon pulse andro_video-popup">
@@ -27,7 +27,7 @@ let parents = [
               </a>
             </div>
           </div>
-          <div class="col-lg-7">
+          <div class="col-lg-5">
             <div class="andro_testimonial-body style-2 h-100">
               <h3 class="andro_testimonial-title family-display fw-400">
                 <span>{message.title}</span>
