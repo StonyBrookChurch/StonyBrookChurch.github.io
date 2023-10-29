@@ -22,7 +22,10 @@ const { staff } = Astro.props;
         </div>
         <div class="andro_album-content">
           <h5 class="andro_album-name">
-            <a href={member.url}>{member.name}</a>
+            <!--
+              <a href={member.url}>{member.name}</a>
+            -->
+            <span>{member.name}</span>
           </h5>
           <span class="andro_album-artist">{member.description}</span>
         </div>
