@@ -29,118 +29,13 @@ const { title, description, hero, gallery = [] } = ministry.data;
 ---
 
 <Page title={title} description={description} image={hero} parents={parents}>
-  <div class="section">
+  <div class="section pb-0">
     <div class="container">
       <div class="section-title text-center">
         {gallery.length > 0 &&
           <a href="#photos"><span class="badge bg-primary">{gallery.length} Photos</span></a>
         }
         <h3>About {title}</h3>
-      </div>
-    </div>
-  </div>
-
-  <div class="section pt-0">
-    <div class="container">
-      <div class="andro_si">
-        <div class="andro_si-wrap bg-color-4">
-          <div class="andro_si-img">
-            <img src="/assets/img/social-invitations/1.jpg" alt="Social Invitation">
-          </div>
-          <div class="andro_si-data">
-            <h4>Kid Life Service</h4>
-            <div class="andro_si-meta">
-              <div class="andro_si-meta-item">
-                <i class="flaticon-calendar"></i>
-                <div class="andro_si-meta-item-body">
-                  <span>Every Sunday</span>
-                  <b class="color-primary">9:00 AM, 10:30 AM</b>
-                </div>
-              </div>
-              <div class="andro_si-meta-item">
-                <i class="flaticon-pin"></i>
-                <div class="andro_si-meta-item-body">
-                  <span>123 Main St</span>
-                  <span>Omaha, NE 68123</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section pt-0">
-    <div class="container">
-      <div class="andro_artist-d-section">
-        <h4>Events (13) <a href="#">Show All</a></h4>
-        <div class="andro_artist-d-section-content">
-
-          <div class="andro_event">
-            <div class="andro_event-date">
-              <b>12</b>
-              <span>Jan 2022</span>
-            </div>
-            <div class="andro_event-content">
-              <div class="andro_event-body">
-                <h5>Musika Live Show</h5>
-                <div class="andro_event-data">
-                  <span>Organizer: Sheldon Fierce</span>
-                  <b> <i class="fal fa-map-marker"></i> Air Centre, London UK </b>
-                </div>
-              </div>
-              <div class="andro_event-controls">
-                <a href="#" class="button primary sm"> Tickets </a>
-                <a href="#" class="button outline sm"> Details </a>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="andro_event">
-            <div class="andro_event-date">
-              <b>11</b>
-              <span>Jan 2022</span>
-            </div>
-            <div class="andro_event-content">
-              <div class="andro_event-body">
-                <h5>Exploring Hip Hop's Love</h5>
-                <div class="andro_event-data">
-                  <span>Organizer: Sheldon Fierce</span>
-                  <b> <i class="fal fa-map-marker"></i> Air Centre, London UK </b>
-                </div>
-              </div>
-              <div class="andro_event-controls">
-                <a href="#" class="button secondary disabled sm"> Closed </a>
-                <a href="#" class="button outline sm"> Details </a>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="andro_event">
-            <div class="andro_event-date">
-              <b>18</b>
-              <span>Jan 2022</span>
-            </div>
-            <div class="andro_event-content">
-              <div class="andro_event-body">
-                <h5>Album For Family</h5>
-                <div class="andro_event-data">
-                  <span>Organizer: Sheldon Fierce</span>
-                  <b> <i class="fal fa-map-marker"></i> Air Centre, London UK </b>
-                </div>
-              </div>
-              <div class="andro_event-controls">
-                <a href="#" class="button primary sm"> Tickets </a>
-                <a href="#" class="button outline sm"> Details </a>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
   </div>
