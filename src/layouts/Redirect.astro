@@ -29,6 +29,8 @@ const { to } = Astro.props;
   <p>This page has moved to <a href={to}>{to}</a>. If you are not automatically redirected in a few seconds, click the link to visit the page.</p>
 </noscript>
 
+<slot />
+
 <script type="text/javascript">
   window.addEventListener('load', () => {
     window.setTimeout(function() {
