@@ -21,10 +21,18 @@ const specialEvents = await getLatestEvents(30, 'Special Event');
           </div>
         </div>
 
-        {specialEvents.length > 0 && (
-          <div class="andro_artist-d-section">
-            <h4>Upcoming Events</h4>
-            <div class="andro_artist-d-section-content">
+        <div class="andro_artist-d-section">
+          <h4>Upcoming Events ({specialEvents.length}) <a href="https://stonybrookchurch.churchcenter.com/registrations/events" target="_blank">Show All</a></h4>
+          <div class="andro_artist-d-section-content">
+            {specialEvents.length == 0 && (
+              <div class="row">
+                <div class="col-lg-12">
+                  <p>There are no upcoming events in the next 30 days. Check the <a href="https://stonybrookchurch.churchcenter.com/registrations/events" target="_blank">registrations</a> page for future events.</p>
+                </div>
+              </div>
+            )}
+
+            {specialEvents.length > 0 && (
               <div class="row">
                 {specialEvents.map((event) =>
                   <div class="col-lg-4">
@@ -37,9 +45,9 @@ const specialEvents = await getLatestEvents(30, 'Special Event');
                   </div>
                 )}
               </div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
   
         <div class="andro_artist-d-section" id="church-calendar">
           <h4>Calendar ({publicEvents.length}) <a href="https://stonybrookchurch.churchcenter.com/calendar?view=list" target="_blank">Show All</a></h4>
