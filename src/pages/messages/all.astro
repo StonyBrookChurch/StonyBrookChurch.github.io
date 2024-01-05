@@ -5,8 +5,8 @@ import FormattedDate from '@components/FormattedDate.astro';
 import Page from '@layouts/Page.astro';
 import getLatestMessages from '@utils/getLatestMessages';
 
-let messages = await getLatestMessages();
-let parents = [
+const messages = await getLatestMessages();
+const parents = [
   {
     title: 'Messages',
     url: '/messages/recent'
