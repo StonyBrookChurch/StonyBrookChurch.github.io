@@ -7,9 +7,9 @@ on:
     branches: [main]
   schedule:
     - cron: '20 9 * * *'
-    - cron: '3 13 * * SUN'
-    - cron: '33 14 * * SUN'
-    - cron: '45 15 * * SUN'
+    - cron: '3 14 * * SUN'
+    - cron: '33 15 * * SUN'
+    - cron: '45 16 * * SUN'
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
