@@ -3,34 +3,34 @@ import { CollectionEntry, getCollection } from 'astro:content';
 
 import FormattedDate from '@components/FormattedDate.astro';
 import Page from '@layouts/Page.astro';
-import { getMessages } from '@utils/getLatestMessages';
+import { getMessagesByShowcaseId } from '@utils/getLatestMessages';
 
 export async function getStaticPaths() {
   const showcases = await getCollection('showcases');
-  console.log(showcases);
+  const years = showcases.map((showcase) => Number.parseInt(showcase.slug));
   return showcases.map((showcase) => ({
     params: {
-      year: showcase.slug
+      year: Number.parseInt(showcase.slug)
     },
-    props: { showcase: showcase.data }
+    props: {
+      showcase: showcase.data,
+      years
+    }
   }));
 }
 
 export interface Props {
-  showcase: CollectionEntry<'showcases'>
+  showcase: CollectionEntry<'showcases'>,
+  year: Number
 }
 
 const { year } = Astro.params;
-const { showcase } = Astro.props;
-const messages = await getMessages(showcase.id);
+const { showcase, years } = Astro.props;
+const messages = await getMessagesByShowcaseId(showcase.id);
 const parents = [
   {
     title: 'Messages',
     url: '/messages/recent'
-  },
-  {
-    title: 'All',
-    url: '/messages/all'
   }
 ];
 ---
@@ -65,8 +65,17 @@ const parents = [
           </div>
         </div>
       )}
+
+      <div class="mt-5 text-center">
+        <nav aria-label="Page navigation">
+          {years.map((year) =>
+            <a href={`/messages/all/${year}`} class="button primary ms-2 me-2">{year}</a>
+          )}
+        </nav>
+      </div>
     </div>
   </div>
+
   <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
   <script slot="after-footer" type="text/javascript" src="/assets/js/magnific.js" async></script>
 </Page>

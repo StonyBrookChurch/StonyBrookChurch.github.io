@@ -59,4 +59,4 @@ const showcases = defineCollection({
   })
 });
 
-export const collections = { ministries, about, staff, leaders };
+export const collections = { ministries, about, staff, leaders, showcases };

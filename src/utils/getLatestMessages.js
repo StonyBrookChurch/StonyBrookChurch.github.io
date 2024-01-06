@@ -1,4 +1,5 @@
-import { VIMEO_SHOWCASE_ID } from '@consts';
+import { DateTime } from 'luxon';
+import { getEntryBySlug } from 'astro:content';
 
 const { VIMEO_URL, VIMEO_ACCESS_TOKEN } = import.meta.env;
 const THUMBNAIL_SIZE_WIDTHS = {
@@ -12,7 +13,22 @@ const THUMBNAIL_SIZE_WIDTHS = {
 };
 
 export default async function getLatestMessages() {
-  const messages = await fetchVideos(VIMEO_ACCESS_TOKEN, VIMEO_SHOWCASE_ID, 'manual', 'desc');
+  const year = DateTime.local().year;
+  const latestMessages = await getMessagesByYear(year);
+  if (latestMessages.length < 7) {
+    const messages = await getMessagesByYear(year - 1);
+    messages.forEach(message => latestMessages.push(message));
+  }
+  return latestMessages;
+}
+
+export async function getMessagesByYear(year) {
+  const showcase = await getEntryBySlug('showcases', year.toString());
+  return getMessagesByShowcaseId(showcase.data.id);
+}
+
+export async function getMessagesByShowcaseId(showcaseId) {
+  const messages = await fetchVideos(VIMEO_ACCESS_TOKEN, showcaseId, 'manual', 'desc');
   return messages.map((message) => {
     const [ title, description, series ] = message.description.split('\n');
     const date = parseDate(message.name);
