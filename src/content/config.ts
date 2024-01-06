@@ -51,4 +51,12 @@ const leaders = defineCollection({
   })
 });
 
+const showcases = defineCollection({
+  type: 'content',
+  schema: z.object({
+    id: z.string(),
+    name: z.string()
+  })
+});
+
 export const collections = { ministries, about, staff, leaders };

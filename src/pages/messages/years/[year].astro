@@ -1,0 +1,72 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+
+import FormattedDate from '@components/FormattedDate.astro';
+import Page from '@layouts/Page.astro';
+import { getMessages } from '@utils/getLatestMessages';
+
+export async function getStaticPaths() {
+  const showcases = await getCollection('showcases');
+  console.log(showcases);
+  return showcases.map((showcase) => ({
+    params: {
+      year: showcase.slug
+    },
+    props: { showcase: showcase.data }
+  }));
+}
+
+export interface Props {
+  showcase: CollectionEntry<'showcases'>
+}
+
+const { year } = Astro.params;
+const { showcase } = Astro.props;
+const messages = await getMessages(showcase.id);
+const parents = [
+  {
+    title: 'Messages',
+    url: '/messages/recent'
+  },
+  {
+    title: 'All',
+    url: '/messages/all'
+  }
+];
+---
+
+<Page title={showcase.name} description={`Messages for ${showcase.name}`} image="/assets/uploads/hero/sermon-1.jpg" parents={parents}>
+  <div class="section">
+    <div class="container">
+      {messages.map((message) =>
+        <div class="row mt-5">
+          <div class="col-lg-7">
+            <div class="position-relative h-100">
+              <img class="andro_img-cover" src={message.thumbnails.lg} alt="Video" />
+              <a href={message.player_embed_url} class="center-absolute andro_video-icon pulse andro_video-popup">
+                <i class="fas fa-play"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="andro_testimonial-body style-2 h-100">
+              <h3 class="andro_testimonial-title family-display fw-400">
+                <span>{message.title}</span>
+              </h3>
+              <p>{message.description}</p>
+              <p>{message.series}</p>
+              <h6 class="andro_testimonial-author">
+                <span><FormattedDate date={message.date} /></span>
+              </h6>
+              <p class="andro_testimonial-designation">
+                <a href={message.user.link} target="_blank">{message.user.name}</a> &middot; <a href={`https://vimeo.com/showcase/${showcase.id}`} target="_blank">{showcase.name}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/magnific.js" async></script>
+</Page>
