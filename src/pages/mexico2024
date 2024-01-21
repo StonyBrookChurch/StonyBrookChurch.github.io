@@ -1,0 +1,8 @@
+---
+import GoBack from '@components/GoBack.astro';
+import Redirect from '@layouts/Redirect.astro';
+---
+
+<Redirect to="https://stonybrookchurch.churchcenter.com/registrations/events/2027238">
+  <GoBack after={5000} />
+</Redirect>
