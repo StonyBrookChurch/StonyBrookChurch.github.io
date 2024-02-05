@@ -320,6 +320,25 @@ table .form-control:focus{
   background-color: rgba(var(--color-secondary-rgb), .8);
 }
 
+.entry-content > p,
+.entry-content ol,
+.entry-content ul {
+  margin: 1em 0;
+}
+.entry-content ul {
+  list-style: inherit;
+}
+.entry-content li::before {
+  content: none;
+}
+.entry-content li + li{
+  margin-top: 0;
+}
+
+.andro_post-d-author-body {
+  background-color: var(--color-bg-light);
+}
+
 .andro_post-d-footer .andro_socials li a:hover,
 .andro_post-d-img span{
   background-color: var(--color-secondary);
@@ -367,6 +386,13 @@ table .form-control:focus{
     font-size: 48px;
   }
 
+  .andro_post-d-author {
+    background-color: var(--color-bg-light);
+  }
+
+  .andro_post-d-author-body {
+    background-color: transparent;
+  }
 }
 
 @media(max-width: 420px) {

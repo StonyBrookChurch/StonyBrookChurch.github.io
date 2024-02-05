@@ -1,0 +1,101 @@
+---
+import assert from 'node:assert/strict';
+import { DateTime } from 'luxon';
+
+import Page from '@layouts/Page.astro';
+import { ghostClient } from '@lib/ghost';
+import FormattedDate from '@components/FormattedDate.astro';
+import type { PostOrPage } from '@tryghost/content-api';
+
+export async function getStaticPaths() {
+  const posts = await ghostClient.posts
+    .browse({ limit: 'all', include: 'tags,authors'  })
+    .catch((err) => console.error(err));
+
+  assert(posts, 'posts not found');
+  return posts.map((post) => {
+    const publishedDate = DateTime.fromISO(post.published_at!!);
+    return {
+      params: {
+        year: publishedDate.toFormat('yyyy'),
+        month: publishedDate.toFormat('MM'),
+        slug: post.slug,
+      },
+      props: {
+        post: post,
+      }
+    };
+  });
+}
+
+export interface Props {
+  post: PostOrPage
+}
+
+const { post } = Astro.props;
+assert(post, 'post is required');
+assert(post.title, 'title is required');
+assert(post.excerpt, 'exerpt is required');
+assert(post.published_at, 'published_at is required');
+const parents = [
+  {
+    title: 'Blog',
+    url: '/blog'
+  }
+];
+---
+<Page title={post.meta_title || post.title} description={post.meta_description || post.excerpt} image="/assets/uploads/hero/church-1.jpg" parents={parents}>
+  <div class="section andro_post-d style-3">
+    <div class="container">
+      {post.feature_image &&
+        <div class="andro_post-d-img">
+          <img src={post.feature_image} alt="featured image" />
+          <span class="andro_post-d-date"><FormattedDate date={post.published_at} /></span>
+        </div>
+      }
+
+      <div class="entry-content">
+        <h2 class="h3 entry-title">{post.title}</h2>
+        {post.primary_author &&
+          <div class="andro_post-author">
+            <div class="andro_post-author-thumb">
+              <img src={post.primary_author.profile_image} alt="post author" />
+            </div>
+            <div class="andro_post-author-body">
+              <span>Posted By: </span>
+              <b>{post.primary_author.name}</b>
+            </div>
+          </div>
+        }
+
+        <Fragment set:html={post.html} />
+      </div>
+
+      <div class="andro_post-d-footer">
+        <div class="andro_post-d-tags">
+          <b>Tags:</b>
+          {post.tags && post.tags.map((tag, index) =>
+            <span>{index > 0 && <span>,</span>} {tag.name}</span>
+          )}
+        </div>
+
+        <ul class="andro_socials">
+          <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+      </div>
+
+      {post.primary_author &&
+        <div class="andro_post-d-author">
+          <img src={post.primary_author.profile_image} alt="post author" />
+          <div class="andro_post-d-author-body">
+            <h5>{post.primary_author.name}</h5>
+            <span>About Me</span>
+            <p>{post.primary_author.bio || `${post.primary_author.name} is a member of Stony Brook Church.`}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</Page>
