@@ -1,11 +1,11 @@
 ---
 import assert from 'node:assert/strict';
 import { DateTime } from 'luxon';
+import { ghostClient } from '@lib/ghost';
+import type { PostOrPage } from '@tryghost/content-api';
 
 import Page from '@layouts/Page.astro';
-import { ghostClient } from '@lib/ghost';
 import FormattedDate from '@components/FormattedDate.astro';
-import type { PostOrPage } from '@tryghost/content-api';
 
 export async function getStaticPaths() {
   const posts = await ghostClient.posts

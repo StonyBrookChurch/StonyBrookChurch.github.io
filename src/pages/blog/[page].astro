@@ -2,20 +2,16 @@
 import { NUM_POSTS } from '@consts';
 
 import assert from 'node:assert/strict';
-import { DateTime } from 'luxon';
+import { ghostClient } from '@lib/ghost';
 
 import Page from '@layouts/Page.astro';
-import { ghostClient } from '@lib/ghost';
-import type { PostOrPage } from '@tryghost/content-api';
 import Posts from '@components/collections/Posts.astro';
 
 export async function getStaticPaths() {
   const posts = await ghostClient.posts
     .browse({ limit: NUM_POSTS })
     .catch((err) => console.error(err));
-
   assert(posts, 'posts not found');
-  console.log(posts.meta.pagination);
 
   const pages = Array(posts.meta.pagination.pages)
     .fill(0)
@@ -35,43 +31,6 @@ export interface Props {
 }
 
 const { page } = Astro.params;
-
-const posts = await ghostClient.posts
-  .browse({ limit: 2, page, include: ['tags', 'authors'] })
-  .catch((err) => console.error(err));
-assert(posts, 'posts not found');
-console.log(posts.meta.pagination);
-
-function permalink(post: PostOrPage, template: string): string {
-  assert(post.published_at, 'published_at is required');
-  assert(post.primary_author, 'primary author is required')
-
-  const publishedDate = DateTime.fromISO(post.published_at);
-  return template
-    .replace(':year', publishedDate.toFormat('yyyy'))
-    .replace(':month', publishedDate.toFormat('MM'))
-    .replace(':day', publishedDate.toFormat('dd'))
-    .replace(':hour', publishedDate.toFormat('HH'))
-    .replace(':minute', publishedDate.toFormat('mm'))
-    .replace(':second', publishedDate.toFormat('ss'))
-    .replace(':author', post.primary_author.slug)
-    .replace(':slug', post.slug);
-}
-
-function year(dt: string): string {
-  return DateTime.fromISO(dt).toFormat('yyyy');
-}
-
-function month(dt: string): string {
-  return DateTime.fromISO(dt).toFormat('MM');
-}
-
-const parents = [
-  {
-    title: 'Blog',
-    url: '/blog'
-  }
-];
 ---
 <Page title="Stony Brook Blog" description="Welcome to our blog, featuring updates and posts from church members." image="/assets/uploads/hero/church-1.jpg">
   <Posts page={page} />
