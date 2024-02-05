@@ -38,14 +38,6 @@ function permalink(post: PostOrPage, template: string): string {
     .replace(':author', post.primary_author.slug)
     .replace(':slug', post.slug);
 }
-
-function year(dt: string): string {
-  return DateTime.fromISO(dt).toFormat('yyyy');
-}
-
-function month(dt: string): string {
-  return DateTime.fromISO(dt).toFormat('MM');
-}
 ---
 <div class="section">
   <div class="container">
