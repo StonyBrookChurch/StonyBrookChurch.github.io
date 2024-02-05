@@ -5,6 +5,7 @@ export const SITE_TITLE = 'Stony Brook Church';
 export const SITE_DESCRIPTION = 'Welcome home.';
 export const BASE_URL = '';
 export const ADDRESS = '14345 Y St, Omaha, NE 68137';
+export const NUM_POSTS = 5;
 export const NAVIGATION = [
     {
         title: 'About Us',

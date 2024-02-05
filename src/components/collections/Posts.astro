@@ -1,0 +1,92 @@
+---
+import { NUM_POSTS } from '@consts';
+
+import assert from 'node:assert/strict';
+import { DateTime } from 'luxon';
+
+import { ghostClient } from '@lib/ghost';
+import type { PostOrPage } from '@tryghost/content-api';
+
+export interface Props {
+  page: number
+}
+
+const { page } = Astro.props;
+
+const posts = await ghostClient.posts
+  .browse({ limit: NUM_POSTS, page, include: ['tags', 'authors'] })
+  .catch((err) => console.error(err));
+assert(posts, 'posts not found');
+
+const { prev, next, total, limit } = posts.meta.pagination;
+const pages = Array(posts.meta.pagination.pages)
+  .fill(0)
+  .map((_, i) => i + 1);
+
+function permalink(post: PostOrPage, template: string): string {
+  assert(post.published_at, 'published_at is required');
+  assert(post.primary_author, 'primary author is required')
+
+  const publishedDate = DateTime.fromISO(post.published_at);
+  return template
+    .replace(':year', publishedDate.toFormat('yyyy'))
+    .replace(':month', publishedDate.toFormat('MM'))
+    .replace(':day', publishedDate.toFormat('dd'))
+    .replace(':hour', publishedDate.toFormat('HH'))
+    .replace(':minute', publishedDate.toFormat('mm'))
+    .replace(':second', publishedDate.toFormat('ss'))
+    .replace(':author', post.primary_author.slug)
+    .replace(':slug', post.slug);
+}
+
+function year(dt: string): string {
+  return DateTime.fromISO(dt).toFormat('yyyy');
+}
+
+function month(dt: string): string {
+  return DateTime.fromISO(dt).toFormat('MM');
+}
+---
+<div class="section">
+  <div class="container">
+    {posts.map((post) =>
+      <div class="andro_post sm style-3">
+        <div class="andro_post-thumb">
+          <a href={permalink(post, '/blog/:year/:month/:slug')}>
+            <img src={post.og_image || post.twitter_image || post.feature_image} alt="featured image" />
+          </a>
+        </div>
+        <div class="andro_post-body">
+          <div class="andro_post-author">
+            <div class="andro_post-author-thumb">
+              <img src={post.primary_author?.profile_image} alt="post author" />
+            </div>
+            <div class="andro_post-author-body">
+              <span>Posted By:</span>
+              <b>{post.primary_author?.name}</b>
+            </div>
+          </div>
+          <h5><a href={permalink(post, '/blog/:year/:month/:slug')}>{post.title}</a></h5>
+          <p set:html={post.excerpt}></p>
+          <a href={permalink(post, '/blog/:year/:month/:slug')} class="button secondary">Read More</a>
+        </div>
+      </div>
+    )}
+
+    {total > limit &&
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          {prev &&
+            <li class="page-item"><a class="page-link" href={prev > 1 ? `/blog/${prev}` : '/blog'}><i class="far fa-chevron-left"></i></a></li>
+          }
+          {pages.map((p) =>
+            <li class:list={['page-item', {'active': p === page}]}><a class="page-link" href={`/blog/${p}`}>{p}</a></li>
+          )}
+          {next &&
+            <li class="page-item"><a class="page-link" href={`/blog/${next}`}><i class="far fa-chevron-right"></i></a></li>
+          }
+        </ul>
+      </nav>
+    }
+  </div>
+</div>
