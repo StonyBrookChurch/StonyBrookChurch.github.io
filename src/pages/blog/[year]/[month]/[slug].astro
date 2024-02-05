@@ -9,7 +9,7 @@ import type { PostOrPage } from '@tryghost/content-api';
 
 export async function getStaticPaths() {
   const posts = await ghostClient.posts
-    .browse({ limit: 'all', include: 'tags,authors'  })
+    .browse({ limit: 'all', include: ['authors', 'tags'] })
     .catch((err) => console.error(err));
 
   assert(posts, 'posts not found');
