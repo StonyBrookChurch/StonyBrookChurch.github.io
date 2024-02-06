@@ -43,6 +43,8 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           VIMEO_URL: https://api.vimeo.com
           VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
+          GHOST_URL: ${{ secrets.GHOST_URL }}
+          GHOST_API_KEY: ${{ secrets.GHOST_API_KEY }}
 
   deploy:
     needs: build
