@@ -347,6 +347,10 @@ table .form-control:focus{
   background-color: rgba(255,255,255,.1);
 }
 
+.andro_post.style-3 .andro_post-thumb a img {
+  object-fit: cover;
+}
+
 @media(min-width: 1200px) {
   .andro_post.style-3.ministry .andro_post-thumb {
     padding: 0 0 0 100px;
