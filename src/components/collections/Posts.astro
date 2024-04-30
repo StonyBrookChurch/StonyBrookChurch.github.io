@@ -2,10 +2,9 @@
 import { NUM_POSTS } from '@consts';
 
 import assert from 'node:assert/strict';
-import { DateTime } from 'luxon';
-
 import { ghostClient } from '@lib/ghost';
-import type { PostOrPage } from '@tryghost/content-api';
+
+import permalink from '@utils/permalink';
 
 export interface Props {
   page: number
@@ -22,22 +21,6 @@ const { prev, next, total, limit } = posts.meta.pagination;
 const pages = Array(posts.meta.pagination.pages)
   .fill(0)
   .map((_, i) => i + 1);
-
-function permalink(post: PostOrPage, template: string): string {
-  assert(post.published_at, 'published_at is required');
-  assert(post.primary_author, 'primary author is required')
-
-  const publishedDate = DateTime.fromISO(post.published_at);
-  return template
-    .replace(':year', publishedDate.toFormat('yyyy'))
-    .replace(':month', publishedDate.toFormat('MM'))
-    .replace(':day', publishedDate.toFormat('dd'))
-    .replace(':hour', publishedDate.toFormat('HH'))
-    .replace(':minute', publishedDate.toFormat('mm'))
-    .replace(':second', publishedDate.toFormat('ss'))
-    .replace(':author', post.primary_author.slug)
-    .replace(':slug', post.slug);
-}
 ---
 <div class="section">
   <div class="container">

@@ -1,11 +1,14 @@
 ---
 import { SITE_TITLE, APP_STORE_URL, PLAY_STORE_URL, CHURCH_CENTER_URL } from '@consts';
 import FormattedDate from '@components/FormattedDate.astro';
+import getFeaturedPosts from '@utils/getFeaturedPosts';
 import getLatestEvents from '@utils/getLatestEvents';
 import getLatestMessage from '@utils/getLatestMessage';
 import getLatestStream from '@utils/getLatestStream';
+import permalink from '@utils/permalink';
 import Home from '@layouts/Home.astro';
 
+const featuredPosts = await getFeaturedPosts();
 const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
@@ -186,7 +189,7 @@ const liveStream = await getLatestStream('live');
 		</div>
 	</div>
 
-	<div class="section bg-cover" style="background-image: url(/assets/uploads/banner/connect-1.webp)">
+  <div class="section bg-cover" style="background-image: url(/assets/uploads/banner/connect-1.webp)">
 		<div class="container">
 			<div class="section-title text-center">
 				<h3 class="text-white family-display fw-400">Connect With Us</h3>
@@ -212,6 +215,46 @@ const liveStream = await getLatestStream('live');
 			</div>
 		</div>
 	</div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3 class="family-display fw-400">Featured Posts</h3>
+      </div>
+      {featuredPosts.map((post, index) =>
+        <div class:list={['andro_post style-3', { 'reverse': index % 2 == 1 }]}>
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="andro_post-thumb">
+                <a href={permalink(post, '/blog/:year/:month/:slug')}>
+                  <img src={post.og_image || post.twitter_image || post.feature_image} alt="featured image" />
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="andro_post-body">
+                <div class="andro_post-author">
+                  <div class="andro_post-author-thumb">
+                    <img src={post.primary_author?.profile_image} alt="post author" />
+                  </div>
+                  <div class="andro_post-author-body">
+                    <span>Posted By:</span>
+                    <b>{post.primary_author?.name}</b>
+                  </div>
+                </div>
+                <h5><a href={permalink(post, '/blog/:year/:month/:slug')}>{post.title}</a></h5>
+                <p set:html={post.excerpt}></p>
+                <a href={permalink(post, '/blog/:year/:month/:slug')} class="button primary outline icon-after">Read More <i class="far fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      <div class="text-center mt-5">
+        <a href="/blog" class="button primary">View All Posts</a>
+      </div>
+    </div>
+  </div>
 
   <div class="section bg-cover dark-overlay dark-overlay dark-overlay-3" style="background-image: url(/assets/uploads/banner/give-more.webp); background-position: bottom right;">
 		<div class="container">
