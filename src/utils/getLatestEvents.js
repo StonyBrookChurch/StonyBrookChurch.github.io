@@ -48,6 +48,8 @@ async function fetchPage(apiKey, start, end, offset) {
 function formatEvent(event) {
   // console.log(JSON.stringify(event, null, 2));
   return {
+    id: event.id,
+    event_id: event.event_id,
     name: clean(event.name),
     description: clean(event.description),
     summary: clean(event.summary),
@@ -125,6 +127,7 @@ class EventInstances {
     const tags = event.relationships.tags.data.map(t => this.findTagById(t.id));
     return {
       id: event.id,
+      event_id: parent.id,
       ...parent.attributes,
       ...event.attributes,
       tags: tags.map(t => t.attributes.name)

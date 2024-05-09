@@ -4,7 +4,19 @@ import getLatestEvents from '@utils/getLatestEvents';
 import FormattedDate from '@components/FormattedDate.astro';
 
 const publicEvents = await getLatestEvents(7, 'Public');
-const specialEvents = await getLatestEvents(30, 'Special Event');
+const specialEvents = firstOfEach(await getLatestEvents(30, 'Special Event'));
+
+function firstOfEach(events) {
+  const map = {};
+  const result = [];
+  events.forEach((event) => {
+    if (map[event.event_id] === undefined) {
+      map[event.event_id] = event;
+      result.push(event);
+    }
+  });
+  return result;
+}
 ---
 
 <Page title="Events" description="Calendar of events." image="/assets/uploads/hero/events-1.jpg">
