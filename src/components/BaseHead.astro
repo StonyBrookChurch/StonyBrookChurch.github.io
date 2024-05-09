@@ -3,21 +3,21 @@ import { SITE_TITLE } from '@consts';
 import '@styles/global.css';
 
 export interface Props {
-	title: string;
-	description: string;
-	image?: string;
+	title: string,
+	description: string,
+	image: string,
+  featured_image?: string,
+  featured_image_caption?: string
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
+const { title, description, image, featured_image, featured_image_caption } = Astro.props;
 ---
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content={Astro.generator} />
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
 <title>{title} - {SITE_TITLE}</title>
 <meta name="title" content={title} />
@@ -28,14 +28,21 @@ const { title, description, image = '/placeholder-social.jpg' } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+{(featured_image || image) &&
+  <meta property="og:image" content={new URL(featured_image || image, Astro.url)} />
+}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+{(featured_image || image) &&
+  <meta property="twitter:image" content={new URL(featured_image || image, Astro.url)} />
+}
+{featured_image_caption &&
+  <meta name="twitter:image:alt" content={featured_image_caption} />
+}
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />

@@ -8,6 +8,8 @@ export interface Props {
   title: string,
   description: string,
   image: string,
+  featured_image?: string,
+  featured_image_caption?: string,
   parents?: Parent[]
 }
 
@@ -16,13 +18,13 @@ interface Parent {
   url: string
 }
 
-const { title, description, image, parents = [] } = Astro.props;
+const { title, description, image, featured_image, featured_image_caption, parents = [] } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} image={image} featured_image={featured_image} featured_image_caption={featured_image_caption} />
     <slot name="after-head" />
 	</head>
 
