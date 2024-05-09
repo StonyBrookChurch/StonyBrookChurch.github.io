@@ -83,7 +83,7 @@ const parents = [
 
         <ul class="andro_socials">
           <li><a href={`http://www.facebook.com/share.php?u=${encodeURIComponent(Astro.url)}`} target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-          <li><a href={`https://twitter.com/share?ref_src=twsrc%5Etfw&text=${encodeURIComponent(post.title)}&via=StonyBrookFam`} target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href={`https://twitter.com/share?url=${encodeURIComponent(Astro.url)}&text=${encodeURIComponent(post.title)}&via=StonyBrookFam`} target="_blank"><i class="fab fa-twitter"></i></a></li>
           <li><a href={`https://www.linkedin.com/cws/share?url=${encodeURIComponent(Astro.url)}`} target="_blank"><i class="fab fa-linkedin"></i></a></li>
         </ul>
       </div>
