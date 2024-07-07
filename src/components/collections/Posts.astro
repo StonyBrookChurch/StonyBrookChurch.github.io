@@ -55,7 +55,7 @@ const pages = Array(posts.meta.pagination.pages)
             <li class="page-item"><a class="page-link" href={prev > 1 ? `/blog/${prev}` : '/blog'}><i class="far fa-chevron-left"></i></a></li>
           }
           {pages.map((p) =>
-            <li class:list={['page-item', {'active': p === page}]}><a class="page-link" href={`/blog/${p}`}>{p}</a></li>
+            <li class:list={['page-item', {'active': p == page}]}><a class="page-link" href={p > 1 ? `/blog/${p}` : '/blog'}>{p}</a></li>
           )}
           {next &&
             <li class="page-item"><a class="page-link" href={`/blog/${next}`}><i class="far fa-chevron-right"></i></a></li>
