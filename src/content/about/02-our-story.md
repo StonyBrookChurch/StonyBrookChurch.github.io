@@ -13,4 +13,7 @@ A fresh vision for SLCC-Millard was cast in 2009.
 Leadership and congregation were already in place in Millard and the decision was made to recognize the ministry as a self-supporting church plant with a unique vision.
 In October 2010, in the same location where the story began, the body of believers in Millard became Stony Brook Church.
 
-![Kelly and Betty](/assets/uploads/kelly-betty-1.jpg)
+<figure>
+  <img alt="Kelly and Betty" title="Kelly and Betty" src="/assets/uploads/kelly-betty-1.jpg" />
+  <figcaption>Kelly and Betty are members of Stony Brook Church.</figcaption>
+</figure>
