@@ -1,5 +1,5 @@
 ---
-import { CHURCH_CENTER_URL, SITE_TITLE, SOCIALS } from '@consts';
+import { CHURCH_CENTER_URL, SITE_TITLE, SOCIALS, PHONE_NUMBER, EMAIL } from '@consts';
 
 const today = new Date();
 const hide = false;
@@ -15,6 +15,7 @@ const hide = false;
     </ul>
 
     <p class="m-0">{SITE_TITLE} &copy; {today.getFullYear()}</p>
+    <p class="m-0">{PHONE_NUMBER} &middot; <a href={`mailto:${EMAIL}?subject=Website Connect`}>{EMAIL}</a></p>
     <p><a href="https://insource.io">Made with Love</a></p>
   </div>
 </footer>
