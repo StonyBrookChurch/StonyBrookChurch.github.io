@@ -404,3 +404,38 @@ table .form-control:focus{
     width: inherit;
   }
 }
+
+/* Styles for Ghost Blog */
+
+.entry-content {
+  p + p:empty, hr {
+    margin-bottom: 3rem;
+    /* Clear float from figure */
+    clear: both;
+  }
+}
+
+.kg-card.kg-image-card {
+  padding: 0 2rem 1rem 0;
+  margin: 0;
+  float: left;
+  /* width: 490px; */
+  /* height: 490px; */
+
+  &.kg-width-full, &.kg-width-wide {
+    float: none;
+  }
+
+  .kg-image {
+    margin: 0;
+    border-radius: 10px;
+  }
+}
+
+.kg-card.kg-width-full {
+  /* max-width: max-content; */
+}
+
+.kg-card.kg-width-wide {
+  /* max-width: fit-content; */
+}
