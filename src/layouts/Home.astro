@@ -21,7 +21,9 @@ const { title, description, image } = Astro.props;
 	</head>
 
 	<body>
+		<slot name="before-header" />
 		<Header />
+		<slot name="after-header" />
 		<Hero image={image} description={description}>
       <slot name="actions" />
     </Hero>

@@ -1,6 +1,7 @@
 ---
 import { SITE_TITLE, APP_STORE_URL, PLAY_STORE_URL, CHURCH_CENTER_URL } from '@consts';
 import FormattedDate from '@components/FormattedDate.astro';
+import UpcomingEvent from '@components/UpcomingEvent.astro';
 import getFeaturedPosts from '@utils/getFeaturedPosts';
 import getLatestEvents from '@utils/getLatestEvents';
 import getLatestMessage from '@utils/getLatestMessage';
@@ -21,6 +22,13 @@ const liveStream = await getLatestStream('live');
     }
     <a href="/connect" class="ms-0 ms-sm-2 mt-2 button primary">Connect <i class="fal fa-arrow-right"></i></a>
   </div>
+
+  <div slot="after-header">
+    <UpcomingEvent heading="Upcoming Event" title="Join us at the Sarpy County Fair Grand Parade!" date="2025/08/02 10:00:00" url="/blog/2025/07/sarpy-county-fair" image="/assets/uploads/fair-unsplash.jpg" />
+  </div>
+  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.countdown.min.js" />
+  <script slot="after-footer" type="text/javascript" src="/assets/js/countdown.js" async />
+
   <div class="section md andro_particles-wrap">
     <div id="andro_particles" class="andro_particles"></div>
     <div class="container">
@@ -33,6 +41,7 @@ const liveStream = await getLatestStream('live');
         </p>
         <!-- <img src="/assets/img/sig.png" alt="signature" class="hidden"> -->
       </div>
+
       <div class="section pb-0">
         <div class="row">
           <div class="col-lg-4 col-md-6">
