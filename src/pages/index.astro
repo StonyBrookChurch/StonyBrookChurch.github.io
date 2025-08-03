@@ -13,6 +13,15 @@ const featuredPosts = await getFeaturedPosts();
 const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
+
+const upcomingEvent = {
+  heading: 'Upcoming Event',
+  title: 'Join us at the Sarpy County Fair Grand Parade!',
+  date: '2025/08/02 20:00:00',
+  url: '/blog/2025/07/sarpy-county-fair',
+  image: '/assets/uploads/fair-unsplash.jpg',
+  enabled: false
+};
 ---
 
 <Home title="Home" description="Welcome Home" image="/assets/uploads/hero/band-1.webp">
@@ -23,11 +32,11 @@ const liveStream = await getLatestStream('live');
     <a href="/connect" class="ms-0 ms-sm-2 mt-2 button primary">Connect <i class="fal fa-arrow-right"></i></a>
   </div>
 
-  <div slot="after-header">
-    <UpcomingEvent heading="Upcoming Event" title="Join us at the Sarpy County Fair Grand Parade!" date="2025/08/02 10:00:00" url="/blog/2025/07/sarpy-county-fair" image="/assets/uploads/fair-unsplash.jpg" />
-  </div>
-  <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.countdown.min.js" />
-  <script slot="after-footer" type="text/javascript" src="/assets/js/countdown.js" async />
+  {upcomingEvent.enabled &&
+    <div slot="after-header">
+      <UpcomingEvent heading={upcomingEvent.heading} title={upcomingEvent.title} date={upcomingEvent.date} url={upcomingEvent.url} image={upcomingEvent.image} />
+    </div>
+  }
 
   <div class="section md andro_particles-wrap">
     <div id="andro_particles" class="andro_particles"></div>
@@ -305,8 +314,14 @@ const liveStream = await getLatestStream('live');
     </div>
   </div>
 
+  {upcomingEvent.enabled &&
+    <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.countdown.min.js" />
+  }
   <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/jquery.magnific-popup.min.js" />
   <script slot="after-footer" type="text/javascript" src="/assets/js/plugins/particles.min.js" />
+  {upcomingEvent.enabled &&
+    <script slot="after-footer" type="text/javascript" src="/assets/js/countdown.js" async />
+  }
   <script slot="after-footer" type="text/javascript" src="/assets/js/magnific.js" async />
   <script slot="after-footer" type="text/javascript" src="/assets/js/particles.js" async />
 </Home>
