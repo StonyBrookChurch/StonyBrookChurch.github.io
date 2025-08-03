@@ -429,6 +429,7 @@ table .form-control:focus{
   .kg-image {
     margin: 0;
     border-radius: 10px;
+    height: 100%;
   }
 }
 
