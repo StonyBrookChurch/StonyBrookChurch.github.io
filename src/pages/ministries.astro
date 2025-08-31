@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Page from '@layouts/Page.astro';
 
 const ministries = await getCollection('ministries');
+ministries.sort((a, b) => a.filePath.localeCompare(b.filePath));
 ---
 
 <Page title="Ministries" description="Lorem ipsum dolor sit amet." image="/assets/uploads/hero/church-1.jpg">

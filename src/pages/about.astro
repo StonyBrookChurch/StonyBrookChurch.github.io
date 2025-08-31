@@ -4,6 +4,7 @@ import Page from '@layouts/Page.astro';
 import RenderEntry from '@components/collections/RenderEntry.astro';
 
 const sections = await getCollection('about');
+sections.sort((a, b) => a.filePath.localeCompare(b.filePath));
 ---
 
 <Page title="About Us" description="Lorem ipsum dolor sit amet" image="/assets/uploads/hero/band-2.jpg">
