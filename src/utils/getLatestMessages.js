@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { getEntryBySlug } from 'astro:content';
+import { getEntry } from 'astro:content';
 
 const { VIMEO_URL, VIMEO_ACCESS_TOKEN } = import.meta.env;
 const THUMBNAIL_SIZE_WIDTHS = {
@@ -23,7 +23,7 @@ export default async function getLatestMessages() {
 }
 
 export async function getMessagesByYear(year) {
-  const showcase = await getEntryBySlug('showcases', year.toString());
+  const showcase = await getEntry('showcases', year.toString());
   return getMessagesByShowcaseId(showcase.data.id);
 }
 
