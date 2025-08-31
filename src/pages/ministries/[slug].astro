@@ -1,12 +1,12 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
+import { CollectionEntry, getCollection, render } from 'astro:content';
 import Page from '@layouts/Page.astro';
 
 export async function getStaticPaths() {
   const ministries = await getCollection('ministries');
   return ministries.map((ministry) => ({
     params: {
-      slug: ministry.slug
+      slug: ministry.id
     },
     props: { ministry }
   }));
@@ -17,7 +17,7 @@ export interface Props {
 }
 
 const { ministry } = Astro.props;
-const { Content } = await ministry.render();
+const { Content } = await render(ministry);
 const parents = [
   {
     title: 'Ministries',

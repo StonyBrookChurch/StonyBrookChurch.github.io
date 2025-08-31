@@ -12,7 +12,7 @@ const sections = await getCollection('about');
       {sections.map((section) =>
         <div class="andro_show-d-content-wrap">
           <div class="andro_show-d-section">
-            <h4 id={section.slug}>{section.data.title}</h4>
+            <h4 id={section.id}>{section.data.title}</h4>
             <div class="andro_show-d-section-content">
               <RenderEntry entry={section} />
             </div>

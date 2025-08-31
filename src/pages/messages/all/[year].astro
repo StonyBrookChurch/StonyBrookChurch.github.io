@@ -7,10 +7,10 @@ import { getMessagesByShowcaseId } from '@utils/getLatestMessages';
 
 export async function getStaticPaths() {
   const showcases = await getCollection('showcases');
-  const years = showcases.map((showcase) => Number.parseInt(showcase.slug));
+  const years = showcases.map((showcase) => Number.parseInt(showcase.id));
   return showcases.map((showcase) => ({
     params: {
-      year: Number.parseInt(showcase.slug)
+      year: Number.parseInt(showcase.id)
     },
     props: {
       showcase: showcase.data,
