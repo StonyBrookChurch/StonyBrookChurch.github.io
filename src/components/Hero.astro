@@ -1,16 +1,57 @@
 ---
 import { ADDRESS, SITE_TITLE } from '@consts';
-import getNextSunday from '@utils/getNextSunday';
+import { getNextDayOfWeek } from '@utils/getNextSunday';
 import FormattedDate from '@components/FormattedDate.astro';
+import {DateTime} from "luxon";
 
 export interface Props {
   image: string,
   description?: string | null
 }
 
+interface Service {
+  title: string,
+  date: string,
+  time: string,
+  address: string
+}
+
 const { image, description = null } = Astro.props;
 
-const nextSunday = getNextSunday();
+const sundayService: Service = {
+  title: 'Sunday Service',
+  date: getNextDayOfWeek('Sunday').toString(),
+  time: '9AM &middot; 10:30AM',
+  address: '14345 Y St, Omaha, NE 68137'
+};
+
+const onlineService: Service = {
+  title: 'Online Service',
+  date: getNextDayOfWeek('Sunday').toString(),
+  time: '7PM',
+  address: '<a href="/online" target="_blank">Attend Online</a>'
+};
+
+const wednesdayService: Service = {
+  title: 'Wednesday Service',
+  date: getNextDayOfWeek('Wednesday').toString(),
+  time: '6:30PM',
+  address: '104 Main St, Springfield, NE 68059'
+};
+
+const now = DateTime.local();
+
+let service: Service;
+if (now.weekday === 7 && now.hour >= 11) { // Sunday afternoon
+  service = onlineService;
+}
+else
+  if (now.weekday > 3) {
+  service = sundayService;
+}
+else {
+  service = wednesdayService;
+}
 ---
 
 <div class="andro_hero style-3">
@@ -31,15 +72,15 @@ const nextSunday = getNextSunday();
       <div class="col-md-8">
         <div class="andro_event-countdown mt-negative bg-secondary">
           <div class="andro_event-countdown-date">
-            <span><FormattedDate date={nextSunday} format="d" /></span>
+            <span><FormattedDate date={service.date} format="d" /></span>
             <div>
-              <span><FormattedDate date={nextSunday} format="LLLL yyyy" /></span>
-              <span>9AM &middot; 10:30AM &middot; 7:30PM (Online)</span>
+              <span><FormattedDate date={service.date} format="LLLL yyyy" /></span>
+              <span set:html={service.time}></span>
             </div>
           </div>
           <div class="andro_event-countdown-name pb-lg-0 pb-3">
-            <h5>Sunday Service</h5>
-            <span>{ADDRESS}</span>
+            <h5>{service.title}</h5>
+            <span set:html={service.address}></span>
           </div>
         </div>
       </div>
