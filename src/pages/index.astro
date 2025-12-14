@@ -26,11 +26,13 @@ const upcomingEvent = {
 
 <Home title="Home" description="Welcome Home" image="/assets/uploads/hero/band-1.webp">
   <div slot="actions" class="d-block d-sm-flex justify-content-center align-items-center">
+    <a href="/connect" class="ms-0 ms-sm-2 mt-2 button primary">Connect <i class="fal fa-arrow-right"></i></a>
     {liveStream &&
         <a href="#live-now" class="ms-0 ms-sm-2 mt-2 button primary">Watch Live! <i class="fal fa-arrow-down"></i></a>
     }
-    <a href="/connect" class="ms-0 ms-sm-2 mt-2 button primary">Connect <i class="fal fa-arrow-right"></i></a>
-    <a href="/online" target="_blank" class="ms-0 ms-sm-2 mt-2 button secondary">Attend Online <i class="fal fa-arrow-right"></i></a>
+    {!liveStream &&
+      <a href="/online" target="_blank" class="ms-0 ms-sm-2 mt-2 button secondary">Attend Online <i class="fal fa-arrow-right"></i></a>
+    }
   </div>
 
   {upcomingEvent.enabled &&
