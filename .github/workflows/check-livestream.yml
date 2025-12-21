@@ -1,0 +1,94 @@
+name: Check for Livestream
+
+on:
+  schedule:
+    # First service window: 8:57-9:07 AM Central
+    # CDT (summer): 13:57-14:07 UTC
+    # CST (winter): 14:57-15:07 UTC
+    # Run both windows to cover DST transitions
+    - cron: '57-59 13 * * SUN'  # 8:57-8:59 AM CDT
+    - cron: '0-7 14 * * SUN'    # 9:00-9:07 AM CDT / 8:00-8:07 AM CST
+    - cron: '57-59 14 * * SUN'  # 9:57-9:59 AM CDT / 8:57-8:59 AM CST
+    - cron: '0-7 15 * * SUN'    # 10:00-10:07 AM CDT / 9:00-9:07 AM CST
+
+    # Second service window: 10:27-10:37 AM Central
+    # CDT (summer): 15:27-15:37 UTC
+    # CST (winter): 16:27-16:37 UTC
+    - cron: '27-37 15 * * SUN'  # 10:27-10:37 AM CDT / 9:27-9:37 AM CST
+    - cron: '27-37 16 * * SUN'  # 11:27-11:37 AM CDT / 10:27-10:37 AM CST
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set timezone to America/Chicago
+        run: |
+          sudo timedatectl set-timezone America/Chicago
+
+      - name: Check if we're in the correct time window
+        id: timecheck
+        run: |
+          CURRENT_HOUR=$(date +%H)
+          CURRENT_MINUTE=$(date +%M)
+          CURRENT_TIME="${CURRENT_HOUR}${CURRENT_MINUTE}"
+
+          # First window: 8:57-9:07 AM (0857-0907)
+          # Second window: 10:27-10:37 AM (1027-1037)
+          if [[ "$CURRENT_TIME" -ge "0857" && "$CURRENT_TIME" -le "0907" ]] || \
+             [[ "$CURRENT_TIME" -ge "1027" && "$CURRENT_TIME" -le "1037" ]]; then
+            echo "in_window=true" >> $GITHUB_OUTPUT
+            echo "✅ Currently in service window (Central Time: $(date +%H:%M))"
+          else
+            echo "in_window=false" >> $GITHUB_OUTPUT
+            echo "⏭️  Outside service window (Central Time: $(date +%H:%M))"
+          fi
+
+      - name: Check YouTube for livestream
+        if: steps.timecheck.outputs.in_window == 'true'
+        id: check
+        run: |
+          RESPONSE=$(curl -s "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${{ secrets.YOUTUBE_CHANNEL_ID }}&eventType=live&type=video&key=${{ secrets.YOUTUBE_API_KEY }}")
+          LIVE_COUNT=$(echo $RESPONSE | jq '.pageInfo.totalResults')
+          echo "live_count=$LIVE_COUNT" >> $GITHUB_OUTPUT
+          echo "Found $LIVE_COUNT active livestream(s)"
+
+      - name: Check if recently deployed
+        if: steps.timecheck.outputs.in_window == 'true' && steps.check.outputs.live_count > 0
+        id: cooldown
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get the last deploy workflow run
+          LAST_DEPLOY=$(gh api repos/${{ github.repository }}/actions/workflows/deploy.yml/runs --jq '.workflow_runs[0].created_at')
+
+          if [ -z "$LAST_DEPLOY" ]; then
+            echo "minutes_since_deploy=999" >> $GITHUB_OUTPUT
+            echo "No previous deploys found"
+          else
+            LAST_DEPLOY_EPOCH=$(date -d "$LAST_DEPLOY" +%s)
+            CURRENT_EPOCH=$(date +%s)
+            MINUTES_AGO=$(( ( CURRENT_EPOCH - LAST_DEPLOY_EPOCH ) / 60 ))
+            echo "minutes_since_deploy=$MINUTES_AGO" >> $GITHUB_OUTPUT
+            echo "Last deploy was $MINUTES_AGO minutes ago"
+          fi
+
+      - name: Trigger deploy if livestream found and not recently deployed
+        if: |
+          steps.timecheck.outputs.in_window == 'true' &&
+          steps.check.outputs.live_count > 0 &&
+          steps.cooldown.outputs.minutes_since_deploy > 10
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🚀 Triggering deploy workflow..."
+          gh workflow run deploy.yml --ref main
+          echo "✅ Deploy triggered!"
+
+      - name: Skip deployment (cooldown active)
+        if: |
+          steps.timecheck.outputs.in_window == 'true' &&
+          steps.check.outputs.live_count > 0 &&
+          steps.cooldown.outputs.minutes_since_deploy <= 10
+        run: |
+          echo "⏸️  Livestream detected but deploy was triggered ${{ steps.cooldown.outputs.minutes_since_deploy }} minutes ago. Waiting for cooldown..."

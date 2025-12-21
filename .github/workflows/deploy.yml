@@ -6,9 +6,8 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '20 9 * * *'  # Daily build at 9:20 AM UTC
-    - cron: '*/15 14,15,16,17 * * SUN'  # Every 15 min from 14:00-17:45 UTC on Sundays
-    - cron: '0,15 18 * * SUN'  # 18:00 and 18:15 UTC on Sundays
+    - cron: '20 9 * * *'  # Daily build at 9:20 AM UTC (nightly update)
+    - cron: '15 18 * * SUN'  # Sunday 1:15 PM CDT / 12:15 PM CST (update from Sunday service to online service)
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
