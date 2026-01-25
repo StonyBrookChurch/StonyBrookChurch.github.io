@@ -30,7 +30,7 @@ export async function getMessagesByYear(year) {
 export async function getMessagesByShowcaseId(showcaseId) {
   const messages = await fetchVideos(VIMEO_ACCESS_TOKEN, showcaseId, 'manual', 'desc');
   return messages.map((message) => {
-    const [ title, description, series ] = message.description.split('\n');
+    const [ title, description, series ] = (message.description || 'No Description').split('\n');
     const date = parseDate(message.name);
     return {
       ...message,
