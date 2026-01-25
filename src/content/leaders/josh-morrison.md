@@ -1,6 +1,6 @@
 ---
 name: Josh Morrison
-description: Pastoral Team, Faith & Life
+description: Pastoral Team
 image: /assets/img/subheader-7.jpg
 ---
 
