@@ -70,11 +70,17 @@ const parents = [
         <div class="mt-5 text-center">
           <nav aria-label="Page navigation">
             {years.includes(Number(year) - 1) && (
-              <a href={`/messages/all/${Number(year) - 1}`} class="button primary ms-2 me-2">&lt; {Number(year) - 1}</a>
+              <a href={`/messages/all/${Number(year) - 1}`} class="button primary ms-2 me-2">
+                <i class="fal fa-arrow-left"></i>
+                <span>{Number(year) - 1}</span>
+              </a>
             )}
             <span class="button secondary ms-2 me-2 pe-none">{year}</span>
             {years.includes(Number(year) + 1) && (
-              <a href={`/messages/all/${Number(year) + 1}`} class="button primary ms-2 me-2">{Number(year) + 1} &gt;</a>
+              <a href={`/messages/all/${Number(year) + 1}`} class="button primary ms-2 me-2">
+                <span>{Number(year) + 1}</span>
+                <i class="fal fa-arrow-right"></i>
+              </a>
             )}
           </nav>
         </div>
