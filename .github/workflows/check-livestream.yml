@@ -35,8 +35,8 @@ jobs:
 
           # First window: 8:57-9:07 AM (0857-0907)
           # Second window: 10:27-10:37 AM (1027-1037)
-          if [[ "$CURRENT_TIME" -ge "0857" && "$CURRENT_TIME" -le "0907" ]] || \
-             [[ "$CURRENT_TIME" -ge "1027" && "$CURRENT_TIME" -le "1037" ]]; then
+          if [[ "10#$CURRENT_TIME" -ge "10#0857" && "10#$CURRENT_TIME" -le "10#0907" ]] || \
+             [[ "10#$CURRENT_TIME" -ge "10#1027" && "10#$CURRENT_TIME" -le "10#1037" ]]; then
             echo "in_window=true" >> $GITHUB_OUTPUT
             echo "✅ Currently in service window (Central Time: $(date +%H:%M))"
           else
