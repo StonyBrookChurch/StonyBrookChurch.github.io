@@ -1,5 +1,5 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
 import FormattedDate from '@components/FormattedDate.astro';
 import Page from '@layouts/Page.astro';
@@ -20,8 +20,8 @@ export async function getStaticPaths() {
 }
 
 export interface Props {
-  showcase: CollectionEntry<'showcases'>,
-  year: Number
+  showcase: CollectionEntry<'showcases'>['data'],
+  years: number[]
 }
 
 const { year } = Astro.params;
