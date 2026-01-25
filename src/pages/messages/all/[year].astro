@@ -66,13 +66,19 @@ const parents = [
         </div>
       )}
 
-      <div class="mt-5 text-center">
-        <nav aria-label="Page navigation">
-          {years.map((year) =>
-            <a href={`/messages/all/${year}`} class="button primary ms-2 me-2">{year}</a>
-          )}
-        </nav>
-      </div>
+      {(years.includes(Number(year) - 1) || years.includes(Number(year) + 1)) && (
+        <div class="mt-5 text-center">
+          <nav aria-label="Page navigation">
+            {years.includes(Number(year) - 1) && (
+              <a href={`/messages/all/${Number(year) - 1}`} class="button primary ms-2 me-2">&lt; {Number(year) - 1}</a>
+            )}
+            <span class="button secondary ms-2 me-2 pe-none">{year}</span>
+            {years.includes(Number(year) + 1) && (
+              <a href={`/messages/all/${Number(year) + 1}`} class="button primary ms-2 me-2">{Number(year) + 1} &gt;</a>
+            )}
+          </nav>
+        </div>
+      )}
     </div>
   </div>
 
