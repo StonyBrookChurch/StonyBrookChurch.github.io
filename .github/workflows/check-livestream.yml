@@ -2,91 +2,75 @@ name: Check for Livestream
 
 on:
   schedule:
-    # First service window: 8:57-9:07 AM Central
-    # CDT (summer): 13:57-14:07 UTC
-    # CST (winter): 14:57-15:07 UTC
-    # Run both windows to cover DST transitions
-    - cron: '57-59 13 * * SUN'  # 8:57-8:59 AM CDT
-    - cron: '0-7 14 * * SUN'    # 9:00-9:07 AM CDT / 8:00-8:07 AM CST
-    - cron: '57-59 14 * * SUN'  # 9:57-9:59 AM CDT / 8:57-8:59 AM CST
-    - cron: '0-7 15 * * SUN'    # 10:00-10:07 AM CDT / 9:00-9:07 AM CST
-
-    # Second service window: 10:27-10:37 AM Central
-    # CDT (summer): 15:27-15:37 UTC
-    # CST (winter): 16:27-16:37 UTC
-    - cron: '27-37 15 * * SUN'  # 10:27-10:37 AM CDT / 9:27-9:37 AM CST
-    - cron: '27-37 16 * * SUN'  # 11:27-11:37 AM CDT / 10:27-10:37 AM CST
+    # 8:50 AM Central - before first service (9:00 AM)
+    # Two crons to handle DST: one for CDT (summer), one for CST (winter)
+    - cron: '50 13 * * SUN'  # 8:50 AM CDT (UTC-5)
+    - cron: '50 14 * * SUN'  # 8:50 AM CST (UTC-6)
   workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Set timezone to America/Chicago
         run: |
           sudo timedatectl set-timezone America/Chicago
 
-      - name: Check if we're in the correct time window
-        id: timecheck
+      - name: Check if correct season for this cron
+        id: season
         run: |
-          CURRENT_TIME=$(date +%H:%M)
+          CURRENT_TZ=$(date +%Z)
+          CURRENT_UTC_HOUR=$(date -u +%H)
 
-          # First window: 8:57-9:07 AM (using > and < with offset boundaries)
-          # Second window: 10:27-10:37 AM
-          if [[ "$CURRENT_TIME" > "08:56" && "$CURRENT_TIME" < "09:08" ]] || \
-             [[ "$CURRENT_TIME" > "10:26" && "$CURRENT_TIME" < "10:38" ]]; then
-            echo "in_window=true" >> $GITHUB_OUTPUT
-            echo "✅ Currently in service window (Central Time: $CURRENT_TIME)"
+          echo "Current timezone: $CURRENT_TZ, UTC hour: $CURRENT_UTC_HOUR"
+
+          # Skip if wrong season triggered this cron
+          # CDT (summer) cron fires at UTC 13, CST (winter) cron fires at UTC 14
+          if [[ "$CURRENT_TZ" == "CST" && "$CURRENT_UTC_HOUR" == "13" ]]; then
+            echo "⏭️  CST season but CDT cron fired - skipping"
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          elif [[ "$CURRENT_TZ" == "CDT" && "$CURRENT_UTC_HOUR" == "14" ]]; then
+            echo "⏭️  CDT season but CST cron fired - skipping"
+            echo "should_run=false" >> $GITHUB_OUTPUT
           else
-            echo "in_window=false" >> $GITHUB_OUTPUT
-            echo "⏭️  Outside service window (Central Time: $CURRENT_TIME)"
+            echo "✅ Correct season for this cron"
+            echo "should_run=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check YouTube for livestream
-        if: steps.timecheck.outputs.in_window == 'true'
-        id: check
-        run: |
-          RESPONSE=$(curl -s "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${{ secrets.YOUTUBE_CHANNEL_ID }}&eventType=live&type=video&key=${{ secrets.YOUTUBE_API_KEY }}")
-          LIVE_COUNT=$(echo $RESPONSE | jq '.pageInfo.totalResults')
-          echo "live_count=$LIVE_COUNT" >> $GITHUB_OUTPUT
-          echo "Found $LIVE_COUNT active livestream(s)"
-
-      - name: Check if recently deployed
-        if: steps.timecheck.outputs.in_window == 'true' && steps.check.outputs.live_count > 0
-        id: cooldown
+      - name: Poll for livestream
+        if: steps.season.outputs.should_run == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Get the last deploy workflow run
-          LAST_DEPLOY=$(gh api repos/${{ github.repository }}/actions/workflows/deploy.yml/runs --jq '.workflow_runs[0].created_at')
+          TIMEOUT=1200     # 20 minutes max
+          INTERVAL=30      # Check every 30 seconds
+          START_EPOCH=$(date +%s)
 
-          if [ -z "$LAST_DEPLOY" ]; then
-            echo "minutes_since_deploy=999" >> $GITHUB_OUTPUT
-            echo "No previous deploys found"
-          else
-            LAST_DEPLOY_EPOCH=$(date -d "$LAST_DEPLOY" +%s)
+          echo "🔍 Starting livestream detection (polling every ${INTERVAL}s for up to ${TIMEOUT}s)"
+
+          while true; do
             CURRENT_EPOCH=$(date +%s)
-            MINUTES_AGO=$(( ( CURRENT_EPOCH - LAST_DEPLOY_EPOCH ) / 60 ))
-            echo "minutes_since_deploy=$MINUTES_AGO" >> $GITHUB_OUTPUT
-            echo "Last deploy was $MINUTES_AGO minutes ago"
-          fi
+            ELAPSED=$((CURRENT_EPOCH - START_EPOCH))
 
-      - name: Trigger deploy if livestream found and not recently deployed
-        if: |
-          steps.timecheck.outputs.in_window == 'true' &&
-          steps.check.outputs.live_count > 0 &&
-          steps.cooldown.outputs.minutes_since_deploy > 10
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "🚀 Triggering deploy workflow..."
-          gh workflow run deploy.yml --ref main
-          echo "✅ Deploy triggered!"
+            if [[ $ELAPSED -ge $TIMEOUT ]]; then
+              echo "❌ Timeout reached after ${ELAPSED}s - no livestream detected"
+              exit 1
+            fi
 
-      - name: Skip deployment (cooldown active)
-        if: |
-          steps.timecheck.outputs.in_window == 'true' &&
-          steps.check.outputs.live_count > 0 &&
-          steps.cooldown.outputs.minutes_since_deploy <= 10
-        run: |
-          echo "⏸️  Livestream detected but deploy was triggered ${{ steps.cooldown.outputs.minutes_since_deploy }} minutes ago. Waiting for cooldown..."
+            CURRENT_TIME=$(date +%H:%M:%S)
+
+            RESPONSE=$(curl -s "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${{ secrets.YOUTUBE_CHANNEL_ID }}&eventType=live&type=video&key=${{ secrets.YOUTUBE_API_KEY }}")
+            LIVE_COUNT=$(echo $RESPONSE | jq '.pageInfo.totalResults')
+
+            if [[ "$LIVE_COUNT" -gt 0 ]]; then
+              echo "🎥 Livestream detected at $CURRENT_TIME!"
+              echo "🚀 Triggering deploy workflow..."
+              gh workflow run deploy.yml --ref main
+              echo "✅ Deploy triggered - exiting"
+              exit 0
+            fi
+
+            echo "[$CURRENT_TIME] No livestream found (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+          done
