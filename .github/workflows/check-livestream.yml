@@ -29,19 +29,17 @@ jobs:
       - name: Check if we're in the correct time window
         id: timecheck
         run: |
-          CURRENT_HOUR=$(date +%H)
-          CURRENT_MINUTE=$(date +%M)
-          CURRENT_TIME="${CURRENT_HOUR}${CURRENT_MINUTE}"
+          CURRENT_TIME=$(date +%H:%M)
 
-          # First window: 8:57-9:07 AM (0857-0907)
-          # Second window: 10:27-10:37 AM (1027-1037)
-          if [[ "10#$CURRENT_TIME" -ge "10#0857" && "10#$CURRENT_TIME" -le "10#0907" ]] || \
-             [[ "10#$CURRENT_TIME" -ge "10#1027" && "10#$CURRENT_TIME" -le "10#1037" ]]; then
+          # First window: 8:57-9:07 AM (using > and < with offset boundaries)
+          # Second window: 10:27-10:37 AM
+          if [[ "$CURRENT_TIME" > "08:56" && "$CURRENT_TIME" < "09:08" ]] || \
+             [[ "$CURRENT_TIME" > "10:26" && "$CURRENT_TIME" < "10:38" ]]; then
             echo "in_window=true" >> $GITHUB_OUTPUT
-            echo "✅ Currently in service window (Central Time: $(date +%H:%M))"
+            echo "✅ Currently in service window (Central Time: $CURRENT_TIME)"
           else
             echo "in_window=false" >> $GITHUB_OUTPUT
-            echo "⏭️  Outside service window (Central Time: $(date +%H:%M))"
+            echo "⏭️  Outside service window (Central Time: $CURRENT_TIME)"
           fi
 
       - name: Check YouTube for livestream
