@@ -65,7 +65,7 @@ jobs:
             if [[ "$LIVE_COUNT" -gt 0 ]]; then
               echo "🎥 Livestream detected at $CURRENT_TIME!"
               echo "🚀 Triggering deploy workflow..."
-              gh workflow run deploy.yml --ref main
+              gh workflow run deploy.yml --ref main -R ${{ github.repository }}
               echo "✅ Deploy triggered - exiting"
               exit 0
             fi
