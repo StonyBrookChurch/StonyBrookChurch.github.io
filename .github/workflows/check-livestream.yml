@@ -6,6 +6,9 @@ on:
     # Two crons to handle DST: one for CDT (summer), one for CST (winter)
     - cron: '50 13 * * SUN'  # 8:50 AM CDT (UTC-5)
     - cron: '50 14 * * SUN'  # 8:50 AM CST (UTC-6)
+    # 10:20 AM Central - before second service (10:30 AM)
+    - cron: '20 15 * * SUN'  # 10:20 AM CDT (UTC-5)
+    - cron: '20 16 * * SUN'  # 10:20 AM CST (UTC-6)
   workflow_dispatch:
 
 jobs:
@@ -17,25 +20,21 @@ jobs:
         run: |
           sudo timedatectl set-timezone America/Chicago
 
-      - name: Check if correct season for this cron
+      - name: Check if we're within the service window
         id: season
         run: |
-          CURRENT_TZ=$(date +%Z)
-          CURRENT_UTC_HOUR=$(date -u +%H)
+          CURRENT_MINUTES=$(( 10#$(date +%H) * 60 + 10#$(date +%M) ))
+          WINDOW_START=$(( 8 * 60 + 50 ))   # 8:50 AM
+          WINDOW_END=$(( 11 * 60 + 30 ))    # 11:30 AM
 
-          echo "Current timezone: $CURRENT_TZ, UTC hour: $CURRENT_UTC_HOUR"
+          echo "Current Central time: $(date +%H:%M) (${CURRENT_MINUTES} min), window: ${WINDOW_START}-${WINDOW_END} min"
 
-          # Skip if wrong season triggered this cron
-          # CDT (summer) cron fires at UTC 13, CST (winter) cron fires at UTC 14
-          if [[ "$CURRENT_TZ" == "CST" && "$CURRENT_UTC_HOUR" == "13" ]]; then
-            echo "⏭️  CST season but CDT cron fired - skipping"
-            echo "should_run=false" >> $GITHUB_OUTPUT
-          elif [[ "$CURRENT_TZ" == "CDT" && "$CURRENT_UTC_HOUR" == "14" ]]; then
-            echo "⏭️  CDT season but CST cron fired - skipping"
-            echo "should_run=false" >> $GITHUB_OUTPUT
-          else
-            echo "✅ Correct season for this cron"
+          if [[ $CURRENT_MINUTES -ge $WINDOW_START && $CURRENT_MINUTES -lt $WINDOW_END ]]; then
+            echo "✅ Within service window (8:50 AM - 11:30 AM Central) - starting poll"
             echo "should_run=true" >> $GITHUB_OUTPUT
+          else
+            echo "⏭️  Outside service window - skipping"
+            echo "should_run=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Poll for livestream
