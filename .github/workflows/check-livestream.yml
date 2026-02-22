@@ -60,7 +60,7 @@ jobs:
             CURRENT_TIME=$(date +%H:%M:%S)
 
             RESPONSE=$(curl -s "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${{ secrets.YOUTUBE_CHANNEL_ID }}&eventType=live&type=video&key=${{ secrets.YOUTUBE_API_KEY }}")
-            LIVE_COUNT=$(echo $RESPONSE | jq '.pageInfo.totalResults')
+            LIVE_COUNT=$(echo "$RESPONSE" | jq '.pageInfo.totalResults // 0')
 
             if [[ "$LIVE_COUNT" -gt 0 ]]; then
               echo "🎥 Livestream detected at $CURRENT_TIME!"
