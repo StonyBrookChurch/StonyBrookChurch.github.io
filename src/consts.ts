@@ -7,7 +7,7 @@ export const BASE_URL = '';
 export const PHONE_NUMBER = '(402) 895-9596';
 export const ADDRESS = '14345 Y St, Omaha, NE 68137';
 export const EMAIL = 'connect@stonybrookchurch.com';
-export const NUM_POSTS = 5;
+export const NUM_POSTS = 10;
 export const NAVIGATION = [
     {
         title: 'About Us',
