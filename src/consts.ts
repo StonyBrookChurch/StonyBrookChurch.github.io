@@ -30,8 +30,12 @@ export const NAVIGATION = [
                 url: '/about#staff'
             },
             {
-                title: 'Leadership',
+                title: 'Faith & Life Team',
                 url: '/about#leaders'
+            },
+            {
+                title: 'Pastoral Team',
+                url: '/about#pastoral-team'
             },
             {
                 title: 'USMB',
