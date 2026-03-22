@@ -1,6 +1,6 @@
 ---
 name: Jon Annin
-description: Pastor
+description: Senior Pastor
 image: /assets/uploads/hero/sermon-1.jpg
 ---
 
