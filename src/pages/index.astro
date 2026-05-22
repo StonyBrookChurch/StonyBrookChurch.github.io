@@ -14,6 +14,23 @@ const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
 
+const campuses = [
+  {
+    name: 'Millard Campus',
+    address: '14345 Y St, Omaha, NE 68137',
+    times: 'Sundays at 9:00AM & 10:30AM',
+    image: '/assets/uploads/campus-millard.webp',
+    url: 'https://www.google.com/maps/dir/?api=1&destination=14345+Y+St+Omaha+NE+68137'
+  },
+  {
+    name: 'Springfield Campus',
+    address: '104 Main St, Springfield, NE 68059',
+    times: 'Wednesdays at 6:30PM',
+    image: '/assets/uploads/campus-springfield.webp',
+    url: 'https://www.google.com/maps/dir/?api=1&destination=104+Main+St+Springfield+NE+68059'
+  }
+];
+
 const upcomingEvent = {
   heading: 'Upcoming Event',
   title: 'Join us at the Sarpy County Fair Grand Parade!',
@@ -98,33 +115,6 @@ const upcomingEvent = {
     </div>
   </div>
 
-  <div class="section bg-cover" style="background-image: url(/assets/uploads/banner/connect-1.webp)">
-    <div class="container">
-      <div class="section-title text-center">
-        <h3 class="text-white family-display fw-400">Connect With Us</h3>
-        <p class="text-white">
-          We would love to meet you and pray for you! You can instantly share prayer requests, find small groups, or register for events online when you download the <a href={CHURCH_CENTER_URL} target="_blank">Church Center</a> app.
-        </p>
-      </div>
-      <div class="d-block d-sm-flex justify-content-center align-items-center">
-        <a href={APP_STORE_URL} class="ms-0 ms-sm-2 mt-2 button andro_button-flex secondary">
-          <i class="fab fa-apple"></i>
-          <div class="andro_button-flex-content">
-            <span>Available on</span>
-            <b>Apple Store</b>
-          </div>
-        </a>
-        <a href={PLAY_STORE_URL} class="ms-0 ms-sm-2 mt-2 button andro_button-flex primary">
-          <i class="fab fa-google-play"></i>
-          <div class="andro_button-flex-content">
-            <span>Available on</span>
-            <b>Play Store</b>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-
   <div class="section md bg-white">
     <div class="container">
       <div class="section-title text-center">
@@ -195,6 +185,62 @@ const upcomingEvent = {
       </div>
       <div class="mt-4 text-center">
         <a href="/ministries" class="button secondary">View All Ministries</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section md bg-dark">
+    <div class="container">
+      <div class="section-title text-center">
+        <span class="text-uppercase color-primary family-display" style="font-size: 0.85rem; letter-spacing: 0.15em;">Worship With Us</span>
+        <h3 class="text-white family-display fw-400 mt-2">Join Us <span class="color-primary">On Location!</span></h3>
+        <p class="color-body-light-2">We are one church meeting in two locations. Join us for worship at a campus near you!</p>
+      </div>
+      <div class="row g-4">
+        {campuses.map((campus) =>
+          <div class="col-lg-6">
+            <div class="andro_campus bg-cover dark-overlay" style={`background-image: url(${campus.image})`}>
+              <div class="andro_campus-content">
+                <h4 class="mb-2">{campus.name}</h4>
+                <p class="mb-1">{campus.address}</p>
+                <p class="fw-600 mb-3">{campus.times}</p>
+                <a href={campus.url} target="_blank" class="button secondary">Get Directions <i class="far fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div class="text-center mt-5">
+        <p class="color-body-light-2 mb-1">Can't join us in person?</p>
+        <p class="text-white mb-4">Join us online every Sunday at 7PM.</p>
+        <a href="/online" target="_blank" class="button primary">Watch Online <i class="fal fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section bg-cover" style="background-image: url(/assets/uploads/banner/connect-1.webp)">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3 class="text-white family-display fw-400">Connect With Us</h3>
+        <p class="text-white">
+          We would love to meet you and pray for you! You can instantly share prayer requests, find small groups, or register for events online when you download the <a href={CHURCH_CENTER_URL} target="_blank">Church Center</a> app.
+        </p>
+      </div>
+      <div class="d-block d-sm-flex justify-content-center align-items-center">
+        <a href={APP_STORE_URL} class="ms-0 ms-sm-2 mt-2 button andro_button-flex secondary">
+          <i class="fab fa-apple"></i>
+          <div class="andro_button-flex-content">
+            <span>Available on</span>
+            <b>Apple Store</b>
+          </div>
+        </a>
+        <a href={PLAY_STORE_URL} class="ms-0 ms-sm-2 mt-2 button andro_button-flex primary">
+          <i class="fab fa-google-play"></i>
+          <div class="andro_button-flex-content">
+            <span>Available on</span>
+            <b>Play Store</b>
+          </div>
+        </a>
       </div>
     </div>
   </div>
