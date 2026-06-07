@@ -25,13 +25,6 @@ const sundayService: Service = {
   address: '14345 Y St, Omaha, NE 68137'
 };
 
-const onlineService: Service = {
-  title: 'Online Service',
-  date: getNextDayOfWeek('Sunday').toString(),
-  time: '7PM',
-  address: '<a href="/online" target="_blank">Attend Online</a>'
-};
-
 const wednesdayService: Service = {
   title: 'Wednesday Service',
   date: getNextDayOfWeek('Wednesday').toString(),
@@ -41,17 +34,7 @@ const wednesdayService: Service = {
 
 const now = DateTime.local();
 
-let service: Service;
-if (now.weekday === 7 && now.hour >= 11) { // Sunday afternoon
-  service = onlineService;
-}
-else
-  if (now.weekday > 3) {
-  service = sundayService;
-}
-else {
-  service = wednesdayService;
-}
+const service: Service = now.weekday > 3 ? sundayService : wednesdayService;
 ---
 
 <div class="andro_hero style-3">
