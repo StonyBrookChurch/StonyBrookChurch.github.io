@@ -6,9 +6,9 @@ on:
     # Two crons to handle DST: one for CDT (summer), one for CST (winter)
     - cron: '50 13 * * SUN'  # 8:50 AM CDT (UTC-5)
     - cron: '50 14 * * SUN'  # 8:50 AM CST (UTC-6)
-    # 10:20 AM Central - before second service (10:30 AM)
-    - cron: '20 15 * * SUN'  # 10:20 AM CDT (UTC-5)
-    - cron: '20 16 * * SUN'  # 10:20 AM CST (UTC-6)
+    # 10:30 AM Central - before second service (10:40 AM)
+    - cron: '30 15 * * SUN'  # 10:30 AM CDT (UTC-5)
+    - cron: '30 16 * * SUN'  # 10:30 AM CST (UTC-6)
   workflow_dispatch:
 
 jobs:
