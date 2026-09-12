@@ -2,9 +2,18 @@
 import Page from '@layouts/Page.astro';
 import getLatestEvents from '@utils/getLatestEvents';
 import FormattedDate from '@components/FormattedDate.astro';
+import { DateTime } from 'luxon';
 
 const publicEvents = await getLatestEvents(7, 'Public');
 const specialEvents = firstOfEach(await getLatestEvents(30, 'Special Event'));
+
+// Springfield campus is moving from Wednesday evenings at the Community Center
+// to Sunday mornings at the Midwest Pickleball Club, launching October 4, 2026.
+const now = DateTime.local();
+const lastCommunityCenterService = DateTime.fromISO('2026-09-16', { zone: 'America/Chicago' }).endOf('day');
+const springfieldLaunchDate = DateTime.fromISO('2026-10-04', { zone: 'America/Chicago' });
+const springfieldWednesdayActive = now <= lastCommunityCenterService;
+const springfieldSundayActive = now >= springfieldLaunchDate;
 
 function firstOfEach(events) {
   const map = {};
@@ -105,9 +114,16 @@ function firstOfEach(events) {
               We have regular gatherings at the Millard campus on Sunday mornings at 9 am and 10:40 am, which last about an hour and include Kid Life and toddler care for both services.
               We also have an online service on Sunday evenings at 7 pm.
             </p>
-            <p>
-              <strong>New in 2026</strong>, we now have a full service at the Springfield Community Center on Wednesday evenings at 7:30 pm which also provides Kid Life and toddler care.
-            </p>
+            {springfieldWednesdayActive && (
+              <p>
+                <strong>New in 2026</strong>, we now have a full service at the Springfield Community Center on Wednesday evenings at 6:30 pm which also provides Kid Life and toddler care.
+              </p>
+            )}
+            {springfieldSundayActive && (
+              <p>
+                <strong>New in 2026</strong>, our Springfield campus now meets Sunday mornings at 8 am at the Midwest Pickleball Club (12125 S 156th St, Suite 101, Papillion, NE), which also provides Kid Life and toddler care.
+              </p>
+            )}
             <p>
               Once a month, we take communion together at the end of service (for all services) and invite anyone who has placed their faith and trust in Jesus to join in the remembrance.
               We also have a Saturday morning Bible study for men every week, a quarterly fellowship gathering for men called &ldquo;Food and Fire&rdquo; and a once-a-month fellowship gathering for women called &ldquo;Over the Coffee Cup.&rdquo;

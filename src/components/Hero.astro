@@ -34,7 +34,12 @@ const wednesdayService: Service = {
 
 const now = DateTime.local();
 
-const service: Service = now.weekday > 3 ? sundayService : wednesdayService;
+// The Springfield Wednesday service ends after September 16, 2026, when that
+// campus moves to Sunday mornings (see src/pages/index.astro).
+const lastCommunityCenterService = DateTime.fromISO('2026-09-16', { zone: 'America/Chicago' }).endOf('day');
+const wednesdayServiceActive = now <= lastCommunityCenterService;
+
+const service: Service = (wednesdayServiceActive && now.weekday <= 3) ? wednesdayService : sundayService;
 ---
 
 <div class="andro_hero style-3">

@@ -8,11 +8,37 @@ import getLatestMessage from '@utils/getLatestMessage';
 import getLatestStream from '@utils/getLatestStream';
 import permalink from '@utils/permalink';
 import Home from '@layouts/Home.astro';
+import { DateTime } from 'luxon';
 
 const featuredPosts = await getFeaturedPosts();
 const latestMessage = await getLatestMessage();
 const publicEvents = await getLatestEvents(7, 'Public');
 const liveStream = await getLatestStream('live');
+
+// Springfield campus is moving from Wednesday evenings at the Community Center
+// to Sunday mornings at the Midwest Pickleball Club, launching October 4, 2026.
+const now = DateTime.local();
+const lastCommunityCenterService = DateTime.fromISO('2026-09-16', { zone: 'America/Chicago' }).endOf('day');
+const springfieldLaunchDate = DateTime.fromISO('2026-10-04', { zone: 'America/Chicago' });
+
+let springfieldCampus = null;
+if (now <= lastCommunityCenterService) {
+  springfieldCampus = {
+    name: 'Springfield Campus',
+    address: '104 Main St, Springfield, NE 68059',
+    times: 'Wednesdays at 6:30PM',
+    image: '/assets/uploads/campus-springfield.webp',
+    url: 'https://www.google.com/maps/dir/?api=1&destination=104+Main+St+Springfield+NE+68059'
+  };
+} else if (now >= springfieldLaunchDate) {
+  springfieldCampus = {
+    name: 'Springfield Campus',
+    address: '12125 S 156th St, Suite 101, Papillion, NE',
+    times: 'Sundays at 8:00AM',
+    image: '/assets/uploads/campus-pickleball-club.png',
+    url: 'https://www.google.com/maps/dir/?api=1&destination=12125+S+156th+St+Suite+101+Papillion+NE'
+  };
+}
 
 const campuses = [
   {
@@ -22,13 +48,7 @@ const campuses = [
     image: '/assets/uploads/campus-millard.webp',
     url: 'https://www.google.com/maps/dir/?api=1&destination=14345+Y+St+Omaha+NE+68137'
   },
-  {
-    name: 'Springfield Campus',
-    address: '104 Main St, Springfield, NE 68059',
-    times: 'Wednesdays at 6:30PM',
-    image: '/assets/uploads/campus-springfield.webp',
-    url: 'https://www.google.com/maps/dir/?api=1&destination=104+Main+St+Springfield+NE+68059'
-  }
+  ...(springfieldCampus ? [springfieldCampus] : [])
 ];
 
 const upcomingEvent = {
